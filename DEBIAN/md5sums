@@ -1,0 +1,4 @@
+d41d8cd98f00b204e9800998ecf8427e  DEBIAN/md5sums
+48401bb7673b0f219f704e0b5ff2689c  DEBIAN/control
+3bfaeca023a69e1f64cd7fd9fe8f2738  etc/apt/apt.conf.d/99big-names-ptbr
+78605384a89b9e28c8a37ce378cb86ac  usr/bin/big-names-ptbr

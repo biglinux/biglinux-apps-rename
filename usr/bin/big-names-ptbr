@@ -1,0 +1,228 @@
+# kate
+sed -i 's|Name\[pt_BR\]=.*|Name[pt_BR]=Anotações simples (Kate)|g;s|Comment\[pt_BR\]=.*|Comment[pt_BR]=|g;s|GenericName\[pt_BR\]=.*|GenericName[pt_BR]=|g' /usr/share/applications/org.kde.kate.desktop
+
+
+# compton
+if [ "$(grep NotShowIn /usr/share/applications/compton-conf.desktop)" = "" ]; then
+    echo 'NotShowIn=KDE' >> /usr/share/applications/compton-conf.desktop
+fi
+sed -i 's|Name\[pt_BR\]=.*|Name[pt_BR]=Efeitos de janelas (Compton)|g;s|Comment\[pt\]=.*|Comment[pt]=|g;s|GenericName\[pt\]=.*|GenericName[pt]=|g' /usr/share/applications/compton-conf.desktop
+
+
+# pcmanfm-qt-desktop e pcmanfm-qt-desktop-pref
+if [ "$(grep NotShowIn /usr/share/applications/pcmanfm-qt-desktop-pref.desktop)" = "" ]; then
+    echo 'NotShowIn=KDE' >> /usr/share/applications/pcmanfm-qt-desktop-pref.desktop
+    echo 'NotShowIn=KDE' >> /usr/share/applications/pcmanfm-qt.desktop
+fi
+
+
+# obconf-qt
+if [ "$(grep NotShowIn /usr/share/applications/obconf-qt.desktop)" = "" ]; then
+    echo 'NotShowIn=KDE' >> /usr/share/applications/obconf-qt.desktop
+fi
+
+
+# xscreensaver-properties
+if [ "$(grep NotShowIn /usr/share/applications/xscreensaver-properties.desktop)" = "" ]; then
+    echo 'NotShowIn=KDE' >> /usr/share/applications/xscreensaver-properties.desktop
+fi
+
+
+# synaptic
+sed -i 's|Name\[pt_BR\]=.*|Name[pt_BR]=Instalar ou remover programas (Synaptic)|g;s|Comment\[pt_BR\]=.*|Comment[pt_BR]=|g;s|GenericName\[pt_BR\]=.*|GenericName[pt_BR]=|g;s|Categories=.*|Categories=PackageManager;GTK;Settings;|g' /usr/share/applications/synaptic.desktop
+
+
+
+
+# grub-customizer
+#if [ "$(grep Name[pt_BR]= /usr/share/applications/grub-customizer.desktop)" = "" ]; then
+#    echo 'Name[pt_BR]=Editar tela de boot (Grub-customizer)
+#Comment[pt_BR]=
+#GenericName[pt_BR]=' >> /usr/share/applications/grub-customizer.desktop
+#sed -i 's|Categories=.*|Categories=System;|g' /usr/share/applications/grub-customizer.desktop
+#fi
+rm -f /usr/share/applications/grub-customizer.desktop
+
+# network manager
+rm -f /usr/share/applications/nm-connection-editor.desktop 
+
+# imagemagick
+rm -f /usr/share/applications/display-im6.q16.desktop
+
+# libreoffice
+rm -f /usr/share/applications/libreoffice-startcenter.desktop
+
+# libreoffice math
+if [ "$(grep -c 'Name\[pt_BR\]=' /usr/share/applications/libreoffice-math.desktop)" = "2" ]; then
+    sed -i '/GenericName\[pt_BR\]=/a Name[pt_BR]=Fórmulas matemáticas (Math)' /usr/share/applications/libreoffice-math.desktop
+    sed -i 's|Comment\[pt_BR\]=.*|Comment[pt_BR]=|g;s|GenericName\[pt_BR\]=.*|GenericName[pt_BR]=|g;s|Categories=.*|Categories=Office;Spreadsheet;|g' /usr/share/applications/libreoffice-math.desktop
+fi
+
+
+# libreoffice calc
+if [ "$(grep -c 'Name\[pt_BR\]=' /usr/share/applications/libreoffice-calc.desktop)" = "2" ]; then
+    sed -i '/GenericName\[pt_BR\]=/a Name[pt_BR]=Planilhas - Compatível com Excel (Calc)' /usr/share/applications/libreoffice-calc.desktop
+    sed -i 's|Comment\[pt_BR\]=.*|Comment[pt_BR]=|g;s|GenericName\[pt_BR\]=.*|GenericName[pt_BR]=|g' /usr/share/applications/libreoffice-calc.desktop
+fi
+
+
+# libreoffice impress
+if [ "$(grep -c 'Name\[pt_BR\]=' /usr/share/applications/libreoffice-impress.desktop)" = "2" ]; then
+    sed -i '/GenericName\[pt_BR\]=/a Name[pt_BR]=Criar slides - Compatível com Power Point (Impress)' /usr/share/applications/libreoffice-impress.desktop
+    sed -i 's|Comment\[pt_BR\]=.*|Comment[pt_BR]=|g;s|GenericName\[pt_BR\]=.*|GenericName[pt_BR]=|g' /usr/share/applications/libreoffice-impress.desktop
+fi
+
+
+# libreoffice draw
+if [ "$(grep -c 'Name\[pt_BR\]=' /usr/share/applications/libreoffice-draw.desktop)" = "2" ]; then
+    sed -i '/GenericName\[pt_BR\]=/a Name[pt_BR]=Desenhos vetoriais (Draw)' /usr/share/applications/libreoffice-draw.desktop
+    sed -i 's|Comment\[pt_BR\]=.*|Comment[pt_BR]=|g;s|GenericName\[pt_BR\]=.*|GenericName[pt_BR]=|g;s|Categories=.*|Categories=Graphics;FlowChart;Graphics;2DGraphics;VectorGraphics;|g' /usr/share/applications/libreoffice-draw.desktop
+fi
+
+
+# libreoffice writer
+if [ "$(grep -c 'Name\[pt_BR\]=' /usr/share/applications/libreoffice-writer.desktop)" = "2" ]; then
+    sed -i '/GenericName\[pt_BR\]=/a Name[pt_BR]=Editor de textos - Compatível com Word (Writer)' /usr/share/applications/libreoffice-writer.desktop
+    sed -i 's|Comment\[pt_BR\]=.*|Comment[pt_BR]=|g;s|GenericName\[pt_BR\]=.*|GenericName[pt_BR]=|g' /usr/share/applications/libreoffice-writer.desktop
+fi
+
+# gimp
+sed -i 's|Name\[pt_BR\]=.*|Name[pt_BR]=Editor de imagens (Gimp)|g;s|Comment\[pt_BR\]=.*|Comment[pt_BR]=|g;s|GenericName\[pt_BR\]=.*|GenericName[pt_BR]=|g' /usr/share/applications/gimp.desktop
+
+# simple-scan
+sed -i 's|Name\[pt_BR\]=.*|Name[pt_BR]=Digitalizar imagens (Simple-scan)|g;s|Comment\[pt_BR\]=.*|Comment[pt_BR]=|g;s|GenericName\[pt_BR\]=.*|GenericName[pt_BR]=|g' /usr/share/applications/simple-scan.desktop
+
+# okular
+sed -i 's|Name\[pt_BR\]=.*|Name[pt_BR]=Visualizador de PDF, Epub e outros (Okular)|g;s|Comment\[pt_BR\]=.*|Comment[pt_BR]=|g;s|GenericName\[pt_BR\]=.*|GenericName[pt_BR]=|g;s|Categories=.*|Categories=Qt;KDE;Office;Viewer;|g' /usr/share/applications/org.kde.okular.desktop
+
+# Gwenview
+sed -i 's|Name\[pt_BR\]=.*|Name[pt_BR]=Visualizador de imagens (Gwenview)|g;s|Comment\[pt_BR\]=.*|Comment[pt_BR]=|g;s|GenericName\[pt_BR\]=.*|GenericName[pt_BR]=|g' /usr/share/applications/org.kde.gwenview.desktop
+
+# Cheese
+sed -i 's|Name\[pt_BR\]=.*|Name[pt_BR]=Tirar fotos com webcam (Cheese)|g;s|Comment\[pt_BR\]=.*|Comment[pt_BR]=|g;s|GenericName\[pt_BR\]=.*|GenericName[pt_BR]=|g' /usr/share/applications/org.gnome.Cheese.desktop
+
+# pavucontrol-qt
+sed -i 's|Name\[pt\]=.*|Name[pt]=Configurar o áudio (pavucontrol)|g;s|Comment\[pt\]=.*|Comment[pt]=|g;s|GenericName\[pt\]=.*|GenericName[pt]=|g;s|Categories=.*|Categories=Settings;Audio;Mixer;Qt;|g' /usr/share/applications/pavucontrol-qt.desktop
+
+# Clementine
+if [ "$(grep 'Name\[pt_BR\]=Reprodutor' /usr/share/applications/clementine.desktop)" = "" ]; then
+    sed -i '/GenericName\[pt\]=/a Name[pt_BR]=Reprodutor de músicas (Clementine) \nGenericName[pt_BR]= \nComment[pt_BR]=' /usr/share/applications/clementine.desktop
+fi
+
+# smplayer
+if [ "$(grep -c 'Name\[pt_BR\]=' /usr/share/applications/smplayer.desktop)" = "2" ]; then
+    sed -i '/GenericName=/a Name[pt_BR]=Reprodutor de vídeos (Smplayer) \nGenericName[pt_BR]= \nComment[pt_BR]=' /usr/share/applications/smplayer.desktop
+fi
+
+# calculadora
+sed -i 's|Name\[pt_BR\]=.*|Name[pt_BR]=Calculadora|g;s|Comment\[pt_BR\]=.*|Comment[pt_BR]=|g;s|GenericName\[pt_BR\]=.*|GenericName[pt_BR]=|g;s|Categories=.*|Categories=Office;Spreadsheet;GNOME;GTK;Calculator;|g' /usr/share/applications/org.gnome.Calculator.desktop
+
+# spectacle
+sed -i 's|Name\[pt_BR\]=.*|Name[pt_BR]=Capturar tela (Spectacle)|g;s|Comment\[pt_BR\]=.*|Comment[pt_BR]=|g;s|GenericName\[pt_BR\]=.*|GenericName[pt_BR]=|g' /usr/share/applications/org.kde.spectacle.desktop
+
+# compton
+rm -f /usr/share/applications/compton.desktop
+
+# ark
+sed -i 's|Name\[pt_BR\]=.*|Name[pt_BR]=Compactar arquivos (Ark)|g;s|Comment\[pt_BR\]=.*|Comment[pt_BR]=|g;s|GenericName\[pt_BR\]=.*|GenericName[pt_BR]=|g' /usr/share/applications/org.kde.ark.desktop
+
+# kfind
+sed -i 's|Name\[pt_BR\]=.*|Name[pt_BR]=Procurar arquivos (Kfind)|g;s|Comment\[pt_BR\]=.*|Comment[pt_BR]=|g;s|GenericName\[pt_BR\]=.*|GenericName[pt_BR]=|g;s|OnlyShowIn=KDE;||g' /usr/share/applications/org.kde.kfind.desktop
+
+# discover
+sed -i 's|Name\[pt_BR\]=Discover|Name[pt_BR]=Loja de aplicativos (Discover)|g;s|Comment\[pt_BR\]=.*|Comment[pt_BR]=|g;s|GenericName\[pt_BR\]=.*|GenericName[pt_BR]=|g;s|Categories=.*|Categories=Qt;KDE;Settings;|g' /usr/share/applications/org.kde.discover.desktop
+
+# hardinfo
+if [ "$(grep 'Comment\[pt_BR\]=' /usr/share/applications/hardinfo.desktop)" = "" ]; then
+    sed -i '/Comment=/a Comment[pt_BR]=' /usr/share/applications/hardinfo.desktop
+    sed -i 's|Name\[pt_BR\]=.*|Name[pt_BR]=Informações do Sistema (Hardinfo)|g' /usr/share/applications/hardinfo.desktop
+fi
+
+# konsole
+sed -i 's|Name\[pt_BR\]=Konsole|Name[pt_BR]=Terminal (Konsole)|g;s|Comment\[pt_BR\]=.*|Comment[pt_BR]=|g;s|GenericName\[pt_BR\]=.*|GenericName[pt_BR]=|g;s|Categories=.*|Categories=Qt;KDE;Utility;TerminalEmulator;|g' /usr/share/applications/org.kde.konsole.desktop
+
+# dolphin
+sed -i 's|Name\[pt_BR\]=.*|Name[pt_BR]=Gerenciar arquivos (Dolphin)|g;s|Comment\[pt_BR\]=.*|Comment[pt_BR]=|g;s|GenericName\[pt_BR\]=.*|GenericName[pt_BR]=|g;s|Categories=.*|Categories=Qt;KDE;Utility;FileTools;FileManager;|g' /usr/share/applications/org.kde.dolphin.desktop
+
+# mintstick
+sed -i 's|Name\[pt_BR\]=.*|Name[pt_BR]=Criar pen drive de boot (Mintstick)|g;s|Comment\[pt_BR\]=.*|Comment[pt_BR]=|g' /usr/share/applications/mintstick.desktop
+sed -i 's|Name\[pt_BR\]=.*|Name[pt_BR]=Criar pen drive de boot (Mintstick)|g;s|Comment\[pt_BR\]=.*|Comment[pt_BR]=|g;s|GenericName\[pt_BR\]=.*|GenericName[pt_BR]=|g' /usr/share/applications/mintstick-kde.desktop
+
+# mintstick-format
+sed -i 's|Name\[pt_BR\]=.*|Name[pt_BR]=Formatar pen drive (Mintstick)|g;s|Comment\[pt_BR\]=.*|Comment[pt_BR]=|g' /usr/share/applications/mintstick-format.desktop
+sed -i 's|Name\[pt_BR\]=.*|Name[pt_BR]=Formatar pen drive (Mintstick)|g;s|Comment\[pt_BR\]=.*|Comment[pt_BR]=|g;s|GenericName\[pt_BR\]=.*|GenericName[pt_BR]=|g' /usr/share/applications/mintstick-format-kde.desktop
+
+# ksysguard
+sed -i 's|Name\[pt_BR\]=.*|Name[pt_BR]=Gerenciar tarefas (Ksysguard)|g;s|Comment\[pt_BR\]=.*|Comment[pt_BR]=|g;s|GenericName\[pt_BR\]=.*|GenericName[pt_BR]=|g' /usr/share/applications/org.kde.ksysguard.desktop
+
+# gparted
+sed -i 's|Name\[pt_BR\]=.*|Name[pt_BR]=Formatar ou particionar (Gparted)|g;s|Comment\[pt_BR\]=.*|Comment[pt_BR]=|g;s|GenericName\[pt_BR\]=.*|GenericName[pt_BR]=|g' /usr/share/applications/gparted.desktop
+
+# baobab
+sed -i 's|Name\[pt_BR\]=.*|Name[pt_BR]=Armazenamento (Baobab)|g;s|Comment\[pt_BR\]=.*|Comment[pt_BR]=|g;s|NotShowIn=KDE;||g' /usr/share/applications/org.gnome.baobab.desktop
+
+# Chrome
+if [ "$(grep -c 'Name\[pt_BR\]=' /usr/share/applications/google-chrome.desktop)" = "3" ]; then
+    sed -i '/GenericName\[pt_BR\]=/a Name[pt_BR]=Navegador WEB (Google Chrome)' /usr/share/applications/google-chrome.desktop
+    sed -i 's|Comment\[pt_BR\]=.*|Comment[pt_BR]=|g;s|GenericName\[pt_BR\]=.*|GenericName[pt_BR]=|g' /usr/share/applications/google-chrome.desktop
+fi
+
+
+# firefox
+sed -i 's|Name\[pt_BR\]=.*|Name[pt_BR]=Navegador WEB (Firefox)|g;s|Comment\[pt_BR\]=.*|Comment[pt_BR]=|g;s|GenericName\[pt_BR\]=.*|GenericName[pt_BR]=|g' /usr/share/applications/firefox.desktop
+
+# thunderbird
+sed -i 's|Name\[pt_BR\]=.*|Name[pt_BR]=Cliente de e-mail (Thunderbird)|g;s|Comment\[pt_BR\]=.*|Comment[pt_BR]=|g;s|GenericName\[pt_BR\]=.*|GenericName[pt_BR]=|g' /usr/share/applications/thunderbird.desktop
+
+
+# qbittorrent
+sed -i 's|Name\[pt_BR\]=.*|Name[pt_BR]=Cliente torrent (qBittorrent)|g;s|Comment\[pt_BR\]=.*|Comment[pt_BR]=|g;s|GenericName\[pt_BR\]=.*|GenericName[pt_BR]=|g' /usr/share/applications/qbittorrent.desktop
+
+# kpat
+sed -i 's|Name\[pt_BR\]=.*|Name[pt_BR]=Paciência, Freecell e outros (kpat)|g;s|Comment\[pt_BR\]=.*|Comment[pt_BR]=|g;s|GenericName\[pt_BR\]=.*|GenericName[pt_BR]=|g' /usr/share/applications/org.kde.kpat.desktop
+
+# klipper
+sed -i 's|Name\[pt_BR\]=.*|Name[pt_BR]=Histórico de copiar e colar (Klipper)|g;s|Comment\[pt_BR\]=.*|Comment[pt_BR]=|g;s|GenericName\[pt_BR\]=.*|GenericName[pt_BR]=|g' /usr/share/applications/org.kde.klipper.desktop
+
+# wps-office-et
+if [ "$(grep 'Name\[pt_BR\]=' /usr/share/applications/wps-office-et.desktop)" = "" ]; then
+    sed -i '/GenericName=/a Name[pt_BR]=WPS Planilhas (Spreadsheets)\nGenericName[pt_BR]= \nComment[pt_BR]=' /usr/share/applications/wps-office-et.desktop
+fi
+rm -f /etc/xdg/menus/applications-merged/wps-office.menu
+
+# wps-office-wpp
+if [ "$(grep 'Name\[pt_BR\]=' /usr/share/applications/wps-office-wpp.desktop)" = "" ]; then
+    sed -i '/GenericName=/a Name[pt_BR]=WPS Apresentações (Presentation)\nGenericName[pt_BR]= \nComment[pt_BR]=' /usr/share/applications/wps-office-wpp.desktop
+fi
+
+# wps-office-wps
+if [ "$(grep 'Name\[pt_BR\]=' /usr/share/applications/wps-office-wps.desktop)" = "" ]; then
+    sed -i '/GenericName=/a Name[pt_BR]=WPS Editor de textos (Writer)\nGenericName[pt_BR]= \nComment[pt_BR]=' /usr/share/applications/wps-office-wps.desktop
+fi
+
+# LXQT Menu
+#rm -f /usr/share/desktop-directories/lxde-utility.directory 
+#ln -s /usr/share/desktop-directories/kf5-utilities.directory /usr/share/desktop-directories/lxde-utility.directory 
+#rm /usr/share/desktop-directories/lxde-settings.directory
+#ln -s /usr/share/desktop-directories/kf5-settingsmenu.directory /usr/share/desktop-directories/lxde-settings.directory
+#sed -i 's|<Menuname>DesktopSettings</Menuname>||g' /etc/xdg/menus/lxqt-applications.menu
+#sed -i 's|Name\[ru_RU\]=.*|Name\[pt_BR\]=Configurações do LXQT|g' /usr/share/desktop-directories/lxqt-settings.directory
+
+# Xscreensaver
+sed -i 's|Categories=Settings;DesktopSettings;Security;X-XFCE;|Categories=System;DesktopSettings;Security;X-XFCE;|' /usr/share/applications/xscreensaver-properties.desktop
+
+# kde-wacom
+rm -f /usr/share/applications/kde_wacom_tabletfinder.desktop
+
+# Timeshift
+if [ "$(grep -c 'Name\[pt_BR\]=' /usr/share/applications/timeshift-gtk.desktop)" = "0" ]; then
+    sed -i '/GenericName\[ca\]=/a Name[pt_BR]=Backups e snapshots (Timeshift)' /usr/share/applications/timeshift-gtk.desktop
+    echo 'Comment[pt_BR]=' >> /usr/share/applications/timeshift-gtk.desktop
+    echo 'GenericName[pt_BR]=' >> /usr/share/applications/timeshift-gtk.desktop
+    sed -i 's|Comment\[pt_BR\]=.*|Comment[pt_BR]=|g;s|GenericName\[pt_BR\]=.*|GenericName[pt_BR]=|g' /usr/share/applications/timeshift-gtk.desktop
+fi
+
+# CTRL+alt+backspace
+if [ "$(grep 'XKBOPTIONS=""' /etc/default/keyboard)" != "" ]; then
+    sed -i 's|XKBOPTIONS=""|XKBOPTIONS="terminate:ctrl_alt_bksp"|g' /etc/default/keyboard
+fi

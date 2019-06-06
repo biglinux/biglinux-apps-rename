@@ -1,0 +1,8 @@
+######################
+# Tweaks for apt
+# by Bruno Gonçalves Araujo <bigbruno@gmail.com>
+# licensed under GPLv2 or greater.
+# released in 3/15/2019
+
+
+DPkg::Post-Invoke {"/usr/bin/big-names-ptbr 2> /dev/null";};
