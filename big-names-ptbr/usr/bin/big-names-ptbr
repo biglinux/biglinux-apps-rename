@@ -29,9 +29,10 @@ fi
 
 
 # synaptic
-sed -i 's|Name\[pt_BR\]=.*|Name[pt_BR]=Instalar ou remover programas (Synaptic)|g;s|Comment\[pt_BR\]=.*|Comment[pt_BR]=|g;s|GenericName\[pt_BR\]=.*|GenericName[pt_BR]=|g;s|Categories=.*|Categories=PackageManager;GTK;Settings;|g' /usr/share/applications/synaptic.desktop
-
-
+if [ "$(grep 'GenericName[pt]' /usr/share/applications/synaptic.desktop)" = "" ]; then
+    echo 'GenericName[pt]=Instalar ou remover programas' >> /usr/share/applications/synaptic.desktop
+    sed -i 's|Name=Synaptic Package Manager|Name=Synaptic|g' /usr/share/applications/synaptic.desktop
+fi
 
 
 # grub-customizer
@@ -87,10 +88,16 @@ if [ "$(grep -c 'Name\[pt_BR\]=' /usr/share/applications/libreoffice-writer.desk
 fi
 
 # gimp
-sed -i 's|Name\[pt_BR\]=.*|Name[pt_BR]=Editor de imagens (Gimp)|g;s|Comment\[pt_BR\]=.*|Comment[pt_BR]=|g;s|GenericName\[pt_BR\]=.*|GenericName[pt_BR]=|g' /usr/share/applications/gimp.desktop
+if [ "$(grep 'GenericName[pt]' /usr/share/applications/gimp.desktop)" = "" ]; then
+    echo 'GenericName[pt]=Editor de imagens' >> /usr/share/applications/gimp.desktop
+    echo 'Name[pt]=Gimp' >> /usr/share/applications/gimp.desktop
+fi
 
 # simple-scan
-sed -i 's|Name\[pt_BR\]=.*|Name[pt_BR]=Digitalizar imagens (Simple-scan)|g;s|Comment\[pt_BR\]=.*|Comment[pt_BR]=|g;s|GenericName\[pt_BR\]=.*|GenericName[pt_BR]=|g' /usr/share/applications/simple-scan.desktop
+if [ "$(grep 'GenericName[pt]' /usr/share/applications/simple-scan.desktop)" = "" ]; then
+    echo 'GenericName[pt]=Digitalizar imagens' >> /usr/share/applications/simple-scan.desktop
+    echo 'Name[pt]=Simple-scan' >> /usr/share/applications/simple-scan.desktop
+fi
 
 # okular
 sed -i 's|Name\[pt_BR\]=.*|Name[pt_BR]=Visualizador de PDF, Epub e outros (Okular)|g;s|Comment\[pt_BR\]=.*|Comment[pt_BR]=|g;s|GenericName\[pt_BR\]=.*|GenericName[pt_BR]=|g;s|Categories=.*|Categories=Qt;KDE;Office;Viewer;|g' /usr/share/applications/org.kde.okular.desktop
@@ -99,7 +106,10 @@ sed -i 's|Name\[pt_BR\]=.*|Name[pt_BR]=Visualizador de PDF, Epub e outros (Okula
 sed -i 's|Name\[pt_BR\]=.*|Name[pt_BR]=Visualizador de imagens (Gwenview)|g;s|Comment\[pt_BR\]=.*|Comment[pt_BR]=|g;s|GenericName\[pt_BR\]=.*|GenericName[pt_BR]=|g' /usr/share/applications/org.kde.gwenview.desktop
 
 # Cheese
-sed -i 's|Name\[pt_BR\]=.*|Name[pt_BR]=Tirar fotos com webcam (Cheese)|g;s|Comment\[pt_BR\]=.*|Comment[pt_BR]=|g;s|GenericName\[pt_BR\]=.*|GenericName[pt_BR]=|g' /usr/share/applications/org.gnome.Cheese.desktop
+if [ "$(grep 'GenericName[pt]' /usr/share/applications/org.gnome.Cheese.desktop)" = "" ]; then
+    echo 'GenericName[pt]=Tirar fotos com webcam' >> /usr/share/applications/org.gnome.Cheese.desktop
+    echo 'Name[pt]=Cheese' >> /usr/share/applications/org.gnome.Cheese.desktop
+fi
 
 # pavucontrol-qt
 sed -i 's|Name\[pt\]=.*|Name[pt]=Configurar o áudio (pavucontrol)|g;s|Comment\[pt\]=.*|Comment[pt]=|g;s|GenericName\[pt\]=.*|GenericName[pt]=|g;s|Categories=.*|Categories=Settings;Audio;Mixer;Qt;|g' /usr/share/applications/pavucontrol-qt.desktop
@@ -115,7 +125,10 @@ if [ "$(grep -c 'Name\[pt_BR\]=' /usr/share/applications/smplayer.desktop)" = "2
 fi
 
 # calculadora
-sed -i 's|Name\[pt_BR\]=.*|Name[pt_BR]=Calculadora|g;s|Comment\[pt_BR\]=.*|Comment[pt_BR]=|g;s|GenericName\[pt_BR\]=.*|GenericName[pt_BR]=|g;s|Categories=.*|Categories=Office;Spreadsheet;GNOME;GTK;Calculator;|g' /usr/share/applications/org.gnome.Calculator.desktop
+if [ "$(grep 'GenericName[pt]' /usr/share/applications/org.gnome.Calculator.desktop)" = "" ]; then
+    echo 'GenericName[pt]=Calculadora' >> /usr/share/applications/org.gnome.Calculator.desktop
+    echo 'Name[pt]=Calculadora' >> /usr/share/applications/org.gnome.Calculator.desktop
+fi
 
 # spectacle
 sed -i 's|Name\[pt_BR\]=.*|Name[pt_BR]=Capturar tela (Spectacle)|g;s|Comment\[pt_BR\]=.*|Comment[pt_BR]=|g;s|GenericName\[pt_BR\]=.*|GenericName[pt_BR]=|g' /usr/share/applications/org.kde.spectacle.desktop
@@ -156,7 +169,12 @@ sed -i 's|Name\[pt_BR\]=.*|Name[pt_BR]=Formatar pen drive (Mintstick)|g;s|Commen
 sed -i 's|Name\[pt_BR\]=.*|Name[pt_BR]=Gerenciar tarefas (Ksysguard)|g;s|Comment\[pt_BR\]=.*|Comment[pt_BR]=|g;s|GenericName\[pt_BR\]=.*|GenericName[pt_BR]=|g' /usr/share/applications/org.kde.ksysguard.desktop
 
 # gparted
-sed -i 's|Name\[pt_BR\]=.*|Name[pt_BR]=Formatar ou particionar (Gparted)|g;s|Comment\[pt_BR\]=.*|Comment[pt_BR]=|g;s|GenericName\[pt_BR\]=.*|GenericName[pt_BR]=|g' /usr/share/applications/gparted.desktop
+if [ "$(grep 'GenericName[pt]' /usr/share/applications/gparted.desktop)" = "" ]; then
+    echo 'GenericName[pt]=Formatar ou particionar' >> /usr/share/applications/gparted.desktop
+    echo 'Name[pt]=Gparted' >> /usr/share/applications/gparted.desktop
+fi
+
+
 
 # baobab
 sed -i 's|Name\[pt_BR\]=.*|Name[pt_BR]=Armazenamento (Baobab)|g;s|Comment\[pt_BR\]=.*|Comment[pt_BR]=|g;s|NotShowIn=KDE;||g' /usr/share/applications/org.gnome.baobab.desktop
