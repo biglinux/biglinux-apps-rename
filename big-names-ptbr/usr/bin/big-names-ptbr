@@ -29,9 +29,11 @@ fi
 
 
 # synaptic
-if [ "$(grep 'Name[pt]' /usr/share/applications/synaptic.desktop)" = "" ]; then
+if [ "$(grep 'Name\[pt]' /usr/share/applications/synaptic.desktop)" = "" ]; then
 #    sed -i 's|Name[pt]=Synaptic Package Manager|Name=Instalar ou remover programas (Synaptic)|g' /usr/share/applications/synaptic.desktop
-echo 'Name[pt]=Instalar ou remover programas (Synaptic)' >> /usr/share/applications/synaptic.desktop
+echo 'Name[pt]=Instalar ou remover programas (Synaptic)
+GenericName[pt]=
+Comment[pt]=' >> /usr/share/applications/synaptic.desktop
 
 fi
 
@@ -89,30 +91,38 @@ if [ "$(grep -c 'Name\[pt_BR\]=' /usr/share/applications/libreoffice-writer.desk
 fi
 
 # gimp
-if [ "$(grep 'Name[pt]' /usr/share/applications/gimp.desktop)" = "" ]; then
-    echo 'Name[pt]=Editor de imagens (Gimp)' >> /usr/share/applications/gimp.desktop
+if [ "$(grep 'Name\[pt]' /usr/share/applications/gimp.desktop)" = "" ]; then
+    echo 'Name[pt]=Editor de imagens (Gimp)
+GenericName[pt]=
+Comment[pt]=' >> /usr/share/applications/gimp.desktop
 fi
 
 # xscreensaver
-if [ "$(grep 'Name[pt]' /usr/share/applications/xscreensaver-properties.desktop)" = "" ]; then
-    echo 'Name[pt]=Protetor de tela (Xscreensaver)' >> /usr/share/applications/xscreensaver-properties.desktop
+if [ "$(grep 'Name\[pt]' /usr/share/applications/xscreensaver-properties.desktop)" = "" ]; then
+    echo 'Name[pt]=Protetor de tela (Xscreensaver)
+GenericName[pt]=
+Comment[pt]=' >> /usr/share/applications/xscreensaver-properties.desktop
 fi
 
 # lxqt brightness
-if [ "$(grep 'Name[pt]' /usr/share/applications/lxqt-config-brightness.desktop)" = "" ]; then
-    echo 'Name[pt]=Brilho da tela' >> /usr/share/applications/lxqt-config-brightness.desktop
+if [ "$(grep 'Name\[pt]' /usr/share/applications/lxqt-config-brightness.desktop)" = "" ]; then
+    echo 'Name[pt]=Brilho da tela
+GenericName[pt]=
+Comment[pt]=' >> /usr/share/applications/lxqt-config-brightness.desktop
 fi
 
 # lxqt locale
-if [ "$(grep 'Name[pt]' /usr/share/applications/lxqt-config-locale.desktop)" = "" ]; then
-    echo 'Name[pt]=Idioma' >> /usr/share/applications/lxqt-config-locale.desktop
+if [ "$(grep 'Name\[pt]' /usr/share/applications/lxqt-config-locale.desktop)" = "" ]; then
+    echo 'Name[pt]=Idioma
+GenericName[pt]=
+Comment[pt]=' >> /usr/share/applications/lxqt-config-locale.desktop
 fi
 
-
-
 # simple-scan
-if [ "$(grep 'Name[pt]' /usr/share/applications/simple-scan.desktop)" = "" ]; then
-    echo 'Name[pt]=Digitalizar imagens (Simple-scan)' >> /usr/share/applications/simple-scan.desktop
+if [ "$(grep 'Name\[pt]' /usr/share/applications/simple-scan.desktop)" = "" ]; then
+    echo 'Name[pt]=Digitalizar imagens (Simple-scan)
+GenericName[pt]=
+Comment[pt]=' >> /usr/share/applications/simple-scan.desktop
 fi
 
 # okular
@@ -125,8 +135,10 @@ sed -i 's|Name\[pt_BR\]=.*|Name[pt_BR]=Visualizador de imagens (Gwenview)|g;s|Co
 sed -i 's|Name\[pt_BR\]=.*|Name[pt_BR]=Campo minado (Kmines)|g;s|Comment\[pt_BR\]=.*|Comment[pt_BR]=|g;s|GenericName\[pt_BR\]=.*|GenericName[pt_BR]=|g' /usr/share/applications/org.kde.kmines.desktop
 
 # Cheese
-if [ "$(grep 'Name[pt]' /usr/share/applications/org.gnome.Cheese.desktop)" = "" ]; then
-    echo 'Name[pt]=Tirar fotos com webcam (Cheese)' >> /usr/share/applications/org.gnome.Cheese.desktop
+if [ "$(grep 'Name\[pt]' /usr/share/applications/org.gnome.Cheese.desktop)" = "" ]; then
+    echo 'Name[pt]=Tirar fotos com webcam (Cheese)
+GenericName[pt]=
+Comment[pt]=' >> /usr/share/applications/org.gnome.Cheese.desktop
 fi
 
 # pavucontrol-qt
@@ -193,8 +205,10 @@ sed -i 's|Name\[pt_BR\]=.*|Name[pt_BR]=Formatar pen drive (Mintstick)|g;s|Commen
 sed -i 's|Name\[pt_BR\]=.*|Name[pt_BR]=Gerenciar tarefas (Ksysguard)|g;s|Comment\[pt_BR\]=.*|Comment[pt_BR]=|g;s|GenericName\[pt_BR\]=.*|GenericName[pt_BR]=|g' /usr/share/applications/org.kde.ksysguard.desktop
 
 # gparted
-if [ "$(grep 'Name[pt]' /usr/share/applications/gparted.desktop)" = "" ]; then
-    echo 'Name[pt]=Formatar ou particionar (Gparted)' >> /usr/share/applications/gparted.desktop
+if [ "$(grep 'Name\[pt]' /usr/share/applications/gparted.desktop)" = "" ]; then
+    echo 'Name[pt]=Formatar ou particionar (Gparted)
+GenericName[pt]=
+Comment[pt]=' >> /usr/share/applications/gparted.desktop
 fi
 
 
@@ -209,7 +223,8 @@ if [ "$(grep -c 'Name\[pt_BR\]=' /usr/share/applications/google-chrome.desktop)"
 fi
 
 # Chromium
-    sed -i 's|GenericName\[pt_BR\]=.*||g;s|Name[pt_BR]=Navegador de Internet Chromium|Name\[pt_BR\]=Navegador WEB (Chromium)|g' /usr/share/applications/chromium-browser.desktop
+sed -i 's|GenericName\[pt_BR\]=.*|GenericName[pt_BR]=|g;s|Comment\[pt_BR\]=.*|Comment[pt_BR]=|g;s|Name\[pt_BR\]=Navegador de Internet Chromium|Name[pt_BR]=Navegador WEB (Chromium)|g' /usr/share/applications/chromium-browser.desktop
+
 
 
 # firefox
