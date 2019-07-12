@@ -142,7 +142,7 @@ Comment[pt]=' >> /usr/share/applications/org.gnome.Cheese.desktop
 fi
 
 # pavucontrol-qt
-sed -i 's|Name\[pt\]=.*|Name[pt]=Configurar o áudio (pavucontrol)|g;s|Comment\[pt\]=.*|Comment[pt]=|g;s|GenericName\[pt\]=.*|GenericName[pt]=|g;s|Categories=.*|Categories=Settings;Audio;Mixer;Qt;|g' /usr/share/applications/pavucontrol-qt.desktop
+sed -i 's|Name\[pt\]=.*|Name[pt]=Configurar o áudio|g;s|Comment\[pt\]=.*|Comment[pt]=|g;s|GenericName\[pt\]=.*|GenericName[pt]=|g;s|Categories=.*|Categories=Settings;Audio;Mixer;Qt;|g' /usr/share/applications/pavucontrol-qt.desktop
 
 # Clementine
 if [ "$(grep 'Name\[pt_BR\]=Reprodutor' /usr/share/applications/clementine.desktop)" = "" ]; then
