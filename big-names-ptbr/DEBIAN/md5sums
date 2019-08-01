@@ -3,4 +3,4 @@ c94b92b0c58ce84d263222ccef4788c3  DEBIAN/control
 3bfaeca023a69e1f64cd7fd9fe8f2738  etc/apt/apt.conf.d/99big-names-ptbr
 67abb2f917580ff25dee3873a87891a8  etc/dpkg/dpkg.cfg.d/biglinux-hooks
 06bec1b484a6550af8eeba4c6da0e5e6  usr/bin/biglinux-hooks-dpkg
-63b02bb14869640312e76aadae6144b7  usr/bin/big-names-ptbr
+71cf479665294df69ce587137b3d3f08  usr/bin/big-names-ptbr
