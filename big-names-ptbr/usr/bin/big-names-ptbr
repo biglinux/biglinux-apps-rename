@@ -217,6 +217,8 @@ sed -i 's|Name\[pt_BR\]=.*|Name[pt_BR]=Criar pen drive de boot (Mintstick)|g;s|C
 sed -i 's|Name\[pt_BR\]=.*|Name[pt_BR]=Formatar pen drive (Mintstick)|g;s|Comment\[pt_BR\]=.*|Comment[pt_BR]=|g' /usr/share/applications/mintstick-format.desktop
 sed -i 's|Name\[pt_BR\]=.*|Name[pt_BR]=Formatar pen drive (Mintstick)|g;s|Comment\[pt_BR\]=.*|Comment[pt_BR]=|g;s|GenericName\[pt_BR\]=.*|GenericName[pt_BR]=|g' /usr/share/applications/mintstick-format-kde.desktop
 
+# system-settings
+sed -i 's|preferences-system|breeze-settings|g;' /usr/share/applications/kdesystemsettings.desktop
 
 
 # ksysguard
@@ -306,6 +308,11 @@ fi
 # CTRL+alt+backspace
 if [ "$(grep 'XKBOPTIONS=""' /etc/default/keyboard)" != "" ]; then
     sed -i 's|XKBOPTIONS=""|XKBOPTIONS="terminate:ctrl_alt_bksp"|g' /etc/default/keyboard
+fi
+
+# Steam
+if [ "$(grep -c 'Comment\[pt\]=' /usr/share/applications/steam.desktop)" = "0" ]; then
+    sed -i '/Comment=/a Comment[pt]=Jogos da Steam' /usr/share/applications/steam.desktop
 fi
 
 # Yad
