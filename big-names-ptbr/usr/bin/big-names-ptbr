@@ -210,12 +210,12 @@ sed -i 's|Name\[pt_BR\]=Konsole|Name[pt_BR]=Terminal|g;s|Comment\[pt_BR\]=.*|Com
 sed -i 's|Name\[pt_BR\]=.*|Name[pt_BR]=Gerenciar arquivos|g;s|Comment\[pt_BR\]=.*|Comment[pt_BR]=|g;s|GenericName\[pt_BR\]=.*|GenericName[pt_BR]=|g;s|Categories=.*|Categories=Qt;KDE;Utility;FileTools;FileManager;|g' /usr/share/applications/org.kde.dolphin.desktop
 
 # mintstick
-sed -i 's|Name\[pt_BR\]=.*|Name[pt_BR]=Criar pen drive de boot (Mintstick)|g;s|Comment\[pt_BR\]=.*|Comment[pt_BR]=|g' /usr/share/applications/mintstick.desktop
-sed -i 's|Name\[pt_BR\]=.*|Name[pt_BR]=Criar pen drive de boot (Mintstick)|g;s|Comment\[pt_BR\]=.*|Comment[pt_BR]=|g;s|GenericName\[pt_BR\]=.*|GenericName[pt_BR]=|g' /usr/share/applications/mintstick-kde.desktop
+sed -i 's|Name\[pt_BR\]=.*|Name[pt_BR]=Criar pen drive de boot|g;s|Comment\[pt_BR\]=.*|Comment[pt_BR]=|g' /usr/share/applications/mintstick.desktop
+sed -i 's|Name\[pt_BR\]=.*|Name[pt_BR]=Criar pen drive de boot|g;s|Comment\[pt_BR\]=.*|Comment[pt_BR]=|g;s|GenericName\[pt_BR\]=.*|GenericName[pt_BR]=|g' /usr/share/applications/mintstick-kde.desktop
 
 # mintstick-format
-sed -i 's|Name\[pt_BR\]=.*|Name[pt_BR]=Formatar pen drive (Mintstick)|g;s|Comment\[pt_BR\]=.*|Comment[pt_BR]=|g' /usr/share/applications/mintstick-format.desktop
-sed -i 's|Name\[pt_BR\]=.*|Name[pt_BR]=Formatar pen drive (Mintstick)|g;s|Comment\[pt_BR\]=.*|Comment[pt_BR]=|g;s|GenericName\[pt_BR\]=.*|GenericName[pt_BR]=|g' /usr/share/applications/mintstick-format-kde.desktop
+sed -i 's|Name\[pt_BR\]=.*|Name[pt_BR]=Formatar pen drive|g;s|Comment\[pt_BR\]=.*|Comment[pt_BR]=|g' /usr/share/applications/mintstick-format.desktop
+sed -i 's|Name\[pt_BR\]=.*|Name[pt_BR]=Formatar pen drive|g;s|Comment\[pt_BR\]=.*|Comment[pt_BR]=|g;s|GenericName\[pt_BR\]=.*|GenericName[pt_BR]=|g' /usr/share/applications/mintstick-format-kde.desktop
 
 # system-settings
 sed -i 's|preferences-system|breeze-settings|g;' /usr/share/applications/kdesystemsettings.desktop
