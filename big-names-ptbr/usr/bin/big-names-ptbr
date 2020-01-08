@@ -211,7 +211,8 @@ sed -i 's|Name\[pt_BR\]=.*|Name[pt_BR]=Gerenciar arquivos|g;s|Comment\[pt_BR\]=.
 
 # kdenlive
 sed -i 's|Name\[pt_BR\]=.*|Name[pt_BR]=Editor de Vídeos Kdenlive|g;s|Comment\[pt_BR\]=.*|Comment[pt_BR]=|g;s|GenericName\[pt_BR\]=.*|GenericName[pt_BR]=|g;s|^Exec=kdenlive|Exec=QT_QUICK_BACKEND= kdenlive|g' /usr/share/applications/org.kde.kdenlive.desktop
-
+sed -i 's|^Exec=/usr/bin/flatpak|Exec=QT_QUICK_BACKEND= /usr/bin/flatpak|g' /var/lib/flatpak/exports/share/applications/org.kde.kdenlive.desktop
+sed -i 's|^Exec=env|Exec=QT_QUICK_BACKEND= env|g' /var/lib/snapd/desktop/applications/kdenlive_kdenlive.desktop
 
 # mintstick
 sed -i 's|Name\[pt_BR\]=.*|Name[pt_BR]=Criar pen drive de boot|g;s|Comment\[pt_BR\]=.*|Comment[pt_BR]=|g' /usr/share/applications/mintstick.desktop
