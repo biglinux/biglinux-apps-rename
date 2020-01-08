@@ -4,6 +4,6 @@ Architecture: all
 Maintainer: Bruno Goncalves <www.biglinux.com.br>
 Section: admin
 Priority: optional
-Installed-Size:36
+Installed-Size:40
 Description: Best names to apps in pt-br
 
