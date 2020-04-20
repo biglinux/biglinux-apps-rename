@@ -1,6 +1,9 @@
 # kate
 sed -i 's|Name\[pt_BR\]=.*|Name[pt_BR]=Anotações|g;s|Comment\[pt_BR\]=.*|Comment[pt_BR]=|g;s|GenericName\[pt_BR\]=.*|GenericName[pt_BR]=|g' /usr/share/applications/org.kde.kate.desktop
  
+#software properties gtk
+rm -f /usr/share/applications/software-properties-gtk.desktop
+rm -f /usr/share/applications/software-properties-drivers.desktop
 
 # compton
 if [ "$(grep NotShowIn /usr/share/applications/compton-conf.desktop)" = "" ]; then
@@ -15,6 +18,8 @@ if [ "$(grep NotShowIn /usr/share/applications/pcmanfm-qt-desktop-pref.desktop)"
     echo 'NotShowIn=KDE' >> /usr/share/applications/pcmanfm-qt.desktop
 fi
 
+#Gufw
+sed -i 's|Name=.*|Name=Firewall|g;s|Comment=.*|Comment=|g;s|Categories=.*|Categories=System|g' /usr/share/applications/gufw.desktop
 
 # obconf-qt
 if [ "$(grep NotShowIn /usr/share/applications/obconf-qt.desktop)" = "" ]; then
@@ -39,8 +44,13 @@ sed -i 's|System;||g' /usr/share/applications/synaptic.desktop
 fi
 
 # KDE connect
+if [ -e "/usr/share/applications/org.kde.kdeconnect_open.desktop" ]; then
+    sed -i 's|Configurações do ||g' /usr/share/applications/org.kde.kdeconnect.kcm.desktop
 
-sed -i 's|Configurações do ||g' /usr/share/applications/org.kde.kdeconnect.kcm.desktop
+    rm -f /usr/share/applications/org.kde.kdeconnect_open.desktop /usr/share/applications/org.kde.kdeconnect.sms.desktop
+
+    sed -i 's|kdeconnect-app|kdeconnect-settings|g;s|Name\[pt_BR\]=.*|Name[pt_BR]=Interagir com dispositivos Android|g;s|GenericName\[pt_BR\]=.*|GenericName[pt_BR]=|g;s|Comment\[pt_BR\]=.*|Comment[pt_BR]=|g;s|Categories=Qt;KDE;Network|Categories=Qt;KDE;Utility|g;' /usr/share/applications/org.kde.kdeconnect.app.desktop
+fi
 
 
 # grub-customizer
@@ -134,6 +144,10 @@ GenericName[pt]=
 Comment[pt]=' >> /usr/share/applications/simple-scan.desktop
 fi
 
+# KWalletManager
+sed -i 's|Name\[pt_BR\]=.*|Name[pt_BR]=Gerenciar senhas salvas no sistema|g;s|Comment\[pt_BR\]=.*|Comment[pt_BR]=|g;s|GenericName\[pt_BR\]=.*|GenericName[pt_BR]=|g' /usr/share/applications/org.kde.kwalletmanager5.desktop
+
+
 # okular
 sed -i 's|Name\[pt_BR\]=.*|Name[pt_BR]=Visualizador de PDF, Epub e outros|g;s|Comment\[pt_BR\]=.*|Comment[pt_BR]=|g;s|GenericName\[pt_BR\]=.*|GenericName[pt_BR]=|g;s|Categories=.*|Categories=Qt;KDE;Office;Viewer;|g' /usr/share/applications/org.kde.okular.desktop
 
@@ -183,7 +197,8 @@ if [ "$(grep 'GenericName[pt]' /usr/share/applications/org.gnome.Calculator.desk
 fi
 
 # spectacle
-sed -i 's|Name\[pt_BR\]=.*|Name[pt_BR]=Capturar tela|g;s|Comment\[pt_BR\]=.*|Comment[pt_BR]=|g;s|GenericName\[pt_BR\]=.*|GenericName[pt_BR]=|g' /usr/share/applications/org.kde.spectacle.desktop
+sed -i 's|Name\[pt_BR\]=Spectacle|Name[pt_BR]=Utilitário de captura de tela|g;s|Comment\[pt_BR\]=.*|Comment[pt_BR]=|g;s|GenericName\[pt_BR\]=.*|GenericName[pt_BR]=|g' /usr/share/applications/org.kde.spectacle.desktop
+
 
 # compton
 rm -f /usr/share/applications/compton.desktop
@@ -204,10 +219,10 @@ if [ "$(grep 'Comment\[pt_BR\]=' /usr/share/applications/hardinfo.desktop)" = ""
 fi
 
 # konsole
-sed -i 's|Name\[pt_BR\]=Konsole|Name[pt_BR]=Terminal|g;s|Comment\[pt_BR\]=.*|Comment[pt_BR]=|g;s|GenericName\[pt_BR\]=.*|GenericName[pt_BR]=|g;s|Categories=.*|Categories=Qt;KDE;Utility;TerminalEmulator;|g' /usr/share/applications/org.kde.konsole.desktop
+sed -i 's|Name\[pt_BR\]=Konsole|Name[pt_BR]=Terminal|g;s|Comment\[pt_BR\]=.*|Comment[pt_BR]=|g;s|GenericName\[pt_BR\]=.*|GenericName[pt_BR]=|g' /usr/share/applications/org.kde.konsole.desktop
 
 # dolphin
-sed -i 's|Name\[pt_BR\]=.*|Name[pt_BR]=Gerenciar arquivos|g;s|Comment\[pt_BR\]=.*|Comment[pt_BR]=|g;s|GenericName\[pt_BR\]=.*|GenericName[pt_BR]=|g;s|Categories=.*|Categories=Qt;KDE;Utility;FileTools;FileManager;|g' /usr/share/applications/org.kde.dolphin.desktop
+sed -i 's|Name\[pt_BR\]=.*|Name[pt_BR]=Gerenciar arquivos|g;s|Comment\[pt_BR\]=.*|Comment[pt_BR]=|g;s|GenericName\[pt_BR\]=.*|GenericName[pt_BR]=|g' /usr/share/applications/org.kde.dolphin.desktop
 
 # mintstick
 sed -i 's|Name\[pt_BR\]=.*|Name[pt_BR]=Criar pen drive de boot|g;s|Comment\[pt_BR\]=.*|Comment[pt_BR]=|g' /usr/share/applications/mintstick.desktop
@@ -225,13 +240,21 @@ sed -i 's|preferences-system|breeze-settings|g;' /usr/share/applications/kdesyst
 sed -i 's|Name\[pt_BR\]=.*|Name[pt_BR]=Gerenciar tarefas|g;s|Comment\[pt_BR\]=.*|Comment[pt_BR]=|g;s|GenericName\[pt_BR\]=.*|GenericName[pt_BR]=|g' /usr/share/applications/org.kde.ksysguard.desktop
 
 # gparted
-if [ "$(grep 'Name\[pt]' /usr/share/applications/gparted.desktop)" = "" ]; then
-    echo 'Name[pt]=Formatar ou particionar
-GenericName[pt]=
-Comment[pt]=' >> /usr/share/applications/gparted.desktop
+if [ "$(grep 'Name\[pt]=GParted' /usr/share/applications/gparted.desktop)" != "" ]; then
+    sed -i 's|GenericName\[pt_BR\]=.*||g;s|Name\[pt_BR\]=.*||g;s|GenericName\[pt\]=.*|GenericName[pt]=|g;s|Name\[pt\]=.*|Name[pt]=Formatar ou particionar|g' /usr/share/applications/gparted.desktop
 fi
 
+Name[pt_BR]=GParted
 
+# onboard
+rm -f /usr/share/applications/onboard-settings.desktop
+if [ "$(grep 'Name\[pt]' /usr/share/applications/onboard.desktop)" = "" ]; then
+    echo 'Name[pt]=Teclado virtual
+GenericName[pt]=
+Comment[pt]=' >> /usr/share/applications/onboard.desktop
+
+sed -i 's|Accessibility;||g' /usr/share/applications/onboard.desktop
+fi
 
 # baobab
 sed -i 's|Name\[pt_BR\]=.*|Name[pt_BR]=Armazenamento (Baobab)|g;s|Comment\[pt_BR\]=.*|Comment[pt_BR]=|g;s|NotShowIn=KDE;||g' /usr/share/applications/org.gnome.baobab.desktop
@@ -243,7 +266,7 @@ if [ "$(grep -c 'Name\[pt_BR\]=' /usr/share/applications/google-chrome.desktop)"
 fi
 
 # Chromium
-sed -i 's|GenericName\[pt_BR\]=.*|GenericName[pt_BR]=|g;s|Comment\[pt_BR\]=.*|Comment[pt_BR]=|g;s|Name\[pt_BR\]=Navegador de Internet Chromium|Name[pt_BR]=Navegador Chromium|g' /usr/share/applications/chromium-browser.desktop
+sed -i 's|GenericName\[pt_BR\]=.*|GenericName[pt_BR]=|g;s|Comment\[pt_BR\]=.*|Comment[pt_BR]=|g;s|Name\[pt_BR\]=Chromium Navegador da Internet|Name[pt_BR]=Navegador Chromium|g' /usr/share/applications/chromium-browser.desktop
 
 
 
@@ -255,7 +278,8 @@ sed -i 's|Name\[pt_BR\]=.*|Name[pt_BR]=Cliente de e-mail (Thunderbird)|g;s|Comme
 
 
 # qbittorrent
-sed -i 's|Name\[pt_BR\]=.*|Name[pt_BR]=Cliente qBittorrent|g;s|Comment\[pt_BR\]=.*|Comment[pt_BR]=|g;s|GenericName\[pt_BR\]=.*|GenericName[pt_BR]=|g' /usr/share/applications/qbittorrent.desktop
+sed -i 's|Name\[pt_BR\]=.*|Name[pt_BR]=Cliente qBittorrent|g;s|Comment\[pt_BR\]=.*|Comment[pt_BR]=|g;s|GenericName\[pt_BR\]=.*|GenericName[pt_BR]=|g' /usr/share/applications/org.qbittorrent.qBittorrent.desktop
+
 
 # kpat
 sed -i 's|Name\[pt_BR\]=.*|Name[pt_BR]=Paciência, Freecell e outros|g;s|Comment\[pt_BR\]=.*|Comment[pt_BR]=|g;s|GenericName\[pt_BR\]=.*|GenericName[pt_BR]=|g' /usr/share/applications/org.kde.kpat.desktop
@@ -292,6 +316,10 @@ sed -i 's|Categories=Settings;DesktopSettings;Security;X-XFCE;|Categories=System
 
 # Openjdk
 sed -i 's|cautious-launcher %f /usr/bin/java -jar|/usr/bin/java -jar %f|' /usr/share/applications/openjdk*.desktop
+if [ "$(grep 'Name\[pt_BR\]=' /usr/share/applications/openjdk-8-policytool.desktop)" = "" ]; then
+    sed -i '/Name=/a Name[pt_BR]=Regras de segurança do Java\nComment[pt_BR]=' /usr/share/applications/openjdk-8-policytool.desktop
+fi
+
 
 
 # kde-wacom
@@ -310,13 +338,11 @@ if [ "$(grep 'XKBOPTIONS=""' /etc/default/keyboard)" != "" ]; then
     sed -i 's|XKBOPTIONS=""|XKBOPTIONS="terminate:ctrl_alt_bksp"|g' /etc/default/keyboard
 fi
 
-# Steam
-if [ "$(grep -c 'Comment\[pt\]=' /usr/share/applications/steam.desktop)" = "0" ]; then
-    sed -i '/Comment=/a Comment[pt]=Jogos da Steam' /usr/share/applications/steam.desktop
-fi
-
 # Yad
 rm -f /usr/share/applications/yad-icon-browser.desktop
 
 # rxvt
 rm -f /usr/share/applications/rxvt-unicode.desktop
+
+# pcsc-tools
+rm -f /usr/share/applications/gscriptor.desktop
