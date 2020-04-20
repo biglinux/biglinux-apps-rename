@@ -1,6 +1,6 @@
 d41d8cd98f00b204e9800998ecf8427e  DEBIAN/md5sums
-c43244654697a760befa273cd2e2fa04  DEBIAN/control
+0faaf60f4025028acfca346d3b0b6917  DEBIAN/control
 3bfaeca023a69e1f64cd7fd9fe8f2738  etc/apt/apt.conf.d/99big-names-ptbr
 67abb2f917580ff25dee3873a87891a8  etc/dpkg/dpkg.cfg.d/biglinux-hooks
 06bec1b484a6550af8eeba4c6da0e5e6  usr/bin/biglinux-hooks-dpkg
-7404d85d972275a428c04e6e029716fb  usr/bin/big-names-ptbr
+4b5059d804ba773b1d10b7fcdff27337  usr/bin/big-names-ptbr
