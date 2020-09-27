@@ -1,3 +1,6 @@
+# grub fix
+sed -i 's|OS="\${GRUB_DISTRIBUTOR} GNU/Linux"|OS="\${GRUB_DISTRIBUTOR}"|g' /etc/grub.d/10_linux
+
 # kate
 sed -i 's|Name\[pt_BR\]=.*|Name[pt_BR]=Anotações|g;s|Comment\[pt_BR\]=.*|Comment[pt_BR]=|g;s|GenericName\[pt_BR\]=.*|GenericName[pt_BR]=|g' /usr/share/applications/org.kde.kate.desktop
  
@@ -19,7 +22,7 @@ if [ "$(grep NotShowIn /usr/share/applications/pcmanfm-qt-desktop-pref.desktop)"
 fi
 
 #Gufw
-sed -i 's|Name=.*|Name=Firewall|g;s|Comment=.*|Comment=|g;s|Categories=.*|Categories=System|g' /usr/share/applications/gufw.desktop
+sed -i 's|Name=.*|Name=Firewall|g;s|Categories=.*|Categories=System|g' /usr/share/applications/gufw.desktop
 
 # obconf-qt
 if [ "$(grep NotShowIn /usr/share/applications/obconf-qt.desktop)" = "" ]; then
@@ -39,7 +42,7 @@ if [ "$(grep 'Name\[pt]' /usr/share/applications/synaptic.desktop)" = "" ]; then
 echo 'Name[pt]=Instalar ou remover programas
 GenericName[pt]=
 Comment[pt]=' >> /usr/share/applications/synaptic.desktop
-sed -i 's|System;||g' /usr/share/applications/synaptic.desktop
+sed -i 's|Settings;||g' /usr/share/applications/synaptic.desktop
 
 fi
 
@@ -49,7 +52,7 @@ if [ -e "/usr/share/applications/org.kde.kdeconnect_open.desktop" ]; then
 
     rm -f /usr/share/applications/org.kde.kdeconnect_open.desktop /usr/share/applications/org.kde.kdeconnect.sms.desktop
 
-    sed -i 's|kdeconnect-app|kdeconnect-settings|g;s|Name\[pt_BR\]=.*|Name[pt_BR]=Interagir com dispositivos Android|g;s|GenericName\[pt_BR\]=.*|GenericName[pt_BR]=|g;s|Comment\[pt_BR\]=.*|Comment[pt_BR]=|g;s|Categories=Qt;KDE;Network|Categories=Qt;KDE;Utility|g;' /usr/share/applications/org.kde.kdeconnect.app.desktop
+    sed -i 's|kdeconnect-app|kdeconnect-settings|g;s|Name\[pt_BR\]=.*|Name[pt_BR]=Interagir com dispositivos Android|g;s|GenericName\[pt_BR\]=.*|GenericName[pt_BR]=|g;s|Categories=Qt;KDE;Network|Categories=Qt;KDE;Utility|g;' /usr/share/applications/org.kde.kdeconnect.app.desktop
 fi
 
 
@@ -137,6 +140,7 @@ GenericName[pt]=
 Comment[pt]=' >> /usr/share/applications/lxqt-config-locale.desktop
 fi
 
+
 # simple-scan
 if [ "$(grep 'Name\[pt]' /usr/share/applications/simple-scan.desktop)" = "" ]; then
     echo 'Name[pt]=Digitalizador de imagens
@@ -145,7 +149,7 @@ Comment[pt]=' >> /usr/share/applications/simple-scan.desktop
 fi
 
 # KWalletManager
-sed -i 's|Name\[pt_BR\]=.*|Name[pt_BR]=Gerenciar senhas salvas no sistema|g;s|Comment\[pt_BR\]=.*|Comment[pt_BR]=|g;s|GenericName\[pt_BR\]=.*|GenericName[pt_BR]=|g' /usr/share/applications/org.kde.kwalletmanager5.desktop
+sed -i 's|Name\[pt_BR\]=.*|Name[pt_BR]=Gerenciar senhas salvas no sistema|g;s|GenericName\[pt_BR\]=.*|GenericName[pt_BR]=|g' /usr/share/applications/org.kde.kwalletmanager5.desktop
 
 
 # okular
@@ -165,7 +169,7 @@ Comment[pt]=' >> /usr/share/applications/org.gnome.Cheese.desktop
 fi
 
 # pavucontrol-qt
-sed -i 's|multimedia-volume-control|audio-volume-high|g;s|Name\[pt\]=.*|Name[pt]=Som e microfone|g;s|Comment\[pt\]=.*|Comment[pt]=|g;s|GenericName\[pt\]=.*|GenericName[pt]=|g;s|Categories=.*|Categories=Settings;Audio;Mixer;Qt;|g' /usr/share/applications/pavucontrol-qt.desktop
+sed -i 's|multimedia-volume-control|audio-volume-high|g;s|Name\[pt\]=.*|Name[pt]=Som e microfone|g;s|GenericName\[pt\]=.*|GenericName[pt]=|g;s|Categories=.*|Categories=Settings;Audio;Mixer;Qt;|g' /usr/share/applications/pavucontrol-qt.desktop
 
 sed -i 's|multimedia-volume-control|audio-volume-high|g'/usr/share/applications/pavucontrol-qt.desktop
 
@@ -214,7 +218,6 @@ sed -i 's|Name\[pt_BR\]=Discover|Name[pt_BR]=Loja de aplicativos|g;s|Comment\[pt
 
 # hardinfo
 if [ "$(grep 'Comment\[pt_BR\]=' /usr/share/applications/hardinfo.desktop)" = "" ]; then
-    sed -i '/Comment=/a Comment[pt_BR]=' /usr/share/applications/hardinfo.desktop
     sed -i 's|Name\[pt_BR\]=.*|Name[pt_BR]=Informações do Sistema|g' /usr/share/applications/hardinfo.desktop
 fi
 
@@ -225,12 +228,12 @@ sed -i 's|Name\[pt_BR\]=Konsole|Name[pt_BR]=Terminal|g;s|Comment\[pt_BR\]=.*|Com
 sed -i 's|Name\[pt_BR\]=.*|Name[pt_BR]=Gerenciar arquivos|g;s|Comment\[pt_BR\]=.*|Comment[pt_BR]=|g;s|GenericName\[pt_BR\]=.*|GenericName[pt_BR]=|g' /usr/share/applications/org.kde.dolphin.desktop
 
 # mintstick
-sed -i 's|Name\[pt_BR\]=.*|Name[pt_BR]=Criar pen drive de boot|g;s|Comment\[pt_BR\]=.*|Comment[pt_BR]=|g' /usr/share/applications/mintstick.desktop
-sed -i 's|Name\[pt_BR\]=.*|Name[pt_BR]=Criar pen drive de boot|g;s|Comment\[pt_BR\]=.*|Comment[pt_BR]=|g;s|GenericName\[pt_BR\]=.*|GenericName[pt_BR]=|g' /usr/share/applications/mintstick-kde.desktop
+sed -i 's|Name\[pt_BR\]=.*|Name[pt_BR]=Criar pen drive de boot|g' /usr/share/applications/mintstick.desktop
+sed -i 's|Name\[pt_BR\]=.*|Name[pt_BR]=Criar pen drive de boot|g;s|GenericName\[pt_BR\]=.*|GenericName[pt_BR]=|g' /usr/share/applications/mintstick-kde.desktop
 
 # mintstick-format
-sed -i 's|Name\[pt_BR\]=.*|Name[pt_BR]=Formatar pen drive|g;s|Comment\[pt_BR\]=.*|Comment[pt_BR]=|g' /usr/share/applications/mintstick-format.desktop
-sed -i 's|Name\[pt_BR\]=.*|Name[pt_BR]=Formatar pen drive|g;s|Comment\[pt_BR\]=.*|Comment[pt_BR]=|g;s|GenericName\[pt_BR\]=.*|GenericName[pt_BR]=|g' /usr/share/applications/mintstick-format-kde.desktop
+sed -i 's|Name\[pt_BR\]=.*|Name[pt_BR]=Formatar pen drive|g' /usr/share/applications/mintstick-format.desktop
+sed -i 's|Name\[pt_BR\]=.*|Name[pt_BR]=Formatar pen drive|g;s|GenericName\[pt_BR\]=.*|GenericName[pt_BR]=|g' /usr/share/applications/mintstick-format-kde.desktop
 
 # system-settings
 sed -i 's|preferences-system|breeze-settings|g;' /usr/share/applications/kdesystemsettings.desktop
@@ -267,7 +270,7 @@ fi
 
 # Chromium
 sed -i 's|GenericName\[pt_BR\]=.*|GenericName[pt_BR]=|g;s|Comment\[pt_BR\]=.*|Comment[pt_BR]=|g;s|Name\[pt_BR\]=Chromium Navegador da Internet|Name[pt_BR]=Navegador Chromium|g' /usr/share/applications/chromium-browser.desktop
-
+sed -i 's|export CHROME_DESKTOP="chromium.desktop"||g' /usr/bin/chromium.orig
 
 
 # firefox
@@ -337,6 +340,10 @@ fi
 if [ "$(grep 'XKBOPTIONS=""' /etc/default/keyboard)" != "" ]; then
     sed -i 's|XKBOPTIONS=""|XKBOPTIONS="terminate:ctrl_alt_bksp"|g' /etc/default/keyboard
 fi
+
+#nvidia
+
+sed -i 's|Name=NVIDIA X Server Settings|Name=Configure NVIDIA|g;s|System;Settings;|Settings|g;s|Comment=.*|Comment=|g' /usr/share/applications/nvidia-settings.desktop
 
 # Yad
 rm -f /usr/share/applications/yad-icon-browser.desktop
