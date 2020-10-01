@@ -174,7 +174,7 @@ sed -i 's|multimedia-volume-control|audio-volume-high|g;s|Name\[pt\]=.*|Name[pt]
 sed -i 's|multimedia-volume-control|audio-volume-high|g'/usr/share/applications/pavucontrol-qt.desktop
 
 # Clementine
-if [ "$(grep 'Name\[pt_BR\]=Reprodutor' /usr/share/applications/clementine.desktop)" = "" ]; then
+if [ "$(grep 'Name\[pt_BR\]=Músicas' /usr/share/applications/clementine.desktop)" = "" ]; then
     sed -i '/GenericName\[pt\]=/a Name[pt_BR]=Músicas\nGenericName[pt_BR]= \nComment[pt_BR]=' /usr/share/applications/clementine.desktop
 fi
 
