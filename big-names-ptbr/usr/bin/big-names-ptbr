@@ -63,7 +63,7 @@ fi
 #GenericName[pt_BR]=' >> /usr/share/applications/grub-customizer.desktop
 #sed -i 's|Categories=.*|Categories=System;|g' /usr/share/applications/grub-customizer.desktop
 #fi
-rm -f /usr/share/applications/grub-customizer.desktop
+#rm -f /usr/share/applications/grub-customizer.desktop
 
 # network manager
 rm -f /usr/share/applications/nm-connection-editor.desktop 
