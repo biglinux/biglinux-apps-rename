@@ -2,6 +2,7 @@
 Type = Path
 Operation = Install
 Operation = Upgrade
+Target = /usr/share/libalpm/hooks/biglinux-apps-rename.hook
 Target = /etc/grub.d/10_linux
 Target = /usr/share/applications/org.kde.kate.desktop
 Target = /usr/share/applications/compton-conf.desktop
