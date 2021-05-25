@@ -1,13 +1,11 @@
+#!/bin/sh
+
 # grub fix
 sed -i 's|OS="\${GRUB_DISTRIBUTOR} GNU/Linux"|OS="\${GRUB_DISTRIBUTOR}"|g' /etc/grub.d/10_linux
 
 # kate
 sed -i 's|Name\[pt_BR\]=.*|Name[pt_BR]=Anotações|g;s|Comment\[pt_BR\]=.*|Comment[pt_BR]=|g;s|GenericName\[pt_BR\]=.*|GenericName[pt_BR]=|g' /usr/share/applications/org.kde.kate.desktop
  
-#software properties gtk
-rm -f /usr/share/applications/software-properties-gtk.desktop
-rm -f /usr/share/applications/software-properties-drivers.desktop
-
 # compton
 if [ "$(grep NotShowIn /usr/share/applications/compton-conf.desktop)" = "" ]; then
     echo 'NotShowIn=KDE' >> /usr/share/applications/compton-conf.desktop
@@ -35,16 +33,6 @@ if [ "$(grep NotShowIn /usr/share/applications/xscreensaver-properties.desktop)"
     echo 'NotShowIn=KDE' >> /usr/share/applications/xscreensaver-properties.desktop
 fi
 
-
-# synaptic
-if [ "$(grep 'Name\[pt]' /usr/share/applications/synaptic.desktop)" = "" ]; then
-#    sed -i 's|Name[pt]=Synaptic Package Manager|Name=Instalar ou remover programas|g' /usr/share/applications/synaptic.desktop
-echo 'Name[pt]=Instalar ou remover programas
-GenericName[pt]=
-Comment[pt]=' >> /usr/share/applications/synaptic.desktop
-sed -i 's|Settings;||g' /usr/share/applications/synaptic.desktop
-
-fi
 
 # KDE connect
 if [ -e "/usr/share/applications/org.kde.kdeconnect_open.desktop" ]; then
@@ -181,8 +169,6 @@ fi
 # Lutris
 sed -i 's|Comment\[pt-BR\]=.*|Name[pt]=Plataforma de jogos Lutris|g;s|Comment\[id\]=.*|Comment[pt]=|g' /usr/share/applications/net.lutris.Lutris.desktop
 
-
-
 # smplayer
 if [ "$(grep -c 'Name\[pt_BR\]=' /usr/share/applications/smplayer.desktop)" = "2" ]; then
     sed -i '/GenericName=/a Name[pt_BR]=Vídeos\nGenericName[pt_BR]= \nComment[pt_BR]=' /usr/share/applications/smplayer.desktop
@@ -238,7 +224,6 @@ sed -i 's|Name\[pt_BR\]=.*|Name[pt_BR]=Formatar pen drive|g;s|GenericName\[pt_BR
 # system-settings
 sed -i 's|preferences-system|breeze-settings|g;' /usr/share/applications/kdesystemsettings.desktop
 
-
 # ksysguard
 sed -i 's|Name\[pt_BR\]=.*|Name[pt_BR]=Gerenciar tarefas|g;s|Comment\[pt_BR\]=.*|Comment[pt_BR]=|g;s|GenericName\[pt_BR\]=.*|GenericName[pt_BR]=|g' /usr/share/applications/org.kde.ksysguard.desktop
 
@@ -246,8 +231,6 @@ sed -i 's|Name\[pt_BR\]=.*|Name[pt_BR]=Gerenciar tarefas|g;s|Comment\[pt_BR\]=.*
 if [ "$(grep 'Name\[pt]=GParted' /usr/share/applications/gparted.desktop)" != "" ]; then
     sed -i 's|GenericName\[pt_BR\]=.*||g;s|Name\[pt_BR\]=.*||g;s|GenericName\[pt\]=.*|GenericName[pt]=|g;s|Name\[pt\]=.*|Name[pt]=Formatar ou particionar|g' /usr/share/applications/gparted.desktop
 fi
-
-Name[pt_BR]=GParted
 
 # onboard
 rm -f /usr/share/applications/onboard-settings.desktop
@@ -322,8 +305,6 @@ sed -i 's|cautious-launcher %f /usr/bin/java -jar|/usr/bin/java -jar %f|' /usr/s
 if [ "$(grep 'Name\[pt_BR\]=' /usr/share/applications/openjdk-8-policytool.desktop)" = "" ]; then
     sed -i '/Name=/a Name[pt_BR]=Regras de segurança do Java\nComment[pt_BR]=' /usr/share/applications/openjdk-8-policytool.desktop
 fi
-
-
 
 # kde-wacom
 rm -f /usr/share/applications/kde_wacom_tabletfinder.desktop

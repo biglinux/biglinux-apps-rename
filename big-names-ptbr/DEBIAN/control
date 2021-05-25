@@ -1,9 +1,0 @@
-Package: big-names-ptbr
-Version: 1.0.3-1big3
-Architecture: all
-Maintainer: Bruno Goncalves <www.biglinux.com.br>
-Section: admin
-Priority: optional
-Installed-Size:40
-Description: Best names to apps in pt-br
-
