@@ -4,14 +4,14 @@
 sed -i 's|Name\[pt_BR\]=.*|Name[pt_BR]=Anotações|g;s|Comment\[pt_BR\]=.*|Comment[pt_BR]=|g;s|GenericName\[pt_BR\]=.*|GenericName[pt_BR]=|g' /usr/share/applications/org.kde.kate.desktop
  
 # compton
-if [ "$(grep NotShowIn /usr/share/applications/compton-conf.desktop)" = "" ]; then
+if [ "$(grep NotShowIn /usr/share/applications/compton-conf.desktop)" = "" ] && [ ! -e "/usr/share/applications/compton-conf.desktop" ]; then
     echo 'NotShowIn=KDE' >> /usr/share/applications/compton-conf.desktop
 fi
 sed -i 's|Name\[pt_BR\]=.*|Name[pt_BR]=Efeitos de janelas (Compton)|g;s|Comment\[pt\]=.*|Comment[pt]=|g;s|GenericName\[pt\]=.*|GenericName[pt]=|g' /usr/share/applications/compton-conf.desktop
 
 
 # pcmanfm-qt-desktop e pcmanfm-qt-desktop-pref
-if [ "$(grep NotShowIn /usr/share/applications/pcmanfm-qt-desktop-pref.desktop)" = "" ]; then
+if [ "$(grep NotShowIn /usr/share/applications/pcmanfm-qt-desktop-pref.desktop)" = "" ] && [ ! -e "/usr/share/applications/pcmanfm-qt.desktop" ]; then
     echo 'NotShowIn=KDE' >> /usr/share/applications/pcmanfm-qt-desktop-pref.desktop
     echo 'NotShowIn=KDE' >> /usr/share/applications/pcmanfm-qt.desktop
 fi
@@ -20,19 +20,19 @@ fi
 sed -i 's|Name=.*|Name=Firewall|g;s|Categories=.*|Categories=System|g' /usr/share/applications/gufw.desktop
 
 # obconf-qt
-if [ "$(grep NotShowIn /usr/share/applications/obconf-qt.desktop)" = "" ]; then
+if [ "$(grep NotShowIn /usr/share/applications/obconf-qt.desktop)" = "" ] && [ ! -e "/usr/share/applications/obconf-qt.desktop" ]; then
     echo 'NotShowIn=KDE' >> /usr/share/applications/obconf-qt.desktop
 fi
 
 
 # xscreensaver-properties
-if [ "$(grep NotShowIn /usr/share/applications/xscreensaver-properties.desktop)" = "" ]; then
+if [ "$(grep NotShowIn /usr/share/applications/xscreensaver-properties.desktop)" = "" ] && [ ! -e "/usr/share/applications/xscreensaver-properties.desktop" ]; then
     echo 'NotShowIn=KDE' >> /usr/share/applications/xscreensaver-properties.desktop
 fi
 
 
 # KDE connect
-if [ -e "/usr/share/applications/org.kde.kdeconnect_open.desktop" ]; then
+if [ -e "/usr/share/applications/org.kde.kdeconnect_open.desktop" ] && [ ! -e "/usr/share/applications/org.kde.kdeconnect_open.desktop" ]; then
     sed -i 's|Configurações do ||g' /usr/share/applications/org.kde.kdeconnect.kcm.desktop
 
     rm -f /usr/share/applications/org.kde.kdeconnect_open.desktop /usr/share/applications/org.kde.kdeconnect.sms.desktop
@@ -60,55 +60,55 @@ rm -f /usr/share/applications/display-im6.q16.desktop
 rm -f /usr/share/applications/libreoffice-startcenter.desktop
 
 # libreoffice math
-if [ "$(grep -c 'Name\[pt_BR\]=' /usr/share/applications/libreoffice-math.desktop)" = "2" ]; then
+if [ "$(grep -c 'Name\[pt_BR\]=' /usr/share/applications/libreoffice-math.desktop)" = "2" ] && [ ! -e "/usr/share/applications/libreoffice-math.desktop" ]; then
     sed -i '/GenericName\[pt_BR\]=/a Name[pt_BR]=Fórmulas matemáticas com Math' /usr/share/applications/libreoffice-math.desktop
     sed -i 's|Comment\[pt_BR\]=.*|Comment[pt_BR]=|g;s|GenericName\[pt_BR\]=.*|GenericName[pt_BR]=|g;s|Categories=.*|Categories=Office;Spreadsheet;|g' /usr/share/applications/libreoffice-math.desktop
 fi
 
 
 # libreoffice calc
-if [ "$(grep -c 'Name\[pt_BR\]=' /usr/share/applications/libreoffice-calc.desktop)" = "2" ]; then
+if [ "$(grep -c 'Name\[pt_BR\]=' /usr/share/applications/libreoffice-calc.desktop)" = "2" ] && [ ! -e "/usr/share/applications/libreoffice-calc.desktop" ]; then
     sed -i '/GenericName\[pt_BR\]=/a Name[pt_BR]=Editar planilhas com Calc' /usr/share/applications/libreoffice-calc.desktop
     sed -i 's|Comment\[pt_BR\]=.*|Comment[pt_BR]=|g;s|GenericName\[pt_BR\]=.*|GenericName[pt_BR]=|g' /usr/share/applications/libreoffice-calc.desktop
 fi
 
 
 # libreoffice impress
-if [ "$(grep -c 'Name\[pt_BR\]=' /usr/share/applications/libreoffice-impress.desktop)" = "2" ]; then
+if [ "$(grep -c 'Name\[pt_BR\]=' /usr/share/applications/libreoffice-impress.desktop)" = "2" ] && [ ! -e "/usr/share/applications/libreoffice-impress.desktop" ]; then
     sed -i '/GenericName\[pt_BR\]=/a Name[pt_BR]=Editar apresentações com Impress' /usr/share/applications/libreoffice-impress.desktop
     sed -i 's|Comment\[pt_BR\]=.*|Comment[pt_BR]=|g;s|GenericName\[pt_BR\]=.*|GenericName[pt_BR]=|g' /usr/share/applications/libreoffice-impress.desktop
 fi
 
 
 # libreoffice draw
-if [ "$(grep -c 'Name\[pt_BR\]=' /usr/share/applications/libreoffice-draw.desktop)" = "2" ]; then
+if [ "$(grep -c 'Name\[pt_BR\]=' /usr/share/applications/libreoffice-draw.desktop)" = "2" ] && [ ! -e "/usr/share/applications/libreoffice-draw.desktop" ]; then
     sed -i '/GenericName\[pt_BR\]=/a Name[pt_BR]=Desenhos vetoriais Draw' /usr/share/applications/libreoffice-draw.desktop
     sed -i 's|Comment\[pt_BR\]=.*|Comment[pt_BR]=|g;s|GenericName\[pt_BR\]=.*|GenericName[pt_BR]=|g;s|Categories=.*|Categories=Graphics;FlowChart;Graphics;2DGraphics;VectorGraphics;|g' /usr/share/applications/libreoffice-draw.desktop
 fi
 
 
 # libreoffice writer
-if [ "$(grep -c 'Name\[pt_BR\]=' /usr/share/applications/libreoffice-writer.desktop)" = "2" ]; then
+if [ "$(grep -c 'Name\[pt_BR\]=' /usr/share/applications/libreoffice-writer.desktop)" = "2" ] && [ ! -e "/usr/share/applications/libreoffice-writer.desktop" ]; then
     sed -i '/GenericName\[pt_BR\]=/a Name[pt_BR]=Editar textos com Writer' /usr/share/applications/libreoffice-writer.desktop
     sed -i 's|Comment\[pt_BR\]=.*|Comment[pt_BR]=|g;s|GenericName\[pt_BR\]=.*|GenericName[pt_BR]=|g' /usr/share/applications/libreoffice-writer.desktop
 fi
 
 # gimp
-if [ "$(grep 'Name\[pt]' /usr/share/applications/gimp.desktop)" = "" ]; then
+if [ "$(grep 'Name\[pt]' /usr/share/applications/gimp.desktop)" = "" ] && [ ! -e "/usr/share/applications/gimp.desktop" ]; then
     echo 'Name[pt]=Editor de imagens Gimp
 GenericName[pt]=
 Comment[pt]=' >> /usr/share/applications/gimp.desktop
 fi
 
 # xscreensaver
-if [ "$(grep 'Name\[pt]' /usr/share/applications/xscreensaver-properties.desktop)" = "" ]; then
+if [ "$(grep 'Name\[pt]' /usr/share/applications/xscreensaver-properties.desktop)" = "" ] && [ ! -e "/usr/share/applications/xscreensaver-properties.desktop" ]; then
     echo 'Name[pt]=Protetor de tela
 GenericName[pt]=
 Comment[pt]=' >> /usr/share/applications/xscreensaver-properties.desktop
 fi
 
 # lxqt brightness
-if [ "$(grep 'Name\[pt]' /usr/share/applications/lxqt-config-brightness.desktop)" = "" ]; then
+if [ "$(grep 'Name\[pt]' /usr/share/applications/lxqt-config-brightness.desktop)" = "" ] && [ ! -e "/usr/share/applications/lxqt-config-brightness.desktop" ]; then
     echo 'Name[pt]=Brilho da tela
 GenericName[pt]=
 Comment[pt]=' >> /usr/share/applications/lxqt-config-brightness.desktop
@@ -119,7 +119,7 @@ fi
 sed -i "s|Name\[pt_BR\].*|Name[pt_BR]=Configurar notificações|g" /usr/share/applications/lxqt-config-notificationd.desktop
 
 # lxqt locale
-if [ "$(grep 'Name\[pt]' /usr/share/applications/lxqt-config-locale.desktop)" = "" ]; then
+if [ "$(grep 'Name\[pt]' /usr/share/applications/lxqt-config-locale.desktop)" = "" ] && [ ! -e "/usr/share/applications/lxqt-config-locale.desktop" ]; then
     echo 'Name[pt]=Idioma
 GenericName[pt]=
 Comment[pt]=' >> /usr/share/applications/lxqt-config-locale.desktop
@@ -127,7 +127,7 @@ fi
 
 
 # simple-scan
-if [ "$(grep 'Name\[pt]' /usr/share/applications/simple-scan.desktop)" = "" ]; then
+if [ "$(grep 'Name\[pt]' /usr/share/applications/simple-scan.desktop)" = "" ] && [ ! -e "/usr/share/applications/simple-scan.desktop" ]; then
     echo 'Name[pt]=Digitalizador de imagens
 GenericName[pt]=
 Comment[pt]=' >> /usr/share/applications/simple-scan.desktop
@@ -147,7 +147,7 @@ sed -i 's|Name\[pt_BR\]=.*|Name[pt_BR]=Visualizador de imagens|g;s|Comment\[pt_B
 sed -i 's|Name\[pt_BR\]=.*|Name[pt_BR]=Campo minado|g;s|Comment\[pt_BR\]=.*|Comment[pt_BR]=|g;s|GenericName\[pt_BR\]=.*|GenericName[pt_BR]=|g' /usr/share/applications/org.kde.kmines.desktop
 
 # Cheese
-if [ "$(grep 'Name\[pt]' /usr/share/applications/org.gnome.Cheese.desktop)" = "" ]; then
+if [ "$(grep 'Name\[pt]' /usr/share/applications/org.gnome.Cheese.desktop)" = "" ] && [ ! -e "/usr/share/applications/org.gnome.Cheese.desktop" ]; then
     echo 'Name[pt]=Webcam
 GenericName[pt]=
 Comment[pt]=' >> /usr/share/applications/org.gnome.Cheese.desktop
@@ -159,7 +159,7 @@ sed -i 's|multimedia-volume-control|audio-volume-high|g;s|Name\[pt\]=.*|Name[pt]
 sed -i 's|multimedia-volume-control|audio-volume-high|g'/usr/share/applications/pavucontrol-qt.desktop
 
 # Clementine
-if [ "$(grep 'Name\[pt_BR\]=Músicas' /usr/share/applications/clementine.desktop)" = "" ]; then
+if [ "$(grep 'Name\[pt_BR\]=Músicas' /usr/share/applications/clementine.desktop)" = "" ] && [ ! -e "/usr/share/applications/clementine.desktop" ]; then
     sed -i '/GenericName\[pt\]=/a Name[pt_BR]=Músicas\nGenericName[pt_BR]= \nComment[pt_BR]=' /usr/share/applications/clementine.desktop
 fi
 
@@ -172,16 +172,11 @@ if [ "$(grep -c 'Name\[pt_BR\]=' /usr/share/applications/smplayer.desktop)" = "2
 fi
 
 # calculadora
-if [ "$(grep 'GenericName[pt]' /usr/share/applications/org.gnome.Calculator.desktop)" = "" ]; then
+if [ "$(grep 'GenericName[pt]' /usr/share/applications/org.gnome.Calculator.desktop)" = "" ] && [ ! -e "/usr/share/applications/org.gnome.Calculator.desktop" ]; then
     echo 'GenericName[pt]=Calculadora' >> /usr/share/applications/org.gnome.Calculator.desktop
     echo 'Name[pt]=Calculadora' >> /usr/share/applications/org.gnome.Calculator.desktop
 fi
 
-# blueman
-if [ "$(grep 'GenericName[pt]' /usr/share/applications/org.gnome.Calculator.desktop)" = "" ]; then
-    echo 'GenericName[pt]=Calculadora' >> /usr/share/applications/org.gnome.Calculator.desktop
-    echo 'Name[pt]=Calculadora' >> /usr/share/applications/org.gnome.Calculator.desktop
-fi
 
 # spectacle
 sed -i 's|Name\[pt_BR\]=Spectacle|Name[pt_BR]=Utilitário de captura de tela|g;s|Comment\[pt_BR\]=.*|Comment[pt_BR]=|g;s|GenericName\[pt_BR\]=.*|GenericName[pt_BR]=|g' /usr/share/applications/org.kde.spectacle.desktop
@@ -231,7 +226,7 @@ fi
 
 # onboard
 rm -f /usr/share/applications/onboard-settings.desktop
-if [ "$(grep 'Name\[pt]' /usr/share/applications/onboard.desktop)" = "" ]; then
+if [ "$(grep 'Name\[pt]' /usr/share/applications/onboard.desktop)" = "" ] && [ ! -e "/usr/share/applications/onboard.desktop" ]; then
     echo 'Name[pt]=Teclado virtual
 GenericName[pt]=
 Comment[pt]=' >> /usr/share/applications/onboard.desktop
@@ -307,7 +302,7 @@ fi
 rm -f /usr/share/applications/kde_wacom_tabletfinder.desktop
 
 # Timeshift
-if [ "$(grep -c 'Name\[pt_BR\]=' /usr/share/applications/timeshift-gtk.desktop)" = "0" ]; then
+if [ "$(grep -c 'Name\[pt_BR\]=' /usr/share/applications/timeshift-gtk.desktop)" = "0" ] && [ ! -e "/usr/share/applications/timeshift-gtk.desktop" ]; then
     sed -i '/GenericName\[ca\]=/a Name[pt_BR]=Backups e snapshots' /usr/share/applications/timeshift-gtk.desktop
     echo 'Comment[pt_BR]=' >> /usr/share/applications/timeshift-gtk.desktop
     echo 'GenericName[pt_BR]=' >> /usr/share/applications/timeshift-gtk.desktop
