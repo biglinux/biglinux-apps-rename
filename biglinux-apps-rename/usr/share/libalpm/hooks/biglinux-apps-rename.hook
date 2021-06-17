@@ -61,6 +61,7 @@ Target = usr/share/applications/nvidia-settings.desktop
 Target = usr/share/applications/yad-icon-browser.desktop
 Target = usr/share/applications/rxvt-unicode.desktop
 Target = usr/share/applications/gscriptor.desktop
+Target = usr/share/applications/brave-browser.desktop
 
 [Action]
 Description = Automatic rename same apps
