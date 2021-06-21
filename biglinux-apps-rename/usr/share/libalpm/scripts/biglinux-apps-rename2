@@ -18,6 +18,7 @@ fi
 
 #Gufw
 sed -i 's|Name=.*|Name=Firewall|g;s|Categories=.*|Categories=System|g' /usr/share/applications/gufw.desktop
+sed -i 's|pkexec gufw-pkexec|pkexec env DISPLAY=$DISPLAY XAUTHORITY=$XAUTHORITY gufw-pkexec|g' /usr/bin/gufw
 
 # obconf-qt
 if [ "$(grep NotShowIn /usr/share/applications/obconf-qt.desktop)" = "" ] && [ -e "/usr/share/applications/obconf-qt.desktop" ]; then
