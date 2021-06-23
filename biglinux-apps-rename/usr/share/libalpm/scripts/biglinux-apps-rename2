@@ -60,6 +60,10 @@ rm -f /usr/share/applications/display-im6.q16.desktop
 # libreoffice
 rm -f /usr/share/applications/libreoffice-startcenter.desktop
 
+# urxvt
+rm -f /usr/share/applications/urxvtc.desktop
+rm -f /usr/share/applications/urxvt.desktop
+rm -f /usr/share/applications/urxvt-tabbed.desktop
 
 # libreoffice xsltfilter
 if [ "$(grep -c 'Name\[pt_BR\]=' /usr/lib/libreoffice/share/xdg/xsltfilter.desktop)" = "0" ] && [ -e "/usr/lib/libreoffice/share/xdg/xsltfilter.desktop" ]; then
@@ -233,8 +237,8 @@ Comment[pt]=' >> /usr/share/applications/onboard.desktop
 sed -i 's|Accessibility;||g' /usr/share/applications/onboard.desktop
 fi
 
-# baobab
-sed -i 's|Name\[pt_BR\]=.*|Name[pt_BR]=Armazenamento (Baobab)|g;s|Comment\[pt_BR\]=.*|Comment[pt_BR]=|g;s|NotShowIn=KDE;||g' /usr/share/applications/org.gnome.baobab.desktop
+# baobab\
+#sed -i 's|Name\[pt_BR\]=.*|Name[pt_BR]=Armazenamento (Baobab)|g;s|Comment\[pt_BR\]=.*|Comment[pt_BR]=|g;s|NotShowIn=KDE;||g' /usr/share/applications/org.gnome.baobab.desktop
 
 # Chrome
 if [ "$(grep -c 'Name\[pt_BR\]=' /usr/share/applications/google-chrome.desktop)" = "3" ]; then
@@ -246,11 +250,7 @@ fi
 sed -i '/GenericName\[pt_BR\]=Navegador da Internet/a Name[pt_BR]=Navegador Brave' /usr/share/applications/brave-browser.desktop
 
 # firefox
-sed -i 's|Name\[pt_BR\]=.*|Name[pt_BR]=Navegador Firefox|g;s|Comment\[pt_BR\]=.*|Comment[pt_BR]=|g;s|GenericName\[pt_BR\]=.*|GenericName[pt_BR]=|g' /usr/share/applications/firefox.desktop
-
-# thunderbird
-sed -i 's|Name\[pt_BR\]=.*|Name[pt_BR]=Cliente de e-mail (Thunderbird)|g;s|Comment\[pt_BR\]=.*|Comment[pt_BR]=|g;s|GenericName\[pt_BR\]=.*|GenericName[pt_BR]=|g' /usr/share/applications/thunderbird.desktop
-
+sed -i 's|GenericName\[pt_BR\]=.*|Name[pt_BR]=Navegador Firefox|g' /usr/share/applications/firefox.desktop
 
 # qbittorrent
 sed -i 's|Name\[pt_BR\]=.*|Name[pt_BR]=Cliente qBittorrent|g;s|Comment\[pt_BR\]=.*|Comment[pt_BR]=|g;s|GenericName\[pt_BR\]=.*|GenericName[pt_BR]=|g' /usr/share/applications/org.qbittorrent.qBittorrent.desktop
@@ -314,6 +314,10 @@ fi
 #nvidia
 
 sed -i 's|Name=NVIDIA X Server Settings|Name=Configure NVIDIA|g;s|System;Settings;|Settings|g;s|Comment=.*|Comment=|g' /usr/share/applications/nvidia-settings.desktop
+
+
+sed -i 's|Categories=.*|Categories=Settings;|g' /usr/share/applications/org.manjaro.pamac.manager.desktop
+
 
 # Yad
 rm -f /usr/share/applications/yad-icon-browser.desktop
