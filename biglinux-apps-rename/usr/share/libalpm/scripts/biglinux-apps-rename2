@@ -321,6 +321,7 @@ sed -i 's|Categories=.*|Categories=Settings;|g' /usr/share/applications/org.manj
 
 # Yad
 rm -f /usr/share/applications/yad-icon-browser.desktop
+rm -f /usr/share/applications/yad-settings.desktop
 
 # rxvt
 rm -f /usr/share/applications/rxvt-unicode.desktop
