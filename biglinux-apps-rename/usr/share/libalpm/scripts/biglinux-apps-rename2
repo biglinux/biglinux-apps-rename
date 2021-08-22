@@ -16,6 +16,9 @@ if [ "$(grep NotShowIn /usr/share/applications/pcmanfm-qt-desktop-pref.desktop)"
     echo 'NotShowIn=KDE' >> /usr/share/applications/pcmanfm-qt.desktop
 fi
 
+# kdenlive
+sed -i 's|Exec=kdenlive|Exec=QT_QUICK_BACKEND="" kdenlive|g' /usr/share/applications/org.kde.kdenlive.desktop
+
 #Gufw
 sed -i 's|Name=.*|Name=Firewall|g;s|Categories=.*|Categories=System|g' /usr/share/applications/gufw.desktop
 sed -i 's|pkexec gufw-pkexec|pkexec env DISPLAY=$DISPLAY XAUTHORITY=$XAUTHORITY gufw-pkexec|g' /usr/bin/gufw
@@ -53,6 +56,9 @@ fi
 
 # network manager
 rm -f /usr/share/applications/nm-connection-editor.desktop 
+
+# ipython
+rm -f /usr/share/applications/ipython.desktop
 
 # imagemagick
 rm -f /usr/share/applications/display-im6.q16.desktop
