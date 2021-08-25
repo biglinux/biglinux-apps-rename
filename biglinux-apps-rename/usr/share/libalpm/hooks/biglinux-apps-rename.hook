@@ -64,6 +64,7 @@ Target = usr/share/applications/gscriptor.desktop
 Target = usr/share/applications/brave-browser.desktop
 Target = usr/share/applications/org.kde.kdenlive.desktop
 Target = usr/share/applications/ipython.desktop
+Target = usr/share/applications/steam.desktop
 
 [Action]
 Description = Automatic rename same apps

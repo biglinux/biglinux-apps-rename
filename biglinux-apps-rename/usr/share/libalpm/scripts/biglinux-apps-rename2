@@ -19,6 +19,9 @@ fi
 # kdenlive
 sed -i 's|Exec=kdenlive|Exec=QT_QUICK_BACKEND="" kdenlive|g' /usr/share/applications/org.kde.kdenlive.desktop
 
+# steam
+sed -i 's|Steam (Runtime)|Steam|g' /usr/share/applications/steam.desktop
+
 #Gufw
 sed -i 's|Name=.*|Name=Firewall|g;s|Categories=.*|Categories=System|g' /usr/share/applications/gufw.desktop
 sed -i 's|pkexec gufw-pkexec|pkexec env DISPLAY=$DISPLAY XAUTHORITY=$XAUTHORITY gufw-pkexec|g' /usr/bin/gufw
