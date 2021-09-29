@@ -42,37 +42,27 @@ fi
 if [ -e "/usr/share/applications/org.kde.kdeconnect_open.desktop" ] && [ -e "/usr/share/applications/org.kde.kdeconnect_open.desktop" ]; then
     sed -i 's|Configurações do ||g' /usr/share/applications/org.kde.kdeconnect.kcm.desktop
 
-    rm -f /usr/share/applications/org.kde.kdeconnect_open.desktop /usr/share/applications/org.kde.kdeconnect.sms.desktop
+    sed -i 's|Categories=|NoDisplay=true\nCategories=|' /usr/share/applications/org.kde.kdeconnect.sms.desktop
 
     sed -i 's|kdeconnect-app|kdeconnect-settings|g;s|Name\[pt_BR\]=.*|Name[pt_BR]=Interagir com dispositivos Android|g;s|GenericName\[pt_BR\]=.*|GenericName[pt_BR]=|g;s|Categories=Qt;KDE;Network|Categories=Qt;KDE;Utility|g;' /usr/share/applications/org.kde.kdeconnect.app.desktop
 fi
 
-
-# grub-customizer
-#if [ "$(grep Name[pt_BR]= /usr/share/applications/grub-customizer.desktop)" = "" ]; then
-#    echo 'Name[pt_BR]=Editar tela de boot (Grub-customizer)
-#Comment[pt_BR]=
-#GenericName[pt_BR]=' >> /usr/share/applications/grub-customizer.desktop
-#sed -i 's|Categories=.*|Categories=System;|g' /usr/share/applications/grub-customizer.desktop
-#fi
-#rm -f /usr/share/applications/grub-customizer.desktop
-
 # network manager
-rm -f /usr/share/applications/nm-connection-editor.desktop 
+sed -i 's|Categories=|NoDisplay=true\nCategories=|' /usr/share/applications/nm-connection-editor.desktop 
 
 # ipython
-rm -f /usr/share/applications/ipython.desktop
+sed -i 's|Categories=|NoDisplay=true\nCategories=|' /usr/share/applications/ipython.desktop
 
 # imagemagick
-rm -f /usr/share/applications/display-im6.q16.desktop
+sed -i 's|Categories=|NoDisplay=true\nCategories=|' /usr/share/applications/display-im6.q16.desktop
 
 # libreoffice
-rm -f /usr/share/applications/libreoffice-startcenter.desktop
+sed -i 's|Categories=|NoDisplay=true\nCategories=|' /usr/lib/libreoffice/share/xdg/libreoffice-startcenter.desktop
 
 # urxvt
-rm -f /usr/share/applications/urxvtc.desktop
-rm -f /usr/share/applications/urxvt.desktop
-rm -f /usr/share/applications/urxvt-tabbed.desktop
+sed -i 's|Categories=|NoDisplay=true\nCategories=|' /usr/share/applications/urxvtc.desktop
+sed -i 's|Categories=|NoDisplay=true\nCategories=|' /usr/share/applications/urxvt.desktop
+sed -i 's|Categories=|NoDisplay=true\nCategories=|' /usr/share/applications/urxvt-tabbed.desktop
 
 # libreoffice xsltfilter
 if [ "$(grep -c 'Name\[pt_BR\]=' /usr/lib/libreoffice/share/xdg/xsltfilter.desktop)" = "0" ] && [ -e "/usr/lib/libreoffice/share/xdg/xsltfilter.desktop" ]; then
@@ -195,7 +185,7 @@ sed -i 's|Name\[pt_BR\]=Spectacle|Name[pt_BR]=Utilitário de captura de tela|g;s
 
 
 # compton
-rm -f /usr/share/applications/compton.desktop
+sed -i 's|Categories=|NoDisplay=true\nCategories=|' /usr/share/applications/compton.desktop
 
 # ark
 sed -i 's|Name\[pt_BR\]=.*|Name[pt_BR]=Compactar arquivos|g;s|Comment\[pt_BR\]=.*|Comment[pt_BR]=|g;s|GenericName\[pt_BR\]=.*|GenericName[pt_BR]=|g' /usr/share/applications/org.kde.ark.desktop
@@ -305,7 +295,7 @@ if [ "$(grep 'Name\[pt_BR\]=' /usr/share/applications/openjdk-8-policytool.deskt
 fi
 
 # kde-wacom
-rm -f /usr/share/applications/kde_wacom_tabletfinder.desktop
+sed -i 's|Categories=|NoDisplay=true\nCategories=|' /usr/share/applications/kde_wacom_tabletfinder.desktop
 
 # Timeshift
 if [ "$(grep -c 'Name\[pt_BR\]=' /usr/share/applications/timeshift-gtk.desktop)" = "0" ] && [ -e "/usr/share/applications/timeshift-gtk.desktop" ]; then
@@ -329,11 +319,11 @@ sed -i 's|Categories=.*|Categories=Settings;|g' /usr/share/applications/org.manj
 
 
 # Yad
-rm -f /usr/share/applications/yad-icon-browser.desktop
-rm -f /usr/share/applications/yad-settings.desktop
+sed -i 's|Categories=|NoDisplay=true\nCategories=|' /usr/share/applications/yad-icon-browser.desktop
+sed -i 's|Categories=|NoDisplay=true\nCategories=|' /usr/share/applications/yad-settings.desktop
 
 # rxvt
-rm -f /usr/share/applications/rxvt-unicode.desktop
+sed -i 's|Categories=|NoDisplay=true\nCategories=|' /usr/share/applications/rxvt-unicode.desktop
 
 # pcsc-tools
-rm -f /usr/share/applications/gscriptor.desktop
+sed -i 's|Categories=|NoDisplay=true\nCategories=|' /usr/share/applications/gscriptor.desktop
