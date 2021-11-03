@@ -155,9 +155,10 @@ if [ "$(grep 'Name\[pt]=Cheese' /usr/share/applications/org.gnome.Cheese.desktop
     sed -i 's|Name\[pt_BR\]=Cheese|Name\[pt_BR\]=Webcam|g;s|Name\[pt\]=Cheese|Name\[pt\]=Webcam|g;s|GenericName\[pt_BR\]=Cabine de webcam|GenericName\[pt_BR\]=|g;s|GenericName\[pt\]=Cabine de câmara web|GenericName\[pt\]=|g' /usr/share/applications/org.gnome.Cheese.desktop
 fi
 
-# Kazam
-if [ "$(grep 'Name\[pt]=Kazam' /usr/share/applications/kazam.desktop)" != "" ]; then
-    sed -i 's|Name\[pt_BR\]=.*|Name[pt_BR]=Gravador de tela|g;s|GenericName\[pt_BR\]=.*|GenericName[pt_BR]=|g;s|Name\[pt\]=.*|Name[pt]=Gravador de tela|g;s|GenericName\[pt\]=.*|GenericName[pt]=|g' /usr/share/applications/kazam.desktop
+# vokoscreenNG
+if [ "$(grep 'Name\[pt_BR\]=' /usr/share/applications/vokoscreenNG.desktop)" = "" ]; then
+    sed -i '/Name=/a Name[pt_BR]=Gravador de tela\nComment[pt_BR]=' /usr/share/applications/vokoscreenNG.desktop
+    sed -i '/Name=/a Name[pt]=Gravador de tela\nComment[pt]=' /usr/share/applications/vokoscreenNG.desktop
 fi
 
 # pavucontrol-qt
