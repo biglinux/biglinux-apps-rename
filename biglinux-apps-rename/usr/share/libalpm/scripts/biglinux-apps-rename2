@@ -20,7 +20,8 @@ fi
 sed -i 's|Exec=kdenlive|Exec=QT_QUICK_BACKEND="" kdenlive|g' /usr/share/applications/org.kde.kdenlive.desktop
 
 # steam
-sed -i 's|Steam (Runtime)|Steam|g' /usr/share/applications/steam.desktop
+sed -i 's|Steam (Runtime)|Steam|g;s|Categories=Network;FileTransfer;Game;|Categories=Game;|g' /usr/share/applications/steam.desktop
+
 
 #Gufw
 sed -i 's|Name=.*|Name=Firewall|g;s|Categories=.*|Categories=System|g' /usr/share/applications/gufw.desktop
@@ -330,3 +331,7 @@ sed -i 's|Categories=|NoDisplay=true\nCategories=|' /usr/share/applications/rxvt
 
 # pcsc-tools
 sed -i 's|Categories=|NoDisplay=true\nCategories=|' /usr/share/applications/gscriptor.desktop
+
+# latte
+sed -i 's|Categories=|NoDisplay=true\nCategories=|' /usr/share/applications/org.kde.latte-dock.desktop
+

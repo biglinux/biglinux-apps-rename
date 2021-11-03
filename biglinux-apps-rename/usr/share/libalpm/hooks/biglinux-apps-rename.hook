@@ -65,6 +65,8 @@ Target = usr/share/applications/brave-browser.desktop
 Target = usr/share/applications/org.kde.kdenlive.desktop
 Target = usr/share/applications/ipython.desktop
 Target = usr/share/applications/steam.desktop
+Target = usr/share/applications/org.kde.latte-dock.desktop
+Target = usr/share/applications/kazam.desktop
 
 [Action]
 Description = Automatic rename same apps
