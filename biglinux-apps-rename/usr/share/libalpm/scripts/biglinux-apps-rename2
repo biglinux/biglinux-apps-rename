@@ -150,10 +150,13 @@ sed -i 's|Name\[pt_BR\]=.*|Name[pt_BR]=Visualizador de imagens|g;s|Comment\[pt_B
 sed -i 's|Name\[pt_BR\]=.*|Name[pt_BR]=Campo minado|g;s|Comment\[pt_BR\]=.*|Comment[pt_BR]=|g;s|GenericName\[pt_BR\]=.*|GenericName[pt_BR]=|g' /usr/share/applications/org.kde.kmines.desktop
 
 # Cheese
-if [ "$(grep 'Name\[pt]' /usr/share/applications/org.gnome.Cheese.desktop)" = "" ] && [ -e "/usr/share/applications/org.gnome.Cheese.desktop" ]; then
-    echo 'Name[pt]=Webcam
-GenericName[pt]=
-Comment[pt]=' >> /usr/share/applications/org.gnome.Cheese.desktop
+if [ "$(grep 'Name\[pt]=Cheese' /usr/share/applications/org.gnome.Cheese.desktop)" != "" ]; then
+    sed -i 's|Name\[pt_BR\]=Cheese|Name\[pt_BR\]=Webcam|g;s|Name\[pt\]=Cheese|Name\[pt\]=Webcam|g;s|GenericName\[pt_BR\]=Cabine de webcam|GenericName\[pt_BR\]=|g;s|GenericName\[pt\]=Cabine de câmara web|GenericName\[pt\]=|g' /usr/share/applications/org.gnome.Cheese.desktop
+fi
+
+# Kazam
+if [ "$(grep 'Name\[pt]=Kazam' /usr/share/applications/kazam.desktop)" != "" ]; then
+    sed -i 's|Name\[pt_BR\]=.*|Name[pt_BR]=Gravador de tela|g;s|GenericName\[pt_BR\]=.*|GenericName[pt_BR]=|g;s|Name\[pt\]=.*|Name[pt]=Gravador de tela|g;s|GenericName\[pt\]=.*|GenericName[pt]=|g' /usr/share/applications/kazam.desktop
 fi
 
 # pavucontrol-qt
@@ -174,7 +177,7 @@ sed -i "s|Name\[pt_BR\]=SMPlayer|Name[pt_BR]=Vídeos|g" /usr/share/applications/
 
 
 # calculadora
-if [ "$(grep 'GenericName[pt]' /usr/share/applications/org.gnome.Calculator.desktop)" = "" ] && [ -e "/usr/share/applications/org.gnome.Calculator.desktop" ]; then
+if [ "$(grep 'GenericName\[pt]' /usr/share/applications/org.gnome.Calculator.desktop)" = "" ] && [ -e "/usr/share/applications/org.gnome.Calculator.desktop" ]; then
     echo 'GenericName[pt]=Calculadora' >> /usr/share/applications/org.gnome.Calculator.desktop
     echo 'Name[pt]=Calculadora' >> /usr/share/applications/org.gnome.Calculator.desktop
 fi
