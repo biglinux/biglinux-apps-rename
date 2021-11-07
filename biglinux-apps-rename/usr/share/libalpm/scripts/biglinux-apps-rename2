@@ -272,7 +272,7 @@ sed -i 's|Name\[pt_BR\]=.*|Name[pt_BR]=Histórico de copiar e colar|g;s|Comment\
 if [ "$(grep 'Name\[pt_BR\]=' /usr/share/applications/wps-office-et.desktop)" = "" ]; then
     sed -i '/GenericName=/a Name[pt_BR]=WPS Planilhas (Spreadsheets)\nGenericName[pt_BR]= \nComment[pt_BR]=' /usr/share/applications/wps-office-et.desktop
 fi
-rm -f /etc/xdg/menus/applications-merged/wps-office.menu
+sed -i 's/^/#/' /etc/xdg/menus/applications-merged/wps-office.menu
 
 # wps-office-wpp
 if [ "$(grep 'Name\[pt_BR\]=' /usr/share/applications/wps-office-wpp.desktop)" = "" ]; then
