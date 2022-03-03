@@ -6,7 +6,7 @@ for i in $(grep -oP "Target = \K.*" /usr/share/libalpm/hooks/softwarerender.hook
 #Verificar se já tem softwarerender no .desktop, evitar duplicar.
 if [ -z "$(grep softwarerender /$i)" ];then
 #Arquivo .desktop
-exec=$(grep -oP "Exec=\K.*" /$i)
+exec=$(grep -oP "Exec=\K.*" /$i | cut -d " " -f1)
 
 #Escrever no arquivo
 echo "
