@@ -139,6 +139,11 @@ GenericName[pt]=
 Comment[pt]=' >> /usr/share/applications/simple-scan.desktop
 fi
 
+# skanpage
+sed -i 's|Name\[pt_BR\]=.*|Name[pt_BR]=Digitalizador de imagens Skanpage|g;s|GenericName\[pt_BR\]=.*|GenericName[pt_BR]=|g' /usr/share/applications/org.kde.skanpage.desktop
+
+
+
 # KWalletManager
 sed -i 's|Name\[pt_BR\]=.*|Name[pt_BR]=Gerenciar senhas salvas no sistema|g;s|GenericName\[pt_BR\]=.*|GenericName[pt_BR]=|g' /usr/share/applications/org.kde.kwalletmanager5.desktop
 
