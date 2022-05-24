@@ -1,7 +1,7 @@
 #!/bin/sh
 
 # kate
-sed -i 's|Name\[pt_BR\]=.*|Name[pt_BR]=Anotações|g;s|Comment\[pt_BR\]=.*|Comment[pt_BR]=|g;s|GenericName\[pt_BR\]=.*|GenericName[pt_BR]=|g' /usr/share/applications/org.kde.kate.desktop
+sed -i 's|Name\[pt_BR\]=.*|Name[pt_BR]=Anotações|g;s|Comment\[pt_BR\]=.*|Comment[pt_BR]=|g;s|GenericName\[pt_BR\]=.*|GenericName[pt_BR]=|g;s|Development;||g' /usr/share/applications/org.kde.kate.desktop
  
 # compton
 if [ "$(grep NotShowIn /usr/share/applications/compton-conf.desktop)" = "" ] && [ -e "/usr/share/applications/compton-conf.desktop" ]; then
