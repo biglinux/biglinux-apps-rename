@@ -158,8 +158,12 @@ sed -i 's|Name\[pt_BR\]=.*|Name[pt_BR]=Visualizador de imagens|g;s|Comment\[pt_B
 sed -i 's|Name\[pt_BR\]=.*|Name[pt_BR]=Campo minado|g;s|Comment\[pt_BR\]=.*|Comment[pt_BR]=|g;s|GenericName\[pt_BR\]=.*|GenericName[pt_BR]=|g' /usr/share/applications/org.kde.kmines.desktop
 
 # Cheese
-if [ "$(grep 'Name\[pt]=Cheese' /usr/share/applications/org.gnome.Cheese.desktop)" != "" ]; then
-    sed -i 's|Name\[pt_BR\]=Cheese|Name\[pt_BR\]=Webcam|g;s|Name\[pt\]=Cheese|Name\[pt\]=Webcam|g;s|GenericName\[pt_BR\]=Cabine de webcam|GenericName\[pt_BR\]=|g;s|GenericName\[pt\]=Cabine de câmara web|GenericName\[pt\]=|g' /usr/share/applications/org.gnome.Cheese.desktop
+# if [ "$(grep 'Name\[pt]=Cheese' /usr/share/applications/org.gnome.Cheese.desktop)" != "" ]; then
+#     sed -i 's|Name\[pt_BR\]=Cheese|Name\[pt_BR\]=Webcam|g;s|Name\[pt\]=Cheese|Name\[pt\]=Webcam|g;s|GenericName\[pt_BR\]=Cabine de webcam|GenericName\[pt_BR\]=|g;s|GenericName\[pt\]=Cabine de câmara web|GenericName\[pt\]=|g' /usr/share/applications/org.gnome.Cheese.desktop
+# fi
+
+if [ "$(grep 'Name\[pt]=guvcview' /usr/share/applications/guvcview.desktop)" != "" ]; then
+    sed -i 's|Name\[pt_BR\]=guvcview|Name\[pt_BR\]=Webcam Guvc|g;s|Name\[pt\]=guvcview|Name\[pt\]=Webcam Guvc|g;s|GenericName\[pt_BR\]=Visualizador de vídeo GTK UVC|GenericName\[pt_BR\]=|g;s|GenericName\[pt\]=Visualizador de vídeo GTK UVC|GenericName\[pt\]=|g;s|^Exec=guvcview$|Exec=guvcview-verify-busy|g' /usr/share/applications/guvcview.desktop
 fi
 
 # vokoscreenNG
