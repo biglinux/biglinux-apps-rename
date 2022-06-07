@@ -67,6 +67,8 @@ Target = usr/share/applications/ipython.desktop
 Target = usr/share/applications/steam.desktop
 Target = usr/share/applications/org.kde.latte-dock.desktop
 Target = usr/share/applications/vokoscreenNG.desktop
+Target = usr/share/applications/guvcview.desktop
+
 
 [Action]
 Description = Automatic rename same apps
