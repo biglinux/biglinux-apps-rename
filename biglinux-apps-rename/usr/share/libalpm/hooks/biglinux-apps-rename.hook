@@ -68,6 +68,7 @@ Target = usr/share/applications/steam.desktop
 Target = usr/share/applications/org.kde.latte-dock.desktop
 Target = usr/share/applications/vokoscreenNG.desktop
 Target = usr/share/applications/guvcview.desktop
+Target = usr/share/applications/simplescreenrecorder.desktop
 
 
 [Action]
