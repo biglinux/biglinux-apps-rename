@@ -168,8 +168,14 @@ fi
 
 # vokoscreenNG
 if [ "$(grep 'Name\[pt_BR\]=' /usr/share/applications/vokoscreenNG.desktop)" = "" ]; then
-    sed -i '/Name=/a Name[pt_BR]=Gravador de tela\nComment[pt_BR]=' /usr/share/applications/vokoscreenNG.desktop
-    sed -i '/Name=/a Name[pt]=Gravador de tela\nComment[pt]=' /usr/share/applications/vokoscreenNG.desktop
+    sed -i '/Name=/a Name[pt_BR]=Gravador de tela Voko\nComment[pt_BR]=' /usr/share/applications/vokoscreenNG.desktop
+    sed -i '/Name=/a Name[pt]=Gravador de tela Voko\nComment[pt]=' /usr/share/applications/vokoscreenNG.desktop
+fi
+
+# SimpleScreenRecorder
+if [ "$(grep 'Name\[pt_BR\]=' /usr/share/applications/simplescreenrecorder.desktop)" = "" ]; then
+    sed -i '/Name=/a Name[pt_BR]=Gravador de tela\nComment[pt_BR]=' /usr/share/applications/simplescreenrecorder.desktop
+    sed -i '/Name=/a Name[pt]=Gravador de tela\nComment[pt]=' /usr/share/applications/simplescreenrecorder.desktop
 fi
 
 # pavucontrol-qt
