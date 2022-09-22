@@ -2,7 +2,10 @@
 
 # kate
 sed -i 's|Name\[pt_BR\]=.*|Name[pt_BR]=Anotações|g;s|Comment\[pt_BR\]=.*|Comment[pt_BR]=|g;s|GenericName\[pt_BR\]=.*|GenericName[pt_BR]=|g;s|Development;||g' /usr/share/applications/org.kde.kate.desktop
- 
+
+# kwrite remove
+sed -i 's|Categories=|NoDisplay=true\nCategories=|' /usr/share/applications/org.kde.kwrite.desktop
+
 # compton
 if [ "$(grep NotShowIn /usr/share/applications/compton-conf.desktop)" = "" ] && [ -e "/usr/share/applications/compton-conf.desktop" ]; then
     echo 'NotShowIn=KDE' >> /usr/share/applications/compton-conf.desktop
