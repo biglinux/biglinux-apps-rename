@@ -7,7 +7,7 @@ arch=('any')
 license=('GPL')
 url="https://github.com/biglinux/biglinux-apps-rename"
 pkgdesc="Rename apps"
-conflicts('bashrc-manjaro')
+conflicts=('bashrc-manjaro')
 source=("git+https://github.com/biglinux/biglinux-apps-rename.git")
 md5sums=(SKIP)
 
