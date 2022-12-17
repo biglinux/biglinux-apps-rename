@@ -12,11 +12,11 @@ if [ "$(grep NotShowIn /usr/share/applications/compton-conf.desktop)" = "" ] && 
 fi
 #sed -i 's|Name\[pt_BR\]=.*|Name[pt_BR]=Efeitos de janelas (Compton)|g;s|Comment\[pt\]=.*|Comment[pt]=|g;s|GenericName\[pt\]=.*|GenericName[pt]=|g' /usr/share/applications/compton-conf.desktop
 
-
 # pcmanfm-qt-desktop e pcmanfm-qt-desktop-pref
 if [ "$(grep NotShowIn /usr/share/applications/pcmanfm-qt-desktop-pref.desktop)" = "" ] && [ -e "/usr/share/applications/pcmanfm-qt.desktop" ]; then
     echo 'NotShowIn=KDE' >> /usr/share/applications/pcmanfm-qt-desktop-pref.desktop
     echo 'NotShowIn=KDE' >> /usr/share/applications/pcmanfm-qt.desktop
+    sed -i 's/Name[pt_BR]=.*/Name[pt_BR]=Gerenciador de Arquivos/' /usr/share/applications/pcmanfm-qt.desktop
 fi
 
 # kdenlive
@@ -25,8 +25,7 @@ sed -i 's|Exec=kdenlive|Exec=QT_QUICK_BACKEND="" kdenlive|g' /usr/share/applicat
 # steam
 sed -i 's|Steam (Runtime)|Steam|g;s|Categories=Network;FileTransfer;Game;|Categories=Game;|g' /usr/share/applications/steam.desktop
 
-
-#Gufw
+# Gufw
 sed -i 's|Name=.*|Name=Firewall|g;s|Categories=.*|Categories=System|g' /usr/share/applications/gufw.desktop
 sed -i 's|pkexec gufw-pkexec|pkexec env DISPLAY=$DISPLAY XAUTHORITY=$XAUTHORITY gufw-pkexec|g' /usr/bin/gufw
 
@@ -35,12 +34,10 @@ if [ "$(grep NotShowIn /usr/share/applications/obconf-qt.desktop)" = "" ] && [ -
     echo 'NotShowIn=KDE' >> /usr/share/applications/obconf-qt.desktop
 fi
 
-
 # xscreensaver-properties
 if [ "$(grep NotShowIn /usr/share/applications/xscreensaver-properties.desktop)" = "" ] && [ -e "/usr/share/applications/xscreensaver-properties.desktop" ]; then
     echo 'NotShowIn=KDE' >> /usr/share/applications/xscreensaver-properties.desktop
 fi
-
 
 # KDE connect
 if [ "$(grep 'NoDisplay=true' /usr/share/applications/org.kde.kdeconnect_open.desktop)" = "" ]; then
@@ -108,32 +105,12 @@ fi
 # gimp
 sed -i "s|Name\[pt_BR\]=Programa de manipulação de imagem do GNU|Name[pt_BR]=Editor de imagens Gimp|g" /usr/share/applications/gimp.desktop
 
-
 # xscreensaver
 if [ "$(grep 'Name\[pt]' /usr/share/applications/xscreensaver-properties.desktop)" = "" ] && [ -e "/usr/share/applications/xscreensaver-properties.desktop" ]; then
     echo 'Name[pt]=Protetor de tela
 GenericName[pt]=
 Comment[pt]=' >> /usr/share/applications/xscreensaver-properties.desktop
 fi
-
-# lxqt brightness
-if [ "$(grep 'Name\[pt]' /usr/share/applications/lxqt-config-brightness.desktop)" = "" ] && [ -e "/usr/share/applications/lxqt-config-brightness.desktop" ]; then
-    echo 'Name[pt]=Brilho da tela
-GenericName[pt]=
-Comment[pt]=' >> /usr/share/applications/lxqt-config-brightness.desktop
-fi
-
-# lxqt notificationd
-
-sed -i "s|Name\[pt_BR\].*|Name[pt_BR]=Configurar notificações|g" /usr/share/applications/lxqt-config-notificationd.desktop
-
-# lxqt locale
-if [ "$(grep 'Name\[pt]' /usr/share/applications/lxqt-config-locale.desktop)" = "" ] && [ -e "/usr/share/applications/lxqt-config-locale.desktop" ]; then
-    echo 'Name[pt]=Idioma
-GenericName[pt]=
-Comment[pt]=' >> /usr/share/applications/lxqt-config-locale.desktop
-fi
-
 
 # simple-scan
 if [ "$(grep 'Name\[pt]' /usr/share/applications/simple-scan.desktop)" = "" ] && [ -e "/usr/share/applications/simple-scan.desktop" ]; then
@@ -145,11 +122,8 @@ fi
 # skanpage
 sed -i 's|Name\[pt_BR\]=.*|Name[pt_BR]=Digitalizador de imagens Skanpage|g;s|GenericName\[pt_BR\]=.*|GenericName[pt_BR]=|g' /usr/share/applications/org.kde.skanpage.desktop
 
-
-
 # KWalletManager
 sed -i 's|Name\[pt_BR\]=.*|Name[pt_BR]=Gerenciar senhas salvas no sistema|g;s|GenericName\[pt_BR\]=.*|GenericName[pt_BR]=|g' /usr/share/applications/org.kde.kwalletmanager5.desktop
-
 
 # okular
 sed -i 's|Name\[pt_BR\]=.*|Name[pt_BR]=Visualizador de PDF, Epub e outros|g;s|Comment\[pt_BR\]=.*|Comment[pt_BR]=|g;s|GenericName\[pt_BR\]=.*|GenericName[pt_BR]=|g;s|Categories=.*|Categories=Qt;KDE;Office;Viewer;|g' /usr/share/applications/org.kde.okular.desktop
@@ -183,7 +157,6 @@ fi
 
 # pavucontrol-qt
 sed -i 's|multimedia-volume-control|audio-volume-high|g;s|Name\[pt\]=.*|Name[pt]=Som e microfone|g;s|GenericName\[pt\]=.*|GenericName[pt]=|g;s|Categories=.*|Categories=Settings;Audio;Mixer;Qt;|g' /usr/share/applications/pavucontrol-qt.desktop
-
 sed -i 's|multimedia-volume-control|audio-volume-high|g'/usr/share/applications/pavucontrol-qt.desktop
 
 # Clementine
@@ -197,23 +170,20 @@ sed -i 's|Comment\[pt-BR\]=.*|Name[pt]=Plataforma de jogos Lutris|g;s|Comment\[i
 # smplayer
 sed -i "s|Name\[pt_BR\]=SMPlayer|Name[pt_BR]=Vídeos|g" /usr/share/applications/smplayer.desktop
 
-
 # calculadora
 if [ "$(grep 'GenericName\[pt]' /usr/share/applications/org.gnome.Calculator.desktop)" = "" ] && [ -e "/usr/share/applications/org.gnome.Calculator.desktop" ]; then
     echo 'GenericName[pt]=Calculadora' >> /usr/share/applications/org.gnome.Calculator.desktop
     echo 'Name[pt]=Calculadora' >> /usr/share/applications/org.gnome.Calculator.desktop
 fi
 
-
 # spectacle
-sed -i 's|Name\[pt_BR\]=Spectacle|Name[pt_BR]=Utilitário de captura de tela|g;s|Comment\[pt_BR\]=.*|Comment[pt_BR]=|g;s|GenericName\[pt_BR\]=.*|GenericName[pt_BR]=|g' /usr/share/applications/org.kde.spectacle.desktop
-
+sed -i 's|Name\[pt_BR\]=Spectacle|Name[pt_BR]=Captura de tela|g;s|Comment\[pt_BR\]=.*|Comment[pt_BR]=|g;s|GenericName\[pt_BR\]=.*|GenericName[pt_BR]=|g' /usr/share/applications/org.kde.spectacle.desktop
 
 # compton
 sed -i 's|Categories=|NoDisplay=true\nCategories=|' /usr/share/applications/compton.desktop
 
 # ark
-sed -i 's|Name\[pt_BR\]=.*|Name[pt_BR]=Compactar arquivos|g;s|Comment\[pt_BR\]=.*|Comment[pt_BR]=|g;s|GenericName\[pt_BR\]=.*|GenericName[pt_BR]=|g' /usr/share/applications/org.kde.ark.desktop
+sed -i 's|Name\[pt_BR\]=.*|Name[pt_BR]=Compactador de arquivos|g;s|Comment\[pt_BR\]=.*|Comment[pt_BR]=|g;s|GenericName\[pt_BR\]=.*|GenericName[pt_BR]=|g' /usr/share/applications/org.kde.ark.desktop
 
 # kfind
 sed -i 's|Name\[pt_BR\]=.*|Name[pt_BR]=Procurar arquivos|g;s|Comment\[pt_BR\]=.*|Comment[pt_BR]=|g;s|GenericName\[pt_BR\]=.*|GenericName[pt_BR]=|g;s|OnlyShowIn=KDE;||g' /usr/share/applications/org.kde.kfind.desktop
@@ -279,7 +249,6 @@ sed -i 's|GenericName\[pt_BR\]=.*|Name[pt_BR]=Navegador Firefox|g' /usr/share/ap
 # qbittorrent
 sed -i 's|Name\[pt_BR\]=.*|Name[pt_BR]=Cliente qBittorrent|g;s|Comment\[pt_BR\]=.*|Comment[pt_BR]=|g;s|GenericName\[pt_BR\]=.*|GenericName[pt_BR]=|g' /usr/share/applications/org.qbittorrent.qBittorrent.desktop
 
-
 # kpat
 sed -i 's|Name\[pt_BR\]=.*|Name[pt_BR]=Paciência, Freecell e outros|g;s|Comment\[pt_BR\]=.*|Comment[pt_BR]=|g;s|GenericName\[pt_BR\]=.*|GenericName[pt_BR]=|g' /usr/share/applications/org.kde.kpat.desktop
 
@@ -301,14 +270,6 @@ fi
 if [ "$(grep 'Name\[pt_BR\]=' /usr/share/applications/wps-office-wps.desktop)" = "" ]; then
     sed -i '/GenericName=/a Name[pt_BR]=WPS Editor de textos (Writer)\nGenericName[pt_BR]= \nComment[pt_BR]=' /usr/share/applications/wps-office-wps.desktop
 fi
-
-# LXQT Menu
-#rm -f /usr/share/desktop-directories/lxde-utility.directory 
-#ln -s /usr/share/desktop-directories/kf5-utilities.directory /usr/share/desktop-directories/lxde-utility.directory 
-#rm /usr/share/desktop-directories/lxde-settings.directory
-#ln -s /usr/share/desktop-directories/kf5-settingsmenu.directory /usr/share/desktop-directories/lxde-settings.directory
-#sed -i 's|<Menuname>DesktopSettings</Menuname>||g' /etc/xdg/menus/lxqt-applications.menu
-#sed -i 's|Name\[ru_RU\]=.*|Name\[pt_BR\]=Configurações do LXQT|g' /usr/share/desktop-directories/lxqt-settings.directory
 
 # Xscreensaver
 sed -i 's|Categories=Settings;DesktopSettings;Security;X-XFCE;|Categories=System;DesktopSettings;Security;X-XFCE;|' /usr/share/applications/xscreensaver-properties.desktop
@@ -336,12 +297,8 @@ if [ "$(grep 'XKBOPTIONS=""' /etc/default/keyboard)" != "" ]; then
 fi
 
 #nvidia
-
 sed -i 's|Name=NVIDIA X Server Settings|Name=Configure NVIDIA|g;s|System;Settings;|Settings|g;s|Comment=.*|Comment=|g' /usr/share/applications/nvidia-settings.desktop
-
-
 sed -i 's|Categories=.*|Categories=Settings;|g' /usr/share/applications/org.manjaro.pamac.manager.desktop
-
 
 # Yad
 sed -i 's|Categories=|NoDisplay=true\nCategories=|' /usr/share/applications/yad-icon-browser.desktop
@@ -355,4 +312,52 @@ sed -i 's|Categories=|NoDisplay=true\nCategories=|' /usr/share/applications/gscr
 
 # latte
 sed -i 's|Categories=|NoDisplay=true\nCategories=|' /usr/share/applications/org.kde.latte-dock.desktop
+
+# htop
+sed -i 's/Name[pt_BR]=.*/Name[pt_BR]=Visualizador de Processos/' /usr/share/applications/htop.desktop
+
+# avahi
+sed -i 's|Categories=|NoDisplay=true\nCategories=|' /usr/share/applications/avahi-discover.desktop
+sed -i 's|Categories=|NoDisplay=true\nCategories=|' /usr/share/applications/bssh.desktop
+sed -i 's|Categories=|NoDisplay=true\nCategories=|' /usr/share/applications/bvnc.desktop
+
+# Manjaro bootsplah
+sed -i 's|Categories=|NoDisplay=true\nCategories=|' /usr/share/applications/bootsplash-manager.desktop
+
+# kcalc
+sed -i 's/Name[pt_BR]=.*/Name[pt_BR]=Calculadora/' /usr/share/applications/org.kde.kcalc.desktop
+
+#lxqt-archiver
+sed -i 's/Name[pt_BR]=.*/Name[pt_BR]=Compactador de Arquivos/' /usr/share/applications/lxqt-archiver.desktop
+
+#screengrab
+sed -i 's/Name[pt_BR]=.*/Name[pt_BR]=Capitura de Tela/' /usr/share/applications/screengrab.desktop
+
+#lximage
+sed -i 's/Name[pt_BR]=.*/Name[pt_BR]=Visualizador de Imagem/' /usr/share/applications/lximage-qt.desktop
+
+#l xqt-config
+sed -i 's/Name[pt_BR]=.*/Name[pt_BR]=Central de Controle LXQt/' /usr/share/applications/lxqt-config.desktop
+
+# lxqt-config-file-associations
+sed -i 's/Name[pt_BR]=.*/Name[pt_BR]=Associação de Arquivos/' /usr/share/applications/lxqt-config-file-associations.desktop
+
+# kvantummanager
+sed -i 's/Name[pt_BR]=.*/Name[pt_BR]=Kvantum/' /usr/share/applications/kvantummanager.desktop
+
+# pcmanfm-qt-desktop-pref (Àrea de Trabalho)
+sed -i 's/Name[pt_BR]=.*/Name[pt_BR]=Área de Trabalho/' /usr/share/applications/pcmanfm-qt-desktop-pref.desktop
+
+# lxqt locale
+sed -i 's/Name[pt_BR]=.*/Name[pt_BR]=Idiomas/' /usr/share/applications/lxqt-config-locale.desktop
+
+# lxqt brightness
+sed -i 's/Name[pt_BR]=.*/Name[pt_BR]=Brilho da Tela/' /usr/share/applications/lxqt-config-brightness.desktop
+
+# lxqt notificationd
+sed -i "s|Name\[pt_BR\].*|Name[pt_BR]=Notificações|g" /usr/share/applications/lxqt-config-notificationd.desktop
+
+# qv4l2
+sed -i 's|Categories=|NoDisplay=true\nCategories=|' /usr/share/applications/qv4l2.desktop
+sed -i 's|Categories=|NoDisplay=true\nCategories=|' /usr/share/applications/qvidcap.desktop
 
