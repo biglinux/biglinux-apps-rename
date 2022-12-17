@@ -20,10 +20,7 @@ if [ "$(grep NotShowIn /usr/share/applications/pcmanfm-qt-desktop-pref.desktop)"
 fi
 
 # pcmanfm-qt-desktop (Gerenciador de Arquivos)
-#Renomeia ou inclui a linha do Name[pt_BR]
-if grep -q 'Name[pt_BR]' /usr/share/applications/pcmanfm-qt.desktop; then
     sed -i 's/Name[pt_BR]=.*/Name[pt_BR]=Gerenciador de Arquivos/' /usr/share/applications/pcmanfm-qt.desktop
-fi
 
 # kdenlive
 sed -i 's|Exec=kdenlive|Exec=QT_QUICK_BACKEND="" kdenlive|g' /usr/share/applications/org.kde.kdenlive.desktop
