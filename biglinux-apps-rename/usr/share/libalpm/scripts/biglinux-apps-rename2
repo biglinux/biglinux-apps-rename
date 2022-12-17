@@ -324,20 +324,11 @@ sed -i 's|Categories=|NoDisplay=true\nCategories=|' /usr/share/applications/bvnc
 # Manjaro bootsplah
 sed -i 's|Categories=|NoDisplay=true\nCategories=|' /usr/share/applications/bootsplash-manager.desktop
 
-# Narrador de texto
-sed -i 's/Name[pt_BR]=.*/Name[pt_BR]=Narrador de Texto/' /usr/share/applications/bigtts.desktop
-
-# kcalc
-sed -i 's/Name[pt_BR]=.*/Name[pt_BR]=Calculadora/' /usr/share/applications/org.kde.kcalc.desktop
-
 # kcalc
 sed -i 's/Name[pt_BR]=.*/Name[pt_BR]=Calculadora/' /usr/share/applications/org.kde.kcalc.desktop
 
 #lxqt-archiver
 sed -i 's/Name[pt_BR]=.*/Name[pt_BR]=Compactador de Arquivos/' /usr/share/applications/lxqt-archiver.desktop
-
-#bigocrpdf
-sed -i 's/Name[pt_BR]=.*/Name[pt_BR]=OCR para PDF/' /usr/share/applications/bigocrpdf.desktop
 
 #screengrab
 sed -i 's/Name[pt_BR]=.*/Name[pt_BR]=Capitura de Tela/' /usr/share/applications/screengrab.desktop
