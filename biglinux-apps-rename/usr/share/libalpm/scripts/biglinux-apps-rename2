@@ -1,71 +1,91 @@
 #!/bin/sh
 
-# kate
-sed -i 's|Name\[pt_BR\]=.*|Name[pt_BR]=Anotações|g;s|Comment\[pt_BR\]=.*|Comment[pt_BR]=|g;s|GenericName\[pt_BR\]=.*|GenericName[pt_BR]=|g;s|Development;||g' /usr/share/applications/org.kde.kate.desktop
-
-# kwrite remove
-sed -i 's|Categories=|NoDisplay=true\nCategories=|' /usr/share/applications/org.kde.kwrite.desktop
-
-# compton
-if [ "$(grep NotShowIn /usr/share/applications/compton-conf.desktop)" = "" ] && [ -e "/usr/share/applications/compton-conf.desktop" ]; then
-    echo 'NotShowIn=KDE' >> /usr/share/applications/compton-conf.desktop
-fi
-#sed -i 's|Name\[pt_BR\]=.*|Name[pt_BR]=Efeitos de janelas (Compton)|g;s|Comment\[pt\]=.*|Comment[pt]=|g;s|GenericName\[pt\]=.*|GenericName[pt]=|g' /usr/share/applications/compton-conf.desktop
-
-# pcmanfm-qt-desktop e pcmanfm-qt-desktop-pref
-if [ "$(grep NotShowIn /usr/share/applications/pcmanfm-qt-desktop-pref.desktop)" = "" ] && [ -e "/usr/share/applications/pcmanfm-qt.desktop" ]; then
-    echo 'NotShowIn=KDE' >> /usr/share/applications/pcmanfm-qt-desktop-pref.desktop
-    echo 'NotShowIn=KDE' >> /usr/share/applications/pcmanfm-qt.desktop
-    sed -i 's/Name[pt_BR]=.*/Name[pt_BR]=Gerenciador de Arquivos/' /usr/share/applications/pcmanfm-qt.desktop
+# kate (renomeia)
+if [ -f /usr/share/applications/org.kde.kate.desktop ]; then
+	sed -i 's|Name\[pt_BR\]=.*|Name[pt_BR]=Anotações|g;s|Comment\[pt_BR\]=.*|Comment[pt_BR]=|g;s|GenericName\[pt_BR\]=.*|GenericName[pt_BR]=|g;s|Development;||g' /usr/share/applications/org.kde.kate.desktop
 fi
 
-# kdenlive
-sed -i 's|Exec=kdenlive|Exec=QT_QUICK_BACKEND="" kdenlive|g' /usr/share/applications/org.kde.kdenlive.desktop
-
-# steam
-sed -i 's|Steam (Runtime)|Steam|g;s|Categories=Network;FileTransfer;Game;|Categories=Game;|g' /usr/share/applications/steam.desktop
-
-# Gufw
-sed -i 's|Name=.*|Name=Firewall|g;s|Categories=.*|Categories=System|g' /usr/share/applications/gufw.desktop
-sed -i 's|pkexec gufw-pkexec|pkexec env DISPLAY=$DISPLAY XAUTHORITY=$XAUTHORITY gufw-pkexec|g' /usr/bin/gufw
-
-# obconf-qt
-if [ "$(grep NotShowIn /usr/share/applications/obconf-qt.desktop)" = "" ] && [ -e "/usr/share/applications/obconf-qt.desktop" ]; then
-    echo 'NotShowIn=KDE' >> /usr/share/applications/obconf-qt.desktop
+# kwrite (oculta)
+if [ -f /usr/share/applications/org.kde.kwrite.desktop ]; then
+	sed -i 's|Categories=|NoDisplay=true\nCategories=|' /usr/share/applications/org.kde.kwrite.desktop
 fi
 
-# xscreensaver-properties
-if [ "$(grep NotShowIn /usr/share/applications/xscreensaver-properties.desktop)" = "" ] && [ -e "/usr/share/applications/xscreensaver-properties.desktop" ]; then
-    echo 'NotShowIn=KDE' >> /usr/share/applications/xscreensaver-properties.desktop
+# compton-conf.desktop (oculta no Plasma)
+if [ -f /usr/share/applications/compton-conf.desktop ]; then
+	sed -i 's|Categories=|NotShowIn=KDE\nCategories=|' /usr/share/applications/compton-conf.desktop
 fi
 
-# KDE connect
-if [ "$(grep 'NoDisplay=true' /usr/share/applications/org.kde.kdeconnect_open.desktop)" = "" ]; then
-    sed -i 's|Configurações do ||g' /usr/share/applications/org.kde.kdeconnect.kcm.desktop
-
-    sed -i 's|Categories=|NoDisplay=true\nCategories=|' /usr/share/applications/org.kde.kdeconnect.sms.desktop
-    
-    sed -i 's|Categories=|NoDisplay=true\nCategories=|' /usr/share/applications/org.kde.kdeconnect_open.desktop
-
-    sed -i 's|kdeconnect-app|kdeconnect-settings|g;s|Name\[pt_BR\]=.*|Name[pt_BR]=Interagir com dispositivos Android|g;s|GenericName\[pt_BR\]=.*|GenericName[pt_BR]=|g;s|Categories=Qt;KDE;Network|Categories=Qt;KDE;Utility|g;' /usr/share/applications/org.kde.kdeconnect.app.desktop
+# pcmanfm-qt-desktop-pref (oculta do Plasma)
+if [ -f /usr/share/applications/pcmanfm-qt-desktop-pref.desktop ]; then
+	sed -i 's|Categories=|NotShowIn=KDE\nCategories=|' /usr/share/applications/pcmanfm-qt-desktop-pref.desktop
 fi
 
-# network manager
-sed -i 's|Categories=|NoDisplay=true\nCategories=|' /usr/share/applications/nm-connection-editor.desktop 
+# pcmanfm-qt-desktop (renomeia e oculta no Plasma)
+if [ -f /usr/share/applications/pcmanfm-qt.desktop ]; then
+	sed -i 's|Categories=|NotShowIn=KDE\nCategories=|' /usr/share/applications/pcmanfm-qt.desktop
+	sed -i 's/Name[pt_BR]=.*/Name[pt_BR]=Gerenciador de Arquivos/' /usr/share/applications/pcmanfm-qt.desktop
+fi
 
-# ipython
-sed -i 's|Categories=|NoDisplay=true\nCategories=|' /usr/share/applications/ipython.desktop
+# kdenlive (força execução em QT)
+if [ -f /usr/share/applications/org.kde.kdenlive.desktop ]; then
+	sed -i 's|Exec=kdenlive|Exec=QT_QUICK_BACKEND="" kdenlive|g' /usr/share/applications/org.kde.kdenlive.desktop
+fi
 
-# imagemagick
-sed -i 's|Categories=|NoDisplay=true\nCategories=|' /usr/share/applications/display-im6.q16.desktop
+# steam (ediga a categoria)
+if [ -f /usr/share/applications/steam.desktop ]; then
+	sed -i 's|Steam (Runtime)|Steam|g;s|Categories=Network;FileTransfer;Game;|Categories=Game;|g' /usr/share/applications/steam.desktop
+fi
 
-# libreoffice
-sed -i 's|Categories=|NoDisplay=true\nCategories=|' /usr/share/applications/libreoffice-startcenter.desktop
+# Gufw (renomeia, edita categoria e ajustes)
+if [ -f /usr/share/applications/gufw.desktop ]; then
+	sed -i 's|Name=.*|Name=Firewall|g;s|Categories=.*|Categories=System|g' /usr/share/applications/gufw.desktop
+	sed -i 's|pkexec gufw-pkexec|pkexec env DISPLAY=$DISPLAY XAUTHORITY=$XAUTHORITY gufw-pkexec|g' /usr/bin/gufw
+fi
 
-# urxvt
-sed -i 's|Categories=|NoDisplay=true\nCategories=|' /usr/share/applications/urxvtc.desktop
-sed -i 's|Categories=|NoDisplay=true\nCategories=|' /usr/share/applications/urxvt.desktop
-sed -i 's|Categories=|NoDisplay=true\nCategories=|' /usr/share/applications/urxvt-tabbed.desktop
+# obconf-qt (oculta do Plasma)
+if [ -f /usr/share/applications/obconf-qt.desktop ]; then
+	sed -i 's|Categories=|NotShowIn=KDE\nCategories=|' /usr/share/applications/obconf-qt.desktop
+fi
+
+# xscreensaver-properties (oculta no Plasma)
+if [ -f /usr/share/applications/xscreensaver-properties.desktop ]; then
+	sed -i 's|Categories=|NotShowIn=KDE\nCategories=|' /usr/share/applications/xscreensaver-properties.desktop
+fi
+
+# KDE connect (oculta e nenomeia)
+if [ -f /usr/share/applications/org.kde.kdeconnect_open.desktop ]; then
+	sed -i 's|Configurações do ||g' /usr/share/applications/org.kde.kdeconnect.kcm.desktop
+	sed -i 's|Categories=|NoDisplay=true\nCategories=|' /usr/share/applications/org.kde.kdeconnect.sms.desktop
+	sed -i 's|Categories=|NoDisplay=true\nCategories=|' /usr/share/applications/org.kde.kdeconnect_open.desktop
+	sed -i 's|kdeconnect-app|kdeconnect-settings|g;s|Name\[pt_BR\]=.*|Name[pt_BR]=Adroid Controle|g;s|GenericName\[pt_BR\]=.*|GenericName[pt_BR]=|g;s|Categories=Qt;KDE;Network|Categories=Qt;KDE;Utility|g;' /usr/share/applications/org.kde.kdeconnect.app.desktop
+fi
+
+# network manager (oculta)
+if [ -f /usr/share/applications/nm-connection-editor.desktop  ]; then
+	sed -i 's|Categories=|NoDisplay=true\nCategories=|' /usr/share/applications/nm-connection-editor.desktop 
+fi
+
+# ipython (oculta)
+if [ -f /usr/share/applications/ipython.desktop  ]; then
+	sed -i 's|Categories=|NoDisplay=true\nCategories=|' /usr/share/applications/ipython.desktop
+fi
+
+# imagemagick (oculta)
+if [ -f /usr/share/applications/display-im6.q16.desktop ]; then
+	sed -i 's|Categories=|NoDisplay=true\nCategories=|' /usr/share/applications/display-im6.q16.desktop
+fi
+
+# libreoffice (oculta)
+if [ -f /usr/share/applications/libreoffice-startcenter.desktop  ]; then
+	sed -i 's|Categories=|NoDisplay=true\nCategories=|' /usr/share/applications/libreoffice-startcenter.desktop
+fi
+
+# urxvt (oculta)
+if [ -f /usr/share/applications/urxvt.desktop  ]; then
+	sed -i 's|Categories=|NoDisplay=true\nCategories=|' /usr/share/applications/urxvtc.desktop
+	sed -i 's|Categories=|NoDisplay=true\nCategories=|' /usr/share/applications/urxvt.desktop
+	sed -i 's|Categories=|NoDisplay=true\nCategories=|' /usr/share/applications/urxvt-tabbed.desktop
+fi
 
 # libreoffice xsltfilter
 if [ "$(grep -c 'Name\[pt_BR\]=' /usr/lib/libreoffice/share/xdg/xsltfilter.desktop)" = "0" ] && [ -e "/usr/lib/libreoffice/share/xdg/xsltfilter.desktop" ]; then
@@ -102,8 +122,12 @@ if [ "$(grep -c 'Name\[pt_BR\]=' /usr/lib/libreoffice/share/xdg/writer.desktop)"
 	cp -f /usr/share/biglinux/applications-name/writer.desktop /usr/lib/libreoffice/share/xdg/writer.desktop
 fi
 
-# gimp
-sed -i "s|Name\[pt_BR\]=Programa de manipulação de imagem do GNU|Name[pt_BR]=Editor de imagens Gimp|g" /usr/share/applications/gimp.desktop
+# gimp (renomeia)
+if [ -f /usr/share/applications/gimp.desktop  ]; then
+	sed -i "s|Name\[pt_BR\]=Editor de imagem|Name[pt_BR]=Editor de imagens Gimp|g" /usr/share/applications/gimp.desktop
+fi
+
+#EDITADO ATE AQUI - CONTINUAR DEPOIS
 
 # xscreensaver
 if [ "$(grep 'Name\[pt]' /usr/share/applications/xscreensaver-properties.desktop)" = "" ] && [ -e "/usr/share/applications/xscreensaver-properties.desktop" ]; then
