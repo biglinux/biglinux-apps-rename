@@ -100,11 +100,11 @@ fi
 
 # urxvt (oculta)
 echo "Verificando o arquivo urxvt.desktop"
-if [ -f /usr/share/applications/urxvt.desktop  ]; then
-	sed -i 's|Categories=|NoDisplay=true\nCategories=|' /usr/share/applications/urxvtc.desktop
-	sed -i 's|Categories=|NoDisplay=true\nCategories=|' /usr/share/applications/urxvt.desktop
-	sed -i 's|Categories=|NoDisplay=true\nCategories=|' /usr/share/applications/urxvt-tabbed.desktop
-fi
+	if [ -f /usr/share/applications/urxvt.desktop  ]; then
+		sed -i 's|Categories=|NoDisplay=true\nCategories=|' /usr/share/applications/urxvtc.desktop
+		sed -i 's|Categories=|NoDisplay=true\nCategories=|' /usr/share/applications/urxvt.desktop
+		sed -i 's|Categories=|NoDisplay=true\nCategories=|' /usr/share/applications/urxvt-tabbed.desktop
+	fi
 
 # libreoffice xsltfilter
 echo "Verificando o arquivo xsltfilter.desktop"
@@ -180,14 +180,14 @@ echo "Verificando o arquivo xscreensaver-properties.desktop"
 
 # simple-scan
 echo "Verificando o arquivo simple-scan.desktop"
-	if [ -f /usr/share/applications/simple-scan.deskto ]; the
+	if [ -f /usr/share/applications/simple-scan.desktop ]; then
 		if [ "$(grep 'Name\[pt]' /usr/share/applications/simple-scan.desktop)" = "" ] && [ -e "/usr/share/applications/simple-scan.desktop" ]; then
     		echo 'Name[pt]=Digitalizador de imagens
 			GenericName[pt]=
 			Comment[pt]=' >> /usr/share/applications/simple-scan.desktop
 		fi
 	fi
-	
+
 # skanpage
 echo "Verificando o arquivo org.kde.skanpage.desktop"
 	if [ -f /usr/share/applications/org.kde.skanpage.desktop ]; the
