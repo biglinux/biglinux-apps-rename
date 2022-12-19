@@ -190,7 +190,7 @@ echo "Verificando o arquivo simple-scan.desktop"
 
 # skanpage
 echo "Verificando o arquivo org.kde.skanpage.desktop"
-	if [ -f /usr/share/applications/org.kde.skanpage.desktop ]; the
+	if [ -f /usr/share/applications/org.kde.skanpage.desktop ]; then
 		sed -i 's|Name\[pt_BR\]=.*|Name[pt_BR]=Digitalizador de imagens Skanpage|g;s|GenericName\[pt_BR\]=.*|GenericName[pt_BR]=|g' /usr/share/applications/org.kde.skanpage.desktop
 	fi
 
