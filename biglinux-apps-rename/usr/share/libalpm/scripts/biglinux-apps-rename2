@@ -119,7 +119,7 @@ echo "Verificando o arquivo math.desktop"
 	if [ -f /usr/lib/libreoffice/share/xdg/math.desktop ]; then
 		if [ "$(grep -c 'Name\[pt_BR\]=' /usr/lib/libreoffice/share/xdg/math.desktop)" = "0" ] && [ -e "/usr/lib/libreoffice/share/xdg/math.desktop" ]; then
 			cp -f /usr/share/biglinux/applications-name/math.desktop /usr/lib/libreoffice/share/xdg/math.desktop
-		fi 
+		fi
 	fi
 
 # libreoffice impress
@@ -186,13 +186,13 @@ echo "Verificando o arquivo simple-scan.desktop"
 			GenericName[pt]=
 			Comment[pt]=' >> /usr/share/applications/simple-scan.desktop
 		fi
-	fi 
+	fi
 
 # skanpage
 echo "Verificando o arquivo org.kde.skanpage.desktop"
 	if [ -f /usr/share/applications/org.kde.skanpage.desktop ]; the
 		sed -i 's|Name\[pt_BR\]=.*|Name[pt_BR]=Digitalizador de imagens Skanpage|g;s|GenericName\[pt_BR\]=.*|GenericName[pt_BR]=|g' /usr/share/applications/org.kde.skanpage.desktop
-	fi 
+	fi
 
 
 ##PAREI AQUI >> CONTINUAR DEPOIS
