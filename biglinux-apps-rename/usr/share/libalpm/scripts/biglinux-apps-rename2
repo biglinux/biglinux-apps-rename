@@ -187,7 +187,7 @@ echo "Verificando o arquivo simple-scan.desktop"
 			Comment[pt]=' >> /usr/share/applications/simple-scan.desktop
 		fi
 	fi
-
+	
 # skanpage
 echo "Verificando o arquivo org.kde.skanpage.desktop"
 	if [ -f /usr/share/applications/org.kde.skanpage.desktop ]; the
