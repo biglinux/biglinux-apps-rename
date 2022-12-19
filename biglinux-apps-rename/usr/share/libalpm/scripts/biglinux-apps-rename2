@@ -108,75 +108,99 @@ fi
 
 # libreoffice xsltfilter
 echo "Verificando o arquivo xsltfilter.desktop"
-if [ "$(grep -c 'Name\[pt_BR\]=' /usr/lib/libreoffice/share/xdg/xsltfilter.desktop)" = "0" ] && [ -e "/usr/lib/libreoffice/share/xdg/xsltfilter.desktop" ]; then
-	cp -f /usr/share/biglinux/applications-name/xsltfilter.desktop /usr/lib/libreoffice/share/xdg/xsltfilter.desktop
-fi
+	if [ -f /usr/lib/libreoffice/share/xdg/xsltfilter.desktop ]; then
+		if [ "$(grep -c 'Name\[pt_BR\]=' /usr/lib/libreoffice/share/xdg/xsltfilter.desktop)" = "0" ] && [ -e "/usr/lib/libreoffice/share/xdg/xsltfilter.desktop" ]; then
+			cp -f /usr/share/biglinux/applications-name/xsltfilter.desktop /usr/lib/libreoffice/share/xdg/xsltfilter.desktop
+		fi
+	fi
 
 # libreoffice math
 echo "Verificando o arquivo math.desktop"
-if [ "$(grep -c 'Name\[pt_BR\]=' /usr/lib/libreoffice/share/xdg/math.desktop)" = "0" ] && [ -e "/usr/lib/libreoffice/share/xdg/math.desktop" ]; then
-	cp -f /usr/share/biglinux/applications-name/math.desktop /usr/lib/libreoffice/share/xdg/math.desktop
-fi
+	if [ -f /usr/lib/libreoffice/share/xdg/math.desktop ]; then
+		if [ "$(grep -c 'Name\[pt_BR\]=' /usr/lib/libreoffice/share/xdg/math.desktop)" = "0" ] && [ -e "/usr/lib/libreoffice/share/xdg/math.desktop" ]; then
+			cp -f /usr/share/biglinux/applications-name/math.desktop /usr/lib/libreoffice/share/xdg/math.desktop
+		if
+	fi
 
 # libreoffice impress
 echo "Verificando o arquivo impress.desktop"
-if [ "$(grep -c 'Name\[pt_BR\]=' /usr/lib/libreoffice/share/xdg/impress.desktop)" = "0" ] && [ -e "/usr/lib/libreoffice/share/xdg/impress.desktop" ]; then
-	cp -f /usr/share/biglinux/applications-name/impress.desktop /usr/lib/libreoffice/share/xdg/impress.desktop
-fi
+	if [ -f /usr/lib/libreoffice/share/xdg/impress.desktop ]; then
+		if [ "$(grep -c 'Name\[pt_BR\]=' /usr/lib/libreoffice/share/xdg/impress.desktop)" = "0" ] && [ -e "/usr/lib/libreoffice/share/xdg/impress.desktop" ]; then
+			cp -f /usr/share/biglinux/applications-name/impress.desktop /usr/lib/libreoffice/share/xdg/impress.desktop
+		fi
+	fi
 
 # libreoffice base
 echo "Verificando o arquivo base.desktop"
-if [ "$(grep -c 'Name\[pt_BR\]=' /usr/lib/libreoffice/share/xdg/base.desktop)" = "0" ] && [ -e "/usr/lib/libreoffice/share/xdg/base.desktop" ]; then
-	cp -f /usr/share/biglinux/applications-name/base.desktop /usr/lib/libreoffice/share/xdg/base.desktop
-fi
+	if [ -f /usr/lib/libreoffice/share/xdg/base.desktop ]; then
+		if [ "$(grep -c 'Name\[pt_BR\]=' /usr/lib/libreoffice/share/xdg/base.desktop)" = "0" ] && [ -e "/usr/lib/libreoffice/share/xdg/base.desktop" ]; then
+			cp -f /usr/share/biglinux/applications-name/base.desktop /usr/lib/libreoffice/share/xdg/base.desktop
+		fi
+	fi
 
 # libreoffice calc
 echo "Verificando o arquivo calc.desktop"
-if [ "$(grep -c 'Name\[pt_BR\]=' /usr/lib/libreoffice/share/xdg/calc.desktop)" = "0" ] && [ -e "/usr/lib/libreoffice/share/xdg/calc.desktop" ]; then
-	cp -f /usr/share/biglinux/applications-name/calc.desktop /usr/lib/libreoffice/share/xdg/calc.desktop
-fi
+	if [ -f /usr/lib/libreoffice/share/xdg/calc.desktop ]; then
+		if [ "$(grep -c 'Name\[pt_BR\]=' /usr/lib/libreoffice/share/xdg/calc.desktop)" = "0" ] && [ -e "/usr/lib/libreoffice/share/xdg/calc.desktop" ]; then
+			cp -f /usr/share/biglinux/applications-name/calc.desktop /usr/lib/libreoffice/share/xdg/calc.desktop
+		fi
+	fi
 
 # libreoffice draw
 echo "Verificando o arquivo draw.desktop"
-if [ "$(grep -c 'Name\[pt_BR\]=' /usr/lib/libreoffice/share/xdg/draw.desktop)" = "0" ] && [ -e "/usr/lib/libreoffice/share/xdg/draw.desktop" ]; then
-	cp -f /usr/share/biglinux/applications-name/draw.desktop /usr/lib/libreoffice/share/xdg/draw.desktop
-fi
+	if [ -f /usr/lib/libreoffice/share/xdg/draw.desktop ]; then
+		if [ "$(grep -c 'Name\[pt_BR\]=' /usr/lib/libreoffice/share/xdg/draw.desktop)" = "0" ] && [ -e "/usr/lib/libreoffice/share/xdg/draw.desktop" ]; then
+			cp -f /usr/share/biglinux/applications-name/draw.desktop /usr/lib/libreoffice/share/xdg/draw.desktop
+		fi
+	fi
 
 # libreoffice writer
 echo "Verificando o arquivo writer.desktop"
-if [ "$(grep -c 'Name\[pt_BR\]=' /usr/lib/libreoffice/share/xdg/writer.desktop)" = "0" ] && [ -e "/usr/lib/libreoffice/share/xdg/writer.desktop" ]; then
-	cp -f /usr/share/biglinux/applications-name/writer.desktop /usr/lib/libreoffice/share/xdg/writer.desktop
-fi
+	if [ -f /usr/lib/libreoffice/share/xdg/writer.desktop ]; then
+		if [ "$(grep -c 'Name\[pt_BR\]=' /usr/lib/libreoffice/share/xdg/writer.desktop)" = "0" ] && [ -e "/usr/lib/libreoffice/share/xdg/writer.desktop" ]; then
+			cp -f /usr/share/biglinux/applications-name/writer.desktop /usr/lib/libreoffice/share/xdg/writer.desktop
+		fi
+	fi
 
 # gimp (renomeia)
 echo "Verificando o arquivo gimp.desktop"
-if [ -f /usr/share/applications/gimp.desktop  ]; then
-	sed -i "s|Name\[pt_BR\]=Editor de imagem|Name[pt_BR]=Editor de imagens Gimp|g" /usr/share/applications/gimp.desktop
-fi
+	if [ -f /usr/share/applications/gimp.desktop  ]; then
+		sed -i "s|Name\[pt_BR\]=Editor de imagem|Name[pt_BR]=Editor de imagens Gimp|g" /usr/share/applications/gimp.desktop
+	fi
 
 # xscreensaver
 echo "Verificando o arquivo xscreensaver-properties.desktop"
-if [ "$(grep 'Name\[pt]' /usr/share/applications/xscreensaver-properties.desktop)" = "" ] && [ -e "/usr/share/applications/xscreensaver-properties.desktop" ]; then
-    echo 'Name[pt]=Protetor de tela
-GenericName[pt]=
-Comment[pt]=' >> /usr/share/applications/xscreensaver-properties.desktop
-fi
+	if [ -f /usr/share/applications/xscreensaver-properties.desktop  ]; then
+		if [ "$(grep 'Name\[pt]' /usr/share/applications/xscreensaver-properties.desktop)" = "" ] && [ -e "/usr/share/applications/xscreensaver-properties.desktop" ]; then
+    		echo 'Name[pt]=Protetor de tela
+			GenericName[pt]=
+			Comment[pt]=' >> /usr/share/applications/xscreensaver-properties.desktop
+		fi
+	if 
 
 # simple-scan
 echo "Verificando o arquivo simple-scan.desktop"
-if [ "$(grep 'Name\[pt]' /usr/share/applications/simple-scan.desktop)" = "" ] && [ -e "/usr/share/applications/simple-scan.desktop" ]; then
-    echo 'Name[pt]=Digitalizador de imagens
-GenericName[pt]=
-Comment[pt]=' >> /usr/share/applications/simple-scan.desktop
-fi
+	if [ -f /usr/share/applications/simple-scan.deskto ]; the
+		if [ "$(grep 'Name\[pt]' /usr/share/applications/simple-scan.desktop)" = "" ] && [ -e "/usr/share/applications/simple-scan.desktop" ]; then
+    		echo 'Name[pt]=Digitalizador de imagens
+			GenericName[pt]=
+			Comment[pt]=' >> /usr/share/applications/simple-scan.desktop
+		fi
+	fi 
 
 # skanpage
 echo "Verificando o arquivo org.kde.skanpage.desktop"
-sed -i 's|Name\[pt_BR\]=.*|Name[pt_BR]=Digitalizador de imagens Skanpage|g;s|GenericName\[pt_BR\]=.*|GenericName[pt_BR]=|g' /usr/share/applications/org.kde.skanpage.desktop
+	if [ -f /usr/share/applications/org.kde.skanpage.desktop ]; the
+		sed -i 's|Name\[pt_BR\]=.*|Name[pt_BR]=Digitalizador de imagens Skanpage|g;s|GenericName\[pt_BR\]=.*|GenericName[pt_BR]=|g' /usr/share/applications/org.kde.skanpage.desktop
+	fi 
+
+
+##PAREI AQUI >> CONTINUAR DEPOIS
+
 
 # KWalletManager
 echo "Verificando o arquivo org.kde.kwalletmanager5.desktop"
-sed -i 's|Name\[pt_BR\]=.*|Name[pt_BR]=Gerenciar senhas salvas no sistema|g;s|GenericName\[pt_BR\]=.*|GenericName[pt_BR]=|g' /usr/share/applications/org.kde.kwalletmanager5.desktop
+sed -i 's|Name\[pt_BR\]=.*|Name[pt_BR]=Gerenciar senhas no sistema|g;s|GenericName\[pt_BR\]=.*|GenericName[pt_BR]=|g' /usr/share/applications/org.kde.kwalletmanager5.desktop
 
 # okular
 echo "Verificando o arquivo org.kde.okular.desktop"
@@ -400,7 +424,9 @@ echo "Verificando o arquivo gscriptor.desktop"
 
 # latte
 echo "Verificando o arquivo org.kde.latte-dock.desktop"
-sed -i 's|Categories=|NoDisplay=true\nCategories=|' /usr/share/applications/org.kde.latte-dock.desktop
+	if [ -f /usr/share/applications/org.kde.latte-dock.desktop ]; then
+		sed -i 's|Categories=|NoDisplay=true\nCategories=|' /usr/share/applications/org.kde.latte-dock.desktop
+	fi
 
 # htop
 echo "Verificando o arquivo htop.desktop"
