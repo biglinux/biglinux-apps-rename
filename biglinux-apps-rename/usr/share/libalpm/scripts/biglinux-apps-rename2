@@ -176,7 +176,7 @@ echo "Verificando o arquivo xscreensaver-properties.desktop"
 			GenericName[pt]=
 			Comment[pt]=' >> /usr/share/applications/xscreensaver-properties.desktop
 		fi
-	if 
+	fi  
 
 # simple-scan
 echo "Verificando o arquivo simple-scan.desktop"
