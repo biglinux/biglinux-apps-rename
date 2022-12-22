@@ -407,10 +407,19 @@ if [ "$(grep 'XKBOPTIONS=""' /etc/default/keyboard)" != "" ]; then
     sed -i 's|XKBOPTIONS=""|XKBOPTIONS="terminate:ctrl_alt_bksp"|g' /etc/default/keyboard
 fi
 
-# nvidia
+# nvidia (renomeia, categoria)
 echo "Verificando o arquivo nvidia-settings.desktop"
-sed -i 's|Name=NVIDIA X Server Settings|Name=Configure NVIDIA|g;s|System;Settings;|Settings|g;s|Comment=.*|Comment=|g' /usr/share/applications/nvidia-settings.desktop
-sed -i 's|Categories=.*|Categories=Settings;|g' /usr/share/applications/org.manjaro.pamac.manager.desktop
+if [ -f /usr/share/applications/nvidia-settings.desktop ]; then
+		sed -i 's|Categories=.*|Categories=Settings;|g' /usr/share/applications/org.manjaro.pamac.manager.desktop
+		PT_BR_LINE=$(grep "^Name\[pt_BR\]=" /usr/share/applications/nvidia-settings.desktop)
+	if [ -z "$PT_BR_LINE" ]; then
+		# Linha Name[pt_BR]= NÃO foi encontrada
+		sed -i '$ a\Name[pt_BR]=Configure NVIDIA' /usr/share/applications/nvidia-settings.desktop
+	else
+		# Linha Name[pt_BR]= FOI encontrada
+		sed -i "s/^Name\[pt_BR\]=.*/Name[pt_BR]=Configure NVIDIA/" /usr/share/applications/nvidia-settings.desktop
+	fi
+fi
 
 # Yad
 echo "Verificando o arquivo yad-icon-browser.desktop"
