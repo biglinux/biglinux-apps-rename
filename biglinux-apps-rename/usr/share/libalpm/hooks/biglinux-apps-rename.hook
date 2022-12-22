@@ -86,6 +86,11 @@ Target = usr/share/applications/tlpui.desktop
 Target = usr/share/applications/org.kde.kuserfeedback-console.desktop
 Target = usr/share/applications/lxqt-about.desktop
 Target = usr/share/applications/appimagelaunchersettings.desktop
+Target = usr/share/applications/designer.desktop
+Target = usr/share/applications/assistant.desktop
+Target = usr/share/applications/linguist.desktop
+Target = usr/share/applications/qdbusviewer.desktop
+
 
 
 [Action]

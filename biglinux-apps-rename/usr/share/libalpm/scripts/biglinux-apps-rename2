@@ -647,3 +647,28 @@ echo "Verificando o arquivo lxqt-about.desktop "
 			sed -i '$ a\Name[pt_BR]=Sobre o LXQt' /usr/share/applications/lxqt-about.desktop
 		fi
 	fi
+
+# designer.desktop (oculta)
+echo "Verificando o arquivo designer.desktop"
+	if [ -f /usr/share/applications/designer.desktop ]; then
+		sed -i 's|Categories=|NoDisplay=true\nCategories=|' /usr/share/applications/designer.desktop
+	fi
+
+# assistant.desktop (oculta)
+echo "Verificando o arquivo assistant.desktop"
+	if [ -f /usr/share/applications/assistant.desktop ]; then
+		sed -i 's|Categories=|NoDisplay=true\nCategories=|' /usr/share/applications/assistant.desktop
+	fi
+
+# linguist.desktop (oculta)
+echo "Verificando o arquivo linguist.desktop"
+	if [ -f /usr/share/applications/linguist.desktop ]; then
+		sed -i 's|Categories=|NoDisplay=true\nCategories=|' /usr/share/applications/linguist.desktop
+	fi
+
+# qdbusviewer.desktop (oculta)
+echo "Verificando o arquivo qdbusviewer.desktop"
+	if [ -f /usr/share/applications/qdbusviewer.desktop ]; then
+		sed -i 's|Categories=|NoDisplay=true\nCategories=|' /usr/share/applications/qdbusviewer.desktop
+	fi
+
