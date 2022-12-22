@@ -523,7 +523,7 @@ fi
 
 # lxqt-config-file-associations
 echo "Verificando o arquivo lxqt-config-file-associations.desktop"
-if [ -f /usr/share/applications/kvantummanager.desktop ]; then
+if [ -f /usr/share/applications/lxqt-config-file-associations.desktop ]; then
   # Procura por uma linha que comece com "Name[pt_BR]="
   if grep -q "^Name\[pt_BR\]=" /usr/share/applications/lxqt-config-file-associations.desktop; then
     # Se encontrar, usa o sed para editar a linha
@@ -553,18 +553,19 @@ echo "Verificando o arquivo tlpui.desktop"
 		sed -i 's|Categories=|NoDisplay=true\nCategories=|' /usr/share/applications/tlpui.desktop
 	fi
 
-# kvantummanager
+# kvantummanager (edita, exclui categoria Utility)
 echo "Verificando o arquivo kvantummanager.desktop"
-if [ -f /usr/share/applications/kvantummanager.desktop ]; then
-  # Procura por uma linha que comece com "Name[pt_BR]="
-  if grep -q "^Name\[pt_BR\]=" /usr/share/applications/kvantummanager.desktop; then
-    # Se encontrar, usa o sed para editar a linha
-    sed -i 's/^Name\[pt_BR\].*/Name[pt_BR]=Kvantum/' /usr/share/applications/kvantummanager.desktop
-  else
-    # Se não encontrar, usa o sed para adicionar a linha
-    sed -i '$ a\Name[pt_BR]=Kvantum' /usr/share/applications/kvantummanager.desktop
-  fi
-fi
+	if [ -f /usr/share/applications/kvantummanager.desktop ]; then
+		sed -i '/^Categories/ s/.*/Categories=Settings;DesktopSettings;LXQt;X-XFCE-SettingsDialog;X-XFCE-PersonalSettings;X-GNOME-PersonalSettings;/' /usr/share/applications/kvantummanager.desktop
+	# Procura por uma linha que comece com "Name[pt_BR]="
+		if grep -q "^Name\[pt_BR\]=" /usr/share/applications/kvantummanager.desktop; then
+			# Se encontrar, usa o sed para editar a linha
+			sed -i 's/^Name\[pt_BR\].*/Name[pt_BR]=Kvantum/' /usr/share/applications/kvantummanager.desktop
+		else
+			# Se não encontrar, usa o sed para adicionar a linha
+			sed -i '$ a\Name[pt_BR]=Kvantum' /usr/share/applications/kvantummanager.desktop
+		fi
+	fi
 
 # pcmanfm-qt-desktop-pref (Àrea de Trabalho)
 echo "Verificando o arquivo pcmanfm-qt-desktop-pref.deskto"
@@ -581,24 +582,68 @@ fi
 
 # lxqt locale
 echo "Verificando o arquivo lxqt-config-locale.desktop"
-sed -i 's/Name[pt_BR]=.*/Name[pt_BR]=Idiomas/' /usr/share/applications/lxqt-config-locale.desktop
-
+	if [ -f /usr/share/applications/lxqt-config-locale.desktop ]; then
+		sed -i 's/Name[pt_BR]=.*/Name[pt_BR]=Idiomas/' /usr/share/applications/lxqt-config-locale.desktop
+	fi
+	
 # lxqt brightness
 echo "Verificando o arquivo lxqt-config-brightness.desktop"
-sed -i 's/Name[pt_BR]=.*/Name[pt_BR]=Brilho da Tela/' /usr/share/applications/lxqt-config-brightness.desktop
+	if [ -f /usr/share/applications/lxqt-config-brightness.desktop ]; then
+		sed -i 's/Name[pt_BR]=.*/Name[pt_BR]=Brilho da Tela/' /usr/share/applications/lxqt-config-brightness.desktop
+	fi
 
-# lxqt notificationd
+# lxqt notificationd (renomeia)
 echo "Verificando o arquivo lxqt-config-notificationd.desktop"
-sed -i "s|Name\[pt_BR\].*|Name[pt_BR]=Notificações|g" /usr/share/applications/lxqt-config-notificationd.desktop
+	if [ -f /usr/share/applications/lxqt-config-notificationd.desktopp ]; then
+		sed -i "s|Name\[pt_BR\].*|Name[pt_BR]=Notificações|g" /usr/share/applications/lxqt-config-notificationd.desktop
+	fi
 
-# qv4l2
+# qv4l2 (oculta)
 echo "Verificando o arquivo qv4l2.desktop"
-	sed -i 's|Categories=|NoDisplay=true\nCategories=|' /usr/share/applications/qv4l2.desktop
+	if [ -f /usr/share/applications/qv4l2.desktop ]; then
+		sed -i 's|Categories=|NoDisplay=true\nCategories=|' /usr/share/applications/qv4l2.desktop
+	fi
 echo "Verificando o arquivo qvidcap.desktop"
-	sed -i 's|Categories=|NoDisplay=true\nCategories=|' /usr/share/applications/qvidcap.desktop
+	if [ -f /usr/share/applications/qvidcap.desktop ]; then
+		sed -i 's|Categories=|NoDisplay=true\nCategories=|' /usr/share/applications/qvidcap.desktop
+	fi
 
 # lstopo.desktop (oculta)
 echo "Verificando o arquivo lstopo.desktop"
-if [ -f /usr/share/applications/lstopo.desktop ]; then
-	sed -i 's|Categories=|NoDisplay=true\nCategories=|' /usr/share/applications/lstopo.desktop
+	if [ -f /usr/share/applications/lstopo.desktop ]; then
+		sed -i 's|Categories=|NoDisplay=true\nCategories=|' /usr/share/applications/lstopo.desktop
+	fi
+
+# org.kde.kuserfeedback-console.desktop (oculta)
+echo "Verificando o arquivo org.kde.kuserfeedback-console.desktop"
+if [ -f /usr/share/applications/org.kde.kuserfeedback-console.desktop ]; then
+	sed -i 's|Categories=|NoDisplay=true\nCategories=|' /usr/share/applications/org.kde.kuserfeedback-console.desktop
 fi
+
+# appimagelaunchersettings.desktop (Renomeia)
+echo "Verificando o arquivo appimagelaunchersettings.desktop "
+	if [ -f /usr/share/applications/appimagelaunchersettings.desktop  ]; then
+		sed -i '/^Categories/ s/.*/Categories=Settings;DesktopSettings;LXQt;X-XFCE-SettingsDialog;X-XFCE-PersonalSettings;X-GNOME-PersonalSettings;/' /usr/share/applications/appimagelaunchersettings.desktop  
+		# Procura por uma linha que comece com "Name[pt_BR]="
+		if grep -q "^Name\[pt_BR\]=" /usr/share/applications/appimagelaunchersettings.desktop ; then
+			# Se encontrar, usa o sed para editar a linha
+			sed -i 's/^Name\[pt_BR\].*/Name[pt_BR]=Configurações do AppImage/' /usr/share/applications/appimagelaunchersettings.desktop 
+		else
+			# Se não encontrar, usa o sed para adicionar a linha
+			sed -i '$ a\Name[pt_BR]=Configurações do AppImage' /usr/share/applications/appimagelaunchersettings.desktop
+		fi
+	fi
+
+# lxqt-about.desktop (Renomeia, muda categoria)
+echo "Verificando o arquivo lxqt-about.desktop "
+	if [ -f /usr/share/applications/lxqt-about.desktop  ]; then
+		sed -i '/^Categories/ s/.*/Categories=Settings;DesktopSettings;LXQt;X-XFCE-SettingsDialog;X-XFCE-PersonalSettings;X-GNOME-PersonalSettings;/' /usr/share/applications/lxqt-about.desktop  
+			# Procura por uma linha que comece com "Name[pt_BR]="
+		if grep -q "^Name\[pt_BR\]=" /usr/share/applications/lxqt-about.desktop ; then
+			# Se encontrar, usa o sed para editar a linha
+			sed -i 's/^Name\[pt_BR\].*/Name[pt_BR]=Sobre o LXQt/' /usr/share/applications/lxqt-about.desktop 
+		else
+			# Se não encontrar, usa o sed para adicionar a linha
+			sed -i '$ a\Name[pt_BR]=Sobre o LXQt' /usr/share/applications/lxqt-about.desktop
+		fi
+	fi
