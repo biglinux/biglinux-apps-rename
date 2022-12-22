@@ -25,11 +25,18 @@ if [ -f /usr/share/applications/pcmanfm-qt-desktop-pref.desktop ]; then
 fi
 
 # pcmanfm-qt-desktop (renomeia e oculta no Plasma)
-echo "Verificando o arquivo pcmanfm-qt-desktop"
-if [ -f /usr/share/applications/pcmanfm-qt.desktop ]; then
-	sed -i 's|Categories=|NotShowIn=KDE\nCategories=|' /usr/share/applications/pcmanfm-qt.desktop
-	sed -i 's/Name[pt_BR]=.*/Name[pt_BR]=Gerenciador de Arquivos/' /usr/share/applications/pcmanfm-qt.desktop
-fi
+echo "Verificando o arquivo pcmanfm-qt.desktop"
+	if [ -f /usr/share/applications/pcmanfm-qt.desktop ]; then
+		sed -i 's|Categories=|NotShowIn=KDE\nCategories=|' /usr/share/applications/pcmanfm-qt.desktop
+		PT_BR_LINE=$(grep "^Name\[pt_BR\]=" /usr/share/applications/pcmanfm-qt.desktop)
+	if [ -z "$PT_BR_LINE" ]; then
+		# Linha Name[pt_BR]= NÃO foi encontrada
+		sed -i '$ a\Name[pt_BR]=Gerenciador de Arquivos' /usr/share/applications/pcmanfm-qt.desktop
+	else
+		# Linha Name[pt_BR]= FOI encontrada
+		sed -i "s/^Name\[pt_BR\]=.*/Name[pt_BR]=Gerenciador de Arquivos/" /usr/share/applications/pcmanfm-qt.desktop
+	fi
+	fi
 
 # kdenlive (força execução em QT)
 echo "Verificando o arquivo org.kde.kdenlive.desktop"
@@ -194,10 +201,6 @@ echo "Verificando o arquivo org.kde.skanpage.desktop"
 		sed -i 's|Name\[pt_BR\]=.*|Name[pt_BR]=Digitalizador de imagens Skanpage|g;s|GenericName\[pt_BR\]=.*|GenericName[pt_BR]=|g' /usr/share/applications/org.kde.skanpage.desktop
 	fi
 
-
-##PAREI AQUI >> CONTINUAR DEPOIS
-
-
 # KWalletManager
 echo "Verificando o arquivo org.kde.kwalletmanager5.desktop"
 sed -i 's|Name\[pt_BR\]=.*|Name[pt_BR]=Gerenciar senhas no sistema|g;s|GenericName\[pt_BR\]=.*|GenericName[pt_BR]=|g' /usr/share/applications/org.kde.kwalletmanager5.desktop
@@ -270,7 +273,7 @@ sed -i 's|Categories=|NoDisplay=true\nCategories=|' /usr/share/applications/comp
 
 # ark
 echo "Verificando o arquivo org.kde.ark.desktop"
-sed -i 's|Name\[pt_BR\]=.*|Name[pt_BR]=Compactador de arquivos|g;s|Comment\[pt_BR\]=.*|Comment[pt_BR]=|g;s|GenericName\[pt_BR\]=.*|GenericName[pt_BR]=|g' /usr/share/applications/org.kde.ark.desktop
+sed -i 's|Name\[pt_BR\]=.*|Name[pt_BR]=Compactador de Arquivos|g;s|Comment\[pt_BR\]=.*|Comment[pt_BR]=|g;s|GenericName\[pt_BR\]=.*|GenericName[pt_BR]=|g' /usr/share/applications/org.kde.ark.desktop
 
 # kfind
 echo "Verificando o arquivo org.kde.kfind.desktop"
@@ -404,7 +407,7 @@ if [ "$(grep 'XKBOPTIONS=""' /etc/default/keyboard)" != "" ]; then
     sed -i 's|XKBOPTIONS=""|XKBOPTIONS="terminate:ctrl_alt_bksp"|g' /etc/default/keyboard
 fi
 
-#nvidia
+# nvidia
 echo "Verificando o arquivo nvidia-settings.desktop"
 sed -i 's|Name=NVIDIA X Server Settings|Name=Configure NVIDIA|g;s|System;Settings;|Settings|g;s|Comment=.*|Comment=|g' /usr/share/applications/nvidia-settings.desktop
 sed -i 's|Categories=.*|Categories=Settings;|g' /usr/share/applications/org.manjaro.pamac.manager.desktop
@@ -455,15 +458,15 @@ echo "Verificando o arquivo bootsplash-manager.desktop"
 
 # kcalc
 echo "Verificando o arquivo org.kde.kcalc.desktop"
-	sed -i 's/Name[pt_BR]=.*/Name[pt_BR]=Calculadora/' /usr/share/applications/org.kde.kcalc.desktop
+	sed -i "s/^Name\[pt_BR\]=.*/Name[pt_BR]=Calculadora/" /usr/share/applications/org.kde.kcalc.desktop
 
 #lxqt-archiver
 echo "Verificando o arquivo lxqt-archiver.desktop"
 	if [ -f /usr/share/applications/lxqt-archiver.desktop ]; then
-	PT_BR_LINE=$(grep "^Name\[pt_BR\]=" /usr/share/applications/htop.desktop)
+	PT_BR_LINE=$(grep "^Name\[pt_BR\]=" /usr/share/applications/lxqt-archiver.desktop)
 	if [ -z "$PT_BR_LINE" ]; then
 		# Linha Name[pt_BR]= NÃO foi encontrada
-		echo "Name[pt_BR]=Compactador de Arquivos" >> /usr/share/applications/lxqt-archiver.desktop
+		sed -i '$ a\Name[pt_BR]=Compactador de Arquivos' /usr/share/applications/lxqt-archiver.desktop
 	else
 		# Linha Name[pt_BR]= FOI encontrada
 		sed -i "s/^Name\[pt_BR\]=.*/Name[pt_BR]=Compactador de Arquivos/" /usr/share/applications/lxqt-archiver.desktop
@@ -472,7 +475,16 @@ echo "Verificando o arquivo lxqt-archiver.desktop"
 
 #screengrab
 echo "Verificando o arquivo screengrab.desktop"
-sed -i 's/Name[pt_BR]=.*/Name[pt_BR]=Capitura de Tela/' /usr/share/applications/screengrab.desktop
+	if [ -f /usr/share/applications/screengrab.desktop ]; then
+	PT_BR_LINE=$(grep "^Name\[pt_BR\]=" /usr/share/applications/screengrab.desktop)
+		if [ -z "$PT_BR_LINE" ]; then
+			# Linha Name[pt_BR]= NÃO foi encontrada
+			sed -i '$ a\Name[pt_BR]=Captura de Tela' /usr/share/applications/screengrab.desktop
+		else
+			# Linha Name[pt_BR]= FOI encontrada
+			sed -i "s/^Name\[pt_BR\]=.*/Name[pt_BR]=Captura de Tela/" /usr/share/applications/screengrab.desktop
+		fi
+	fi
 
 #lximage
 echo "Verificando o arquivo lximage-qt.desktop"
@@ -487,9 +499,18 @@ echo "Verificando o arquivo lximage-qt.desktop"
 	fi
 	fi
 
-#l xqt-config
+# lxqt-config.desktop
 echo "Verificando o arquivo lxqt-config.desktop"
-sed -i 's/Name[pt_BR]=.*/Name[pt_BR]=Central de Controle LXQt/' /usr/share/applications/lxqt-config.desktop
+if [ -f /usr/share/applications/lxqt-config.desktop ]; then
+  # Procura por uma linha que comece com "Name[pt_BR]="
+  if grep -q "^Name\[pt_BR\]=" /usr/share/applications/lxqt-config.desktop; then
+    # Se encontrar, usa o sed para editar a linha
+    sed -i 's/^Name\[pt_BR\].*/Name[pt_BR]=Central de Controle/' /usr/share/applications/lxqt-config.desktop
+  else
+    # Se não encontrar, usa o sed para adicionar a linha
+    sed -i '$ a\Name[pt_BR]=Central de Controle' /usr/share/applications/lxqt-config.desktop
+  fi
+fi
 
 # lxqt-config-file-associations
 echo "Verificando o arquivo lxqt-config-file-associations.desktop"
@@ -503,6 +524,25 @@ if [ -f /usr/share/applications/kvantummanager.desktop ]; then
     sed -i '$ a\Name[pt_BR]=Associação de Arquivos' /usr/share/applications/lxqt-config-file-associations.desktop
   fi
 fi
+
+# lxqt-config-input.desktop
+echo "Verificando o arquivo lxqt-config-input.desktop"
+if [ -f /usr/share/applications/lxqt-config-input.desktop ]; then
+  # Procura por uma linha que comece com "Name[pt_BR]="
+  if grep -q "^Name\[pt_BR\]=" /usr/share/applications/lxqt-config-input.desktop; then
+    # Se encontrar, usa o sed para editar a linha
+    sed -i 's/^Name\[pt_BR\].*/Name[pt_BR]=Teclado e Mouse/' /usr/share/applications/lxqt-config-input.desktop
+  else
+    # Se não encontrar, usa o sed para adicionar a linha
+    sed -i '$ a\Name[pt_BR]=Teclado e Mouse' /usr/share/applications/lxqt-config-input.desktop
+  fi
+fi
+
+# tlpui.desktop
+echo "Verificando o arquivo tlpui.desktop"
+	if [ -f /usr/share/applications/tlpui.desktop ]; then
+		sed -i 's|Categories=|NoDisplay=true\nCategories=|' /usr/share/applications/tlpui.desktop
+	fi
 
 # kvantummanager
 echo "Verificando o arquivo kvantummanager.desktop"
@@ -547,3 +587,9 @@ echo "Verificando o arquivo qv4l2.desktop"
 	sed -i 's|Categories=|NoDisplay=true\nCategories=|' /usr/share/applications/qv4l2.desktop
 echo "Verificando o arquivo qvidcap.desktop"
 	sed -i 's|Categories=|NoDisplay=true\nCategories=|' /usr/share/applications/qvidcap.desktop
+
+# lstopo.desktop (oculta)
+echo "Verificando o arquivo lstopo.desktop"
+if [ -f /usr/share/applications/lstopo.desktop ]; then
+	sed -i 's|Categories=|NoDisplay=true\nCategories=|' /usr/share/applications/lstopo.desktop
+fi
