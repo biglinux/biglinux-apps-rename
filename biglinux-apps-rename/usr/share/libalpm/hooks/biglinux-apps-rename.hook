@@ -91,8 +91,6 @@ Target = usr/share/applications/assistant.desktop
 Target = usr/share/applications/linguist.desktop
 Target = usr/share/applications/qdbusviewer.desktop
 
-
-
 [Action]
 Description = Automatic rename same apps
 When = PostTransaction
