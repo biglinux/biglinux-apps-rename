@@ -719,6 +719,3 @@ echo "Verificando o arquivo urxvtc.desktop"
 	if [ -f /usr/share/applications/urxvtc.desktop ]; then
 		sed -i 's|Categories=|NoDisplay=true\nCategories=|' /usr/share/applications/urxvtc.desktop
 	fi
-
-
-
