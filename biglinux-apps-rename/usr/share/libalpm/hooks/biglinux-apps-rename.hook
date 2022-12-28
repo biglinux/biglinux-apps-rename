@@ -92,11 +92,11 @@ Target = usr/share/applications/linguist.desktop
 Target = usr/share/applications/qdbusviewer.desktop
 Target = usr/share/applications/lftp.desktop
 Target = usr/share/applications/uxterm.desktop
-Target = usr/share/applications/xterm.desktop
+Target = usr/share/applications/urxvt-tabbed.desktop
+Target = usr/share/applications/urxvt.desktop
+Target = usr/share/applications/urxvtc.desktop
 Target = usr/share/applications/org.kde.drkonqi.coredump.gui.desktop
 Target = usr/share/applications/org.kde.drkonqi.desktop
-
-
 
 [Action]
 Description = Automatic rename same apps

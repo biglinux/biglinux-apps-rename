@@ -672,32 +672,50 @@ echo "Verificando o arquivo qdbusviewer.desktop"
 		sed -i 's|Categories=|NoDisplay=true\nCategories=|' /usr/share/applications/qdbusviewer.desktop
 	fi
 
-#lftp.desktop (oculta)
+# lftp.desktop (oculta)
 echo "Verificando o arquivo lftp.desktop"
 	if [ -f /usr/share/applications/lftp.desktop ]; then
 		sed -i 's|Categories=|NoDisplay=true\nCategories=|' /usr/share/applications/lftp.desktop
 	fi
 
-#uxterm.desktop (oculta)
+# uxterm.desktop (oculta)
 echo "Verificando o arquivo uxterm.desktop"
 	if [ -f /usr/share/applications/uxterm.desktop ]; then
 		sed -i 's|Categories=|NoDisplay=true\nCategories=|' /usr/share/applications/uxterm.desktop
 	fi
 
-#xterm.desktop (oculta)
+# xterm.desktop (oculta)
 echo "Verificando o arquivo xterm.desktopp"
 	if [ -f /usr/share/applications/xterm.desktop ]; then
 		sed -i 's|Categories=|NoDisplay=true\nCategories=|' /usr/share/applications/xterm.desktop
 	fi
 
-#org.kde.drkonqi.coredump.gui.desktop (oculta)
+# org.kde.drkonqi.coredump.gui.desktop (oculta)
 echo "Verificando o arquivo org.kde.drkonqi.coredump.gui.desktop"
 	if [ -f /usr/share/applications/org.kde.drkonqi.coredump.gui.desktop ]; then
 		sed -i 's|Categories=|NoDisplay=true\nCategories=|' /usr/share/applications/org.kde.drkonqi.coredump.gui.desktop
 	fi
 
-#org.kde.drkonqi.desktop (oculta)
+# org.kde.drkonqi.desktop (oculta)
 echo "Verificando o arquivo org.kde.drkonqi.desktop"
 	if [ -f /usr/share/applications/org.kde.drkonqi.desktop ]; then
 		sed -i 's|Categories=|NoDisplay=true\nCategories=|' /usr/share/applications/org.kde.drkonqi.desktop
+	fi
+
+# urxvt-tabbed (oculta)
+echo "Verificando o arquivo urxvt-tabbed.desktop"
+	if [ -f /usr/share/applications/urxvt-tabbed.desktop ]; then
+		sed -i 's|Categories=|NoDisplay=true\nCategories=|' /usr/share/applications/urxvt-tabbed.desktop
+	fi
+
+# urxvt (oculta)
+echo "Verificando o arquivo urxvt.desktop"
+	if [ -f /usr/share/applications/urxvt.desktop ]; then
+		sed -i 's|Categories=|NoDisplay=true\nCategories=|' /usr/share/applications/urxvt.desktop
+	fi
+
+# urxvtc (oculta)
+echo "Verificando o arquivo urxvtc.desktop"
+	if [ -f /usr/share/applications/urxvtc.desktop ]; then
+		sed -i 's|Categories=|NoDisplay=true\nCategories=|' /usr/share/applications/urxvtc.desktop
 	fi
