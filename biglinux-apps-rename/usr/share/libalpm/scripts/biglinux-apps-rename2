@@ -78,7 +78,7 @@ if [ -f /usr/share/applications/org.kde.kdeconnect_open.desktop ]; then
 	sed -i 's|Categories=|NoDisplay=true\nCategories=|' /usr/share/applications/org.kde.kdeconnect_open.desktop
 fi
 if [ -f /usr/share/applications/org.kde.kdeconnect.app.desktop ]; then
-	sed -i 's|kdeconnect-app|kdeconnect-settings|g;s|Name\[pt_BR\]=.*|Name[pt_BR]=Adroid Controle|g;s|GenericName\[pt_BR\]=.*|GenericName[pt_BR]=|g;s|Categories=Qt;KDE;Network|Categories=Qt;KDE;Utility|g;' /usr/share/applications/org.kde.kdeconnect.app.desktop
+	sed -i 's|kdeconnect-app|kdeconnect-settings|g;s|Name\[pt_BR\]=.*|Name[pt_BR]=Interagir com dispositivos Android|g;s|GenericName\[pt_BR\]=.*|GenericName[pt_BR]=|g;s|Categories=Qt;KDE;Network|Categories=Qt;KDE;Utility|g;' /usr/share/applications/org.kde.kdeconnect.app.desktop
 fi
 
 # network manager (oculta)
