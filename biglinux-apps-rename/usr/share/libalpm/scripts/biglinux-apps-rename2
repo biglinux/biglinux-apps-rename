@@ -1,28 +1,74 @@
 #!/bin/sh
 
+# Create list of static files
+AppsToHide="/usr/share/applications/org.kde.kwrite.desktop
+/usr/share/applications/ipython.desktop
+/usr/share/applications/display-im6.q16.desktop
+/usr/share/applications/libreoffice-startcenter.desktop
+/usr/share/applications/urxvtc.desktop
+/usr/share/applications/urxvt.desktop
+/usr/share/applications/urxvt-tabbed.desktop
+/usr/share/applications/org.kde.kdeconnect.sms.desktop
+/usr/share/applications/org.kde.kdeconnect_open.desktop
+/usr/share/applications/kde_wacom_tabletfinder.desktop
+/usr/share/applications/yad-icon-browser.desktop
+/usr/share/applications/yad-settings.desktop
+/usr/share/applications/rxvt-unicode.desktop
+/usr/share/applications/gscriptor.desktop
+/usr/share/applications/org.kde.latte-dock.desktop
+/usr/share/applications/htop.desktop
+/usr/share/applications/avahi-discover.desktop
+/usr/share/applications/bssh.desktop
+/usr/share/applications/bvnc.desktop
+/usr/share/applications/bootsplash-manager.desktop
+/usr/share/applications/tlpui.desktop
+/usr/share/applications/qv4l2.desktop
+/usr/share/applications/qvidcap.desktop
+/usr/share/applications/lstopo.desktop
+/usr/share/applications/org.kde.kuserfeedback-console.desktop
+/usr/share/applications/designer.desktop
+/usr/share/applications/assistant.desktop
+/usr/share/applications/linguist.desktop
+/usr/share/applications/qdbusviewer.desktop
+/usr/share/applications/lftp.desktop
+/usr/share/applications/uxterm.desktop
+/usr/share/applications/xterm.desktop
+/usr/share/applications/org.kde.drkonqi.coredump.gui.desktop
+/usr/share/applications/org.kde.drkonqi.desktop
+/usr/share/applications/urxvt-tabbed.desktop
+/usr/share/applications/urxvt.desktop
+/usr/share/applications/urxvtc.desktop"
+
+
+# Make loop with AppsToHide to verify if contains "NoDisplay=true", if not contains add "NoDisplay=true" Before "Categories="
+for i in $AppsToHide; do
+	if [ -f $i ]; then
+		if ! grep -q "NoDisplay=true" $i; then
+			sed -i 's|Categories=|NoDisplay=true\nCategories=|' $i
+		fi
+	fi
+done
+
+# Hide only in KDE
+AppsToHideInKDE="/usr/share/applications/compton-conf.desktop
+/usr/share/applications/pcmanfm-qt-desktop-pref.desktop"
+
+for i in $AppsToHideInKDE; do
+	if [ -f $i ]; then
+		if ! grep -q "NotShowIn=KDE" $i; then
+			sed -i 's|Categories=|NotShowIn=KDE\nCategories=|' $i
+		fi
+	fi
+done
+
+
 # kate (renomeia)
 echo "Verificando o arquivo org.kde.kate.desktop"
 if [ -f /usr/share/applications/org.kde.kate.desktop ]; then
 	sed -i 's|Name\[pt_BR\]=.*|Name[pt_BR]=Anotações|g;s|Comment\[pt_BR\]=.*|Comment[pt_BR]=|g;s|GenericName\[pt_BR\]=.*|GenericName[pt_BR]=|g;s|Development;||g' /usr/share/applications/org.kde.kate.desktop
 fi
 
-# kwrite (oculta)
-echo "Verificando o arquivo org.kde.kwrite.desktop"
-if [ -f /usr/share/applications/org.kde.kwrite.desktop ]; then
-	sed -i 's|Categories=|NoDisplay=true\nCategories=|' /usr/share/applications/org.kde.kwrite.desktop
-fi
-
 # compton-conf.desktop (oculta no Plasma)
-echo "Verificando o arquivo compton-conf.desktop"
-if [ -f /usr/share/applications/compton-conf.desktop ]; then
-	sed -i 's|Categories=|NotShowIn=KDE\nCategories=|' /usr/share/applications/compton-conf.desktop
-fi
-
-# pcmanfm-qt-desktop-pref (oculta do Plasma)
-echo "Verificando o arquivo pcmanfm-qt-desktop-pref "
-if [ -f /usr/share/applications/pcmanfm-qt-desktop-pref.desktop ]; then
-	sed -i 's|Categories=|NotShowIn=KDE\nCategories=|' /usr/share/applications/pcmanfm-qt-desktop-pref.desktop
-fi
 
 # pcmanfm-qt-desktop (renomeia e oculta no Plasma)
 echo "Verificando o arquivo pcmanfm-qt.desktop"
@@ -38,13 +84,8 @@ echo "Verificando o arquivo pcmanfm-qt.desktop"
 	fi
 	fi
 
-# kdenlive (força execução em QT)
-echo "Verificando o arquivo org.kde.kdenlive.desktop"
-if [ -f /usr/share/applications/org.kde.kdenlive.desktop ]; then
-	sed -i 's|Exec=kdenlive|Exec=QT_QUICK_BACKEND="" kdenlive|g' /usr/share/applications/org.kde.kdenlive.desktop
-fi
 
-# steam (ediga a categoria)
+# steam (edita a categoria)
 echo "Verificando o arquivo steam.desktop"
 if [ -f /usr/share/applications/steam.desktop ]; then
 	sed -i 's|Steam (Runtime)|Steam|g;s|Categories=Network;FileTransfer;Game;|Categories=Game;|g' /usr/share/applications/steam.desktop
@@ -69,49 +110,11 @@ if [ -f /usr/share/applications/xscreensaver-properties.desktop ]; then
 	sed -i 's|Categories=|NotShowIn=KDE\nCategories=|' /usr/share/applications/xscreensaver-properties.desktop
 fi
 
-# KDE connect (oculta e nenomeia)
-echo "Verificando o arquivo org.kde.kdeconnect_open.desktop"
-if [ -f /usr/share/applications/org.kde.kdeconnect.sms.desktop ]; then
-	sed -i 's|Categories=|NoDisplay=true\nCategories=|' /usr/share/applications/org.kde.kdeconnect.sms.desktop
-fi
-if [ -f /usr/share/applications/org.kde.kdeconnect_open.desktop ]; then
-	sed -i 's|Categories=|NoDisplay=true\nCategories=|' /usr/share/applications/org.kde.kdeconnect_open.desktop
-fi
+# KDE connect (renomeia)
 if [ -f /usr/share/applications/org.kde.kdeconnect.app.desktop ]; then
 	sed -i 's|kdeconnect-app|kdeconnect-settings|g;s|Name\[pt_BR\]=.*|Name[pt_BR]=Interagir com dispositivos Android|g;s|GenericName\[pt_BR\]=.*|GenericName[pt_BR]=|g;s|Categories=Qt;KDE;Network|Categories=Qt;KDE;Utility|g;' /usr/share/applications/org.kde.kdeconnect.app.desktop
 fi
 
-# network manager (oculta)
-echo "Verificando o arquivo nm-connection-editor.desktop "
-if [ -f /usr/share/applications/nm-connection-editor.desktop  ]; then
-	sed -i 's|Categories=|NoDisplay=true\nCategories=|' /usr/share/applications/nm-connection-editor.desktop 
-fi
-
-# ipython (oculta)
-echo "Verificando o arquivo ipython.desktop"
-if [ -f /usr/share/applications/ipython.desktop  ]; then
-	sed -i 's|Categories=|NoDisplay=true\nCategories=|' /usr/share/applications/ipython.desktop
-fi
-
-# imagemagick (oculta)
-echo "Verificando o arquivo display-im6.q16.desktop"
-if [ -f /usr/share/applications/display-im6.q16.desktop ]; then
-	sed -i 's|Categories=|NoDisplay=true\nCategories=|' /usr/share/applications/display-im6.q16.desktop
-fi
-
-# libreoffice (oculta)
-echo "Verificando o arquivo libreoffice-startcenter.desktop"
-if [ -f /usr/share/applications/libreoffice-startcenter.desktop  ]; then
-	sed -i 's|Categories=|NoDisplay=true\nCategories=|' /usr/share/applications/libreoffice-startcenter.desktop
-fi
-
-# urxvt (oculta)
-echo "Verificando o arquivo urxvt.desktop"
-	if [ -f /usr/share/applications/urxvt.desktop  ]; then
-		sed -i 's|Categories=|NoDisplay=true\nCategories=|' /usr/share/applications/urxvtc.desktop
-		sed -i 's|Categories=|NoDisplay=true\nCategories=|' /usr/share/applications/urxvt.desktop
-		sed -i 's|Categories=|NoDisplay=true\nCategories=|' /usr/share/applications/urxvt-tabbed.desktop
-	fi
 
 # libreoffice xsltfilter
 echo "Verificando o arquivo xsltfilter.desktop"
@@ -388,9 +391,6 @@ if [ "$(grep 'Name\[pt_BR\]=' /usr/share/applications/openjdk-8-policytool.deskt
     sed -i '/Name=/a Name[pt_BR]=Regras de segurança do Java\nComment[pt_BR]=' /usr/share/applications/openjdk-8-policytool.desktop
 fi
 
-# kde-wacom
-echo "Verificando o arquivo kde_wacom_tabletfinder.desktop"
-sed -i 's|Categories=|NoDisplay=true\nCategories=|' /usr/share/applications/kde_wacom_tabletfinder.desktop
 
 # Timeshift
 echo "Verificando o arquivo timeshift-gtk.desktop"
@@ -421,53 +421,6 @@ if [ -f /usr/share/applications/nvidia-settings.desktop ]; then
 	fi
 fi
 
-# Yad
-echo "Verificando o arquivo yad-icon-browser.desktop"
-sed -i 's|Categories=|NoDisplay=true\nCategories=|' /usr/share/applications/yad-icon-browser.desktop
-sed -i 's|Categories=|NoDisplay=true\nCategories=|' /usr/share/applications/yad-settings.desktop
-
-# rxvt
-echo "Verificando o arquivo rxvt-unicode.desktop"
-	sed -i 's|Categories=|NoDisplay=true\nCategories=|' /usr/share/applications/rxvt-unicode.desktop
-
-# pcsc-tools
-echo "Verificando o arquivo gscriptor.desktop"
-	sed -i 's|Categories=|NoDisplay=true\nCategories=|' /usr/share/applications/gscriptor.desktop
-
-# latte
-echo "Verificando o arquivo org.kde.latte-dock.desktop"
-	if [ -f /usr/share/applications/org.kde.latte-dock.desktop ]; then
-		sed -i 's|Categories=|NoDisplay=true\nCategories=|' /usr/share/applications/org.kde.latte-dock.desktop
-	fi
-
-# htop
-echo "Verificando o arquivo htop.desktop"
-	if [ -f /usr/share/applications/htop.desktop ]; then
-	PT_BR_LINE=$(grep "^Name\[pt_BR\]=" /usr/share/applications/htop.desktop)
-	if [ -z "$PT_BR_LINE" ]; then
-		# Linha Name[pt_BR]= NÃO foi encontrada
-		echo "Name[pt_BR]=Visualizador de Processos" >> /usr/share/applications/htop.desktop
-	else
-		# Linha Name[pt_BR]= FOI encontrada
-		sed -i "s/^Name\[pt_BR\]=.*/Name[pt_BR]=Visualizador de Processos/" /usr/share/applications/htop.desktop
-	fi
-	fi
-
-# avahi
-echo "Verificando o arquivo avahi-discover.desktop"
-	sed -i 's|Categories=|NoDisplay=true\nCategories=|' /usr/share/applications/avahi-discover.desktop
-echo "Verificando o arquivo bssh.desktop"
-	sed -i 's|Categories=|NoDisplay=true\nCategories=|' /usr/share/applications/bssh.desktop
-echo "Verificando o arquivo bvnc.desktop"
-	sed -i 's|Categories=|NoDisplay=true\nCategories=|' /usr/share/applications/bvnc.desktop
-
-# Manjaro bootsplah
-echo "Verificando o arquivo bootsplash-manager.desktop"
-	sed -i 's|Categories=|NoDisplay=true\nCategories=|' /usr/share/applications/bootsplash-manager.desktop
-
-# kcalc
-echo "Verificando o arquivo org.kde.kcalc.desktop"
-	sed -i "s/^Name\[pt_BR\]=.*/Name[pt_BR]=Calculadora/" /usr/share/applications/org.kde.kcalc.desktop
 
 #lxqt-archiver
 echo "Verificando o arquivo lxqt-archiver.desktop"
@@ -547,11 +500,6 @@ if [ -f /usr/share/applications/lxqt-config-input.desktop ]; then
   fi
 fi
 
-# tlpui.desktop
-echo "Verificando o arquivo tlpui.desktop"
-	if [ -f /usr/share/applications/tlpui.desktop ]; then
-		sed -i 's|Categories=|NoDisplay=true\nCategories=|' /usr/share/applications/tlpui.desktop
-	fi
 
 # kvantummanager (edita, exclui categoria Utility)
 echo "Verificando o arquivo kvantummanager.desktop"
@@ -598,27 +546,6 @@ echo "Verificando o arquivo lxqt-config-notificationd.desktop"
 		sed -i "s|Name\[pt_BR\].*|Name[pt_BR]=Notificações|g" /usr/share/applications/lxqt-config-notificationd.desktop
 	fi
 
-# qv4l2 (oculta)
-echo "Verificando o arquivo qv4l2.desktop"
-	if [ -f /usr/share/applications/qv4l2.desktop ]; then
-		sed -i 's|Categories=|NoDisplay=true\nCategories=|' /usr/share/applications/qv4l2.desktop
-	fi
-echo "Verificando o arquivo qvidcap.desktop"
-	if [ -f /usr/share/applications/qvidcap.desktop ]; then
-		sed -i 's|Categories=|NoDisplay=true\nCategories=|' /usr/share/applications/qvidcap.desktop
-	fi
-
-# lstopo.desktop (oculta)
-echo "Verificando o arquivo lstopo.desktop"
-	if [ -f /usr/share/applications/lstopo.desktop ]; then
-		sed -i 's|Categories=|NoDisplay=true\nCategories=|' /usr/share/applications/lstopo.desktop
-	fi
-
-# org.kde.kuserfeedback-console.desktop (oculta)
-echo "Verificando o arquivo org.kde.kuserfeedback-console.desktop"
-if [ -f /usr/share/applications/org.kde.kuserfeedback-console.desktop ]; then
-	sed -i 's|Categories=|NoDisplay=true\nCategories=|' /usr/share/applications/org.kde.kuserfeedback-console.desktop
-fi
 
 # appimagelaunchersettings.desktop (Renomeia)
 echo "Verificando o arquivo appimagelaunchersettings.desktop "
@@ -648,74 +575,3 @@ echo "Verificando o arquivo lxqt-about.desktop "
 		fi
 	fi
 
-# designer.desktop (oculta)
-echo "Verificando o arquivo designer.desktop"
-	if [ -f /usr/share/applications/designer.desktop ]; then
-		sed -i 's|Categories=|NoDisplay=true\nCategories=|' /usr/share/applications/designer.desktop
-	fi
-
-# assistant.desktop (oculta)
-echo "Verificando o arquivo assistant.desktop"
-	if [ -f /usr/share/applications/assistant.desktop ]; then
-		sed -i 's|Categories=|NoDisplay=true\nCategories=|' /usr/share/applications/assistant.desktop
-	fi
-
-# linguist.desktop (oculta)
-echo "Verificando o arquivo linguist.desktop"
-	if [ -f /usr/share/applications/linguist.desktop ]; then
-		sed -i 's|Categories=|NoDisplay=true\nCategories=|' /usr/share/applications/linguist.desktop
-	fi
-
-# qdbusviewer.desktop (oculta)
-echo "Verificando o arquivo qdbusviewer.desktop"
-	if [ -f /usr/share/applications/qdbusviewer.desktop ]; then
-		sed -i 's|Categories=|NoDisplay=true\nCategories=|' /usr/share/applications/qdbusviewer.desktop
-	fi
-
-# lftp.desktop (oculta)
-echo "Verificando o arquivo lftp.desktop"
-	if [ -f /usr/share/applications/lftp.desktop ]; then
-		sed -i 's|Categories=|NoDisplay=true\nCategories=|' /usr/share/applications/lftp.desktop
-	fi
-
-# uxterm.desktop (oculta)
-echo "Verificando o arquivo uxterm.desktop"
-	if [ -f /usr/share/applications/uxterm.desktop ]; then
-		sed -i 's|Categories=|NoDisplay=true\nCategories=|' /usr/share/applications/uxterm.desktop
-	fi
-
-# xterm.desktop (oculta)
-echo "Verificando o arquivo xterm.desktopp"
-	if [ -f /usr/share/applications/xterm.desktop ]; then
-		sed -i 's|Categories=|NoDisplay=true\nCategories=|' /usr/share/applications/xterm.desktop
-	fi
-
-# org.kde.drkonqi.coredump.gui.desktop (oculta)
-echo "Verificando o arquivo org.kde.drkonqi.coredump.gui.desktop"
-	if [ -f /usr/share/applications/org.kde.drkonqi.coredump.gui.desktop ]; then
-		sed -i 's|Categories=|NoDisplay=true\nCategories=|' /usr/share/applications/org.kde.drkonqi.coredump.gui.desktop
-	fi
-
-# org.kde.drkonqi.desktop (oculta)
-echo "Verificando o arquivo org.kde.drkonqi.desktop"
-	if [ -f /usr/share/applications/org.kde.drkonqi.desktop ]; then
-		sed -i 's|Categories=|NoDisplay=true\nCategories=|' /usr/share/applications/org.kde.drkonqi.desktop
-	fi
-
-# urxvt-tabbed (oculta)
-echo "Verificando o arquivo urxvt-tabbed.desktop"
-	if [ -f /usr/share/applications/urxvt-tabbed.desktop ]; then
-		sed -i 's|Categories=|NoDisplay=true\nCategories=|' /usr/share/applications/urxvt-tabbed.desktop
-	fi
-
-# urxvt (oculta)
-echo "Verificando o arquivo urxvt.desktop"
-	if [ -f /usr/share/applications/urxvt.desktop ]; then
-		sed -i 's|Categories=|NoDisplay=true\nCategories=|' /usr/share/applications/urxvt.desktop
-	fi
-
-# urxvtc (oculta)
-echo "Verificando o arquivo urxvtc.desktop"
-	if [ -f /usr/share/applications/urxvtc.desktop ]; then
-		sed -i 's|Categories=|NoDisplay=true\nCategories=|' /usr/share/applications/urxvtc.desktop
-	fi
