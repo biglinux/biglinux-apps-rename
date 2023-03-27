@@ -97,6 +97,7 @@ Target = usr/share/applications/urxvt.desktop
 Target = usr/share/applications/urxvtc.desktop
 Target = usr/share/applications/org.kde.drkonqi.coredump.gui.desktop
 Target = usr/share/applications/org.kde.drkonqi.desktop
+Target = usr/share/applications/hp-uiscan.desktop
 
 [Action]
 Description = Automatic rename same apps

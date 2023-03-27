@@ -37,7 +37,10 @@ AppsToHide="/usr/share/applications/org.kde.kwrite.desktop
 /usr/share/applications/org.kde.drkonqi.desktop
 /usr/share/applications/urxvt-tabbed.desktop
 /usr/share/applications/urxvt.desktop
-/usr/share/applications/urxvtc.desktop"
+/usr/share/applications/urxvtc.desktop
+/usr/share/applications/pcmanfm-qt.desktop
+/usr/share/applications/obconf-qt.desktop
+ /usr/share/applications/xscreensaver-properties.desktop"
 
 
 # Make loop with AppsToHide to verify if contains "NoDisplay=true", if not contains add "NoDisplay=true" Before "Categories="
@@ -61,6 +64,16 @@ for i in $AppsToHideInKDE; do
 	fi
 done
 
+# Hide only in LXQt
+AppsToHideInLXQt="/usr/share/applications/hp-uiscan.desktop"
+
+for i in $AppsToHideInLXQt; do
+	if [ -f $i ]; then
+		if ! grep -q "NotShowIn=LXQt" $i; then
+			sed -i 's|Categories=|NotShowIn=LXQt\nCategories=|' $i
+		fi
+	fi
+done
 
 # kate (renomeia)
 echo "Verificando o arquivo org.kde.kate.desktop"
@@ -68,12 +81,9 @@ if [ -f /usr/share/applications/org.kde.kate.desktop ]; then
 	sed -i 's|Name\[pt_BR\]=.*|Name[pt_BR]=Anotações|g;s|Comment\[pt_BR\]=.*|Comment[pt_BR]=|g;s|GenericName\[pt_BR\]=.*|GenericName[pt_BR]=|g;s|Development;||g' /usr/share/applications/org.kde.kate.desktop
 fi
 
-# compton-conf.desktop (oculta no Plasma)
-
-# pcmanfm-qt-desktop (renomeia e oculta no Plasma)
+# pcmanfm-qt-desktop (renomeia)
 echo "Verificando o arquivo pcmanfm-qt.desktop"
 	if [ -f /usr/share/applications/pcmanfm-qt.desktop ]; then
-		sed -i 's|Categories=|NotShowIn=KDE\nCategories=|' /usr/share/applications/pcmanfm-qt.desktop
 		PT_BR_LINE=$(grep "^Name\[pt_BR\]=" /usr/share/applications/pcmanfm-qt.desktop)
 	if [ -z "$PT_BR_LINE" ]; then
 		# Linha Name[pt_BR]= NÃO foi encontrada
@@ -83,7 +93,6 @@ echo "Verificando o arquivo pcmanfm-qt.desktop"
 		sed -i "s/^Name\[pt_BR\]=.*/Name[pt_BR]=Gerenciador de Arquivos/" /usr/share/applications/pcmanfm-qt.desktop
 	fi
 	fi
-
 
 # steam (edita a categoria)
 echo "Verificando o arquivo steam.desktop"
@@ -98,23 +107,10 @@ if [ -f /usr/share/applications/gufw.desktop ]; then
 	sed -i 's|pkexec gufw-pkexec|pkexec env DISPLAY=$DISPLAY XAUTHORITY=$XAUTHORITY gufw-pkexec|g' /usr/bin/gufw
 fi
 
-# obconf-qt (oculta do Plasma)
-echo "Verificando o arquivo obconf-qt.desktop"
-if [ -f /usr/share/applications/obconf-qt.desktop ]; then
-	sed -i 's|Categories=|NotShowIn=KDE\nCategories=|' /usr/share/applications/obconf-qt.desktop
-fi
-
-# xscreensaver-properties (oculta no Plasma)
-echo "Verificando o arquivo xscreensaver-properties.desktop"
-if [ -f /usr/share/applications/xscreensaver-properties.desktop ]; then
-	sed -i 's|Categories=|NotShowIn=KDE\nCategories=|' /usr/share/applications/xscreensaver-properties.desktop
-fi
-
 # KDE connect (renomeia)
 if [ -f /usr/share/applications/org.kde.kdeconnect.app.desktop ]; then
 	sed -i 's|kdeconnect-app|kdeconnect-settings|g;s|Name\[pt_BR\]=.*|Name[pt_BR]=Interagir com dispositivos Android|g;s|GenericName\[pt_BR\]=.*|GenericName[pt_BR]=|g;s|Categories=Qt;KDE;Network|Categories=Qt;KDE;Utility|g;' /usr/share/applications/org.kde.kdeconnect.app.desktop
 fi
-
 
 # libreoffice xsltfilter
 echo "Verificando o arquivo xsltfilter.desktop"
@@ -391,7 +387,6 @@ if [ "$(grep 'Name\[pt_BR\]=' /usr/share/applications/openjdk-8-policytool.deskt
     sed -i '/Name=/a Name[pt_BR]=Regras de segurança do Java\nComment[pt_BR]=' /usr/share/applications/openjdk-8-policytool.desktop
 fi
 
-
 # Timeshift
 echo "Verificando o arquivo timeshift-gtk.desktop"
 if [ "$(grep -c 'Name\[pt_BR\]=' /usr/share/applications/timeshift-gtk.desktop)" = "0" ] && [ -e "/usr/share/applications/timeshift-gtk.desktop" ]; then
@@ -420,7 +415,6 @@ if [ -f /usr/share/applications/nvidia-settings.desktop ]; then
 		sed -i "s/^Name\[pt_BR\]=.*/Name[pt_BR]=Configure NVIDIA/" /usr/share/applications/nvidia-settings.desktop
 	fi
 fi
-
 
 #lxqt-archiver
 echo "Verificando o arquivo lxqt-archiver.desktop"
@@ -546,7 +540,6 @@ echo "Verificando o arquivo lxqt-config-notificationd.desktop"
 		sed -i "s|Name\[pt_BR\].*|Name[pt_BR]=Notificações|g" /usr/share/applications/lxqt-config-notificationd.desktop
 	fi
 
-
 # appimagelaunchersettings.desktop (Renomeia)
 echo "Verificando o arquivo appimagelaunchersettings.desktop "
 	if [ -f /usr/share/applications/appimagelaunchersettings.desktop  ]; then
@@ -574,4 +567,3 @@ echo "Verificando o arquivo lxqt-about.desktop "
 			sed -i '$ a\Name[pt_BR]=Sobre o LXQt' /usr/share/applications/lxqt-about.desktop
 		fi
 	fi
-
