@@ -40,7 +40,8 @@ AppsToHide="/usr/share/applications/org.kde.kwrite.desktop
 /usr/share/applications/urxvtc.desktop
 /usr/share/applications/pcmanfm-qt.desktop
 /usr/share/applications/obconf-qt.desktop
- /usr/share/applications/xscreensaver-properties.desktop"
+/usr/share/applications/xscreensaver-properties.desktop
+/usr/share/applications/hp-uiscan.desktop"
 
 
 # Make loop with AppsToHide to verify if contains "NoDisplay=true", if not contains add "NoDisplay=true" Before "Categories="
@@ -70,10 +71,11 @@ AppsToHideInLXQt="/usr/share/applications/hp-uiscan.desktop"
 for i in $AppsToHideInLXQt; do
 	if [ -f $i ]; then
 		if ! grep -q "NotShowIn=LXQt" $i; then
-			sed -i 's|Categories=|NotShowIn=LXQt\nCategories=|' $i
+			sed -i '$ a\NotShowIn=LXQt' $1
 		fi
 	fi
 done
+
 
 # kate (renomeia)
 echo "Verificando o arquivo org.kde.kate.desktop"
