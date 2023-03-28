@@ -40,7 +40,8 @@ AppsToHide="/usr/share/applications/org.kde.kwrite.desktop
 /usr/share/applications/urxvtc.desktop
 /usr/share/applications/pcmanfm-qt.desktop
 /usr/share/applications/obconf-qt.desktop
- /usr/share/applications/xscreensaver-properties.desktop"
+/usr/share/applications/xscreensaver-properties.desktop
+/usr/share/applications/hp-uiscan.desktop"
 
 
 # Make loop with AppsToHide to verify if contains "NoDisplay=true", if not contains add "NoDisplay=true" Before "Categories="
