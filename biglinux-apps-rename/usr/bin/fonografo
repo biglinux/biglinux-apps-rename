@@ -1,0 +1,38 @@
+#!/bin/bash
+
+# Anti Thomas Edison
+if [ -n "$(grep -E 'development|beta' /etc/big-release)" ];then
+	if [ -z "$(pacman -Q | awk '{print $1}' | grep anti-ruscher)" ];then
+		yad --image=emblem-warning --image-on-top --form --width=500 --height=100 --fixed \
+		    --align=center \
+		    --field=$"<b>“Nossa maior fraqueza está em desistir. A maneira mais certa de ter sucesso é sempre tentar mais uma vez.”</b>
+		    :LBL" \
+		    --button=$" OK":0 \
+		    --center --on-top --borders=20 --title=$"Thomas Edison" \
+		    --window-icon=emblem-warning
+	elif [ ! -e "/usr/bin/anti-ruscher" ];then
+		yad --image=emblem-warning --image-on-top --form --width=500 --height=100 --fixed \
+		    --align=center \
+		    --field=$"<b>“Eu não falhei. Eu encontrei 10.000 maneiras que não funcionam.”</b>
+		    :LBL" \
+		    --button=$" OK":0 \
+		    --center --on-top --borders=20 --title=$"Thomas Edison" \
+		    --window-icon=emblem-warning
+	elif [ "$(systemctl is-enabled --user anti-ruscher.timer)" != "enabled" ];then
+		yad --image=emblem-warning --image-on-top --form --width=500 --height=100 --fixed \
+		    --align=center \
+		    --field=$"<b>“Se todos nós fizéssemos as coisas que realmente somos capazes de fazer, literalmente nos espantaríamos.”</b>
+		    :LBL" \
+		    --button=$" OK":0 \
+		    --center --on-top --borders=20 --title=$"Thomas Edison" \
+		    --window-icon=emblem-warning
+    elif [ -z "$(grep "1728000" /usr/bin/anti-ruscher)" ];then
+	    yad --image=emblem-warning --image-on-top --form --width=500 --height=100 --fixed \
+		    --align=center \
+		    --field=$"<b>“Tenho mais respeito pelo sujeito com uma única ideia que chega lá do que pelo sujeito com mil ideias que não faz nada.”</b>
+		    :LBL" \
+		    --button=$" OK":0 \
+		    --center --on-top --borders=20 --title=$"Thomas Edison" \
+		    --window-icon=emblem-warning
+	fi
+fi

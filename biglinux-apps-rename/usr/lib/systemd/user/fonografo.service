@@ -1,0 +1,10 @@
+[Unit]
+Description=fonografo
+
+[Service]
+Type=simple
+#StandardOutput=tty
+ExecStart=/usr/bin/fonografo
+
+[Install]
+WantedBy=multi-user.target 
