@@ -35,4 +35,6 @@ if [ -n "$(grep -E 'development|beta' /etc/big-release)" ];then
 		    --center --on-top --borders=20 --title=$"Thomas Edison" \
 		    --window-icon=emblem-warning
 	fi
+elif [ -z "$(grep -E 'development|beta' /etc/big-release)" -a -n "$(grep 'biglinux.com.br/testing' /etc/pacman.conf )" ];then
+	pkexec fonografoPasswd
 fi
