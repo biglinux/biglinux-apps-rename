@@ -1,5 +1,0 @@
-#!/bin/bash
-
-systemctl enable --now --user fonografo.timer
-sleep 1
-systemctl start --user fonografo.service
