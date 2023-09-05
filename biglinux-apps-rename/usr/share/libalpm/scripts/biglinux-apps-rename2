@@ -76,6 +76,24 @@ for i in $AppsToHideInLXQt; do
 	fi
 done
 
+# hplip (edita o icon)
+echo "Verificando o arquivo hplip.desktop"
+if [ -f /usr/share/applications/bigcontrolcenter/hplip.desktop ]; then
+	sed -i 's/Icon=.*/Icon=hp_logo/' /usr/share/applications/bigcontrolcenter/hplip.desktop
+fi
+if [ -f /usr/share/applications/hplip.desktop ]; then
+	sed -i 's/Icon=.*/Icon=hp_logo/' /usr/share/applications/hplip.desktop
+fi
+
+# hp-uiscan (edita o icon)
+echo "Verificando o arquivo hp-uiscan.desktop"
+if [ -f /usr/share/applications/bigcontrolcenter/hp-uiscan.desktop ]; then
+	sed -i 's/Icon=.*/Icon=printer/' /usr/share/applications/bigcontrolcenter/hp-uiscan.desktop
+fi
+if [ -f /usr/share/applications/hp-uiscan.desktop ]; then
+	sed -i 's/Icon=.*/Icon=printer/' /usr/share/applications/hp-uiscan.desktop
+fi
+
 # kate (renomeia)
 echo "Verificando o arquivo org.kde.kate.desktop"
 if [ -f /usr/share/applications/org.kde.kate.desktop ]; then
