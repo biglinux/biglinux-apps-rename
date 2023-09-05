@@ -88,10 +88,10 @@ fi
 # hp-uiscan (edita o icon)
 echo "Verificando o arquivo hp-uiscan.desktop"
 if [ -f /usr/share/applications/bigcontrolcenter/hp-uiscan.desktop ]; then
-	sed -i 's/Icon=.*/Icon=printer/' /usr/share/applications/bigcontrolcenter/hp-uiscan.desktop
+	sed -i 's/Icon=.*/Icon=scanner-hp/' /usr/share/applications/bigcontrolcenter/hp-uiscan.desktop
 fi
 if [ -f /usr/share/applications/hp-uiscan.desktop ]; then
-	sed -i 's/Icon=.*/Icon=printer/' /usr/share/applications/hp-uiscan.desktop
+	sed -i 's/Icon=.*/Icon=scanner-hp/' /usr/share/applications/hp-uiscan.desktop
 fi
 
 # kate (renomeia)
