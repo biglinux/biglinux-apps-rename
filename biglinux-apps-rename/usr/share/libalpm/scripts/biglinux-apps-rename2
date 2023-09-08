@@ -552,6 +552,12 @@ echo "Verificando o arquivo lxqt-config-brightness.desktop"
 	if [ -f /usr/share/applications/lxqt-config-brightness.desktop ]; then
 		sed -i 's/Name[pt_BR]=.*/Name[pt_BR]=Brilho da Tela/' /usr/share/applications/lxqt-config-brightness.desktop
 	fi
+	
+# nemo icon
+echo "Verificando nemo"
+	if [[ -f /usr/share/applications/nemo.desktop ]] && [[ -d /usr/share/icons/biglinux-icons-material ]]; then
+		sed -i 's/Icon=.*/Icon=nemo/' /usr/share/applications/nemo.desktop
+	fi
 
 # lxqt notificationd (renomeia)
 echo "Verificando o arquivo lxqt-config-notificationd.desktop"
