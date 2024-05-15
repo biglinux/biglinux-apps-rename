@@ -146,6 +146,9 @@ echo "Verificando o arquivo math.desktop"
 			cp -f /usr/share/biglinux/applications-name/math.desktop /usr/lib/libreoffice/share/xdg/math.desktop
 		fi
 	fi
+	if [ -f /usr/share/applications/libreoffice-math.desktop ]; then
+		sed -i '/Categories=/s/Education;//' /usr/share/applications/libreoffice-math.desktop
+	fi
 
 # libreoffice impress
 echo "Verificando o arquivo impress.desktop"
@@ -178,7 +181,10 @@ echo "Verificando o arquivo draw.desktop"
 			cp -f /usr/share/biglinux/applications-name/draw.desktop /usr/lib/libreoffice/share/xdg/draw.desktop
 		fi
 	fi
-
+	if [ -f /usr/share/applications/libreoffice-draw.desktop ]; then
+		sed -i '/Categories=/s/Graphics;//;/Categories=/s/2DGraphics;//' /usr/share/applications/libreoffice-draw.desktop
+	fi
+		
 # libreoffice writer
 echo "Verificando o arquivo writer.desktop"
 	if [ -f /usr/lib/libreoffice/share/xdg/writer.desktop ]; then
