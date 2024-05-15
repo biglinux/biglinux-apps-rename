@@ -147,7 +147,7 @@ echo "Verificando o arquivo math.desktop"
 		fi
 	fi
 	if [ -f /usr/share/applications/libreoffice-math.desktop ]; then
-		sed -i '/Categories=/s/Education;//' /usr/share/applications/libreoffice-math.desktop
+		sed -i '/Categories=/s/Education;//;/Categories=/s/Science;//;/Categories=/s/Math;//' /usr/share/applications/libreoffice-math.desktop
 	fi
 
 # libreoffice impress
