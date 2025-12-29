@@ -1,0 +1,47 @@
+[Desktop Entry]
+Name=Remote Desktop RustDesk
+Name[bg]=Отдалечен достъп RustDesk
+Name[cs]=Vzdálená plocha RustDesk
+Name[da]=Fjernskrivebord RustDesk
+Name[de]=Fernzugriff RustDesk
+Name[el]=Απομακρυσμένη πρόσβαση RustDesk
+Name[es]=Acceso Remoto RustDesk
+Name[et]=Kaugtöölaud RustDesk
+Name[fi]=Etätyöpöytä RustDesk
+Name[fr]=Bureau à distance RustDesk
+Name[he]=שולחן עבודה מרוחק RustDesk
+Name[hr]=Udaljeni pristup RustDesk
+Name[hu]=Távoli asztal RustDesk
+Name[is]=Fjartenging RustDesk
+Name[it]=Desktop Remoto RustDesk
+Name[ja]=リモートデスクトップ RustDesk
+Name[ko]=원격 데스크톱 RustDesk
+Name[nl]=Extern Bureaublad RustDesk
+Name[no]=Fjernstyring RustDesk
+Name[pl]=Pulpit zdalny RustDesk
+Name[pt]=Acesso Remoto RustDesk
+Name[pt_BR]=Acesso Remoto RustDesk
+Name[ro]=Desktop la distanță RustDesk
+Name[ru]=Удаленный доступ RustDesk
+Name[sk]=Vzdialená plocha RustDesk
+Name[sv]=Fjärrstyrning RustDesk
+Name[tr]=Uzak Masaüstü RustDesk
+Name[uk]=Віддалений доступ RustDesk
+Name[zh]=远程桌面 RustDesk
+GenericName=Remote Desktop
+Comment=Remote Desktop
+Exec=rustdesk %u
+Icon=rustdesk
+Terminal=false
+Type=Application
+StartupNotify=true
+Categories=Network;RemoteAccess;GTK;
+Keywords=internet;linux;dart;rust;remote-control;p2p;teamviewer;rust-lang;rdp;remote-desktop;vnc;
+Actions=new-window;
+StartupWMClass=rustdesk
+
+X-Desktop-File-Install-Version=0.23
+
+[Desktop Action new-window]
+Name=Open a New Window
+Exec=rustdesk %u

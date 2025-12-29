@@ -224,9 +224,11 @@ sed -i 's|Name\[pt_BR\]=.*|Name[pt_BR]=Visualizador de imagens|g;s|Comment\[pt_B
 #kmines
 sed -i 's|Name\[pt_BR\]=.*|Name[pt_BR]=Campo minado|g;s|Comment\[pt_BR\]=.*|Comment[pt_BR]=|g;s|GenericName\[pt_BR\]=.*|GenericName[pt_BR]=|g' /usr/share/applications/org.kde.kmines.desktop
 
-#guvcview (rennomeia)
-if [ "$(grep 'Name\[pt]=guvcview' /usr/share/applications/guvcview.desktop)" != "" ]; then
-    sed -i 's|Name\[pt_BR\]=guvcview|Name\[pt_BR\]=Webcam Guvc|g;s|Name\[pt\]=guvcview|Name\[pt\]=Webcam Guvc|g;s|GenericName\[pt_BR\]=Visualizador de vídeo GTK UVC|GenericName\[pt_BR\]=|g;s|GenericName\[pt\]=Visualizador de vídeo GTK UVC|GenericName\[pt\]=|g;s|^Exec=guvcview-verify-busy$|Exec=guvcview|g' /usr/share/applications/guvcview.desktop
+#guvcview
+if [ -f /usr/share/applications/guvcview.desktop ]; then
+	if [ ! grep -q 'Name=Webcam Guvc' /usr/share/applications/guvcview.desktop ] && [ -e "/usr/share/biglinux/applications-name/guvcview.desktop" ]; then
+		cp -f /usr/share/biglinux/applications-name/guvcview.desktop /usr/share/applications/guvcview.desktop
+	fi
 fi
 
 # vokoscreenNG
@@ -235,19 +237,22 @@ if [ "$(grep 'Name\[pt_BR\]=' /usr/share/applications/vokoscreenNG.desktop)" = "
     sed -i '/Name=/a Name[pt]=Gravador de tela Voko\nComment[pt]=' /usr/share/applications/vokoscreenNG.desktop
 fi
 
-# SimpleScreenRecorder
-if [ "$(grep 'Name\[pt_BR\]=' /usr/share/applications/simplescreenrecorder.desktop)" = "" ]; then
-    sed -i '/Name=/a Name[pt_BR]=Gravador de tela\nComment[pt_BR]=' /usr/share/applications/simplescreenrecorder.desktop
-    sed -i '/Name=/a Name[pt]=Gravador de tela\nComment[pt]=' /usr/share/applications/simplescreenrecorder.desktop
-fi
-
 # pavucontrol-qt
 sed -i 's|multimedia-volume-control|audio-volume-high|g;s|Name\[pt\]=.*|Name[pt]=Som e microfone|g;s|GenericName\[pt\]=.*|GenericName[pt]=|g;s|Categories=.*|Categories=Settings;Audio;Mixer;Qt;|g' /usr/share/applications/pavucontrol-qt.desktop
 sed -i 's|multimedia-volume-control|audio-volume-high|g'/usr/share/applications/pavucontrol-qt.desktop
 
-# Clementine
-if [ "$(grep 'Name\[pt_BR\]=Músicas' /usr/share/applications/clementine.desktop)" = "" ] && [ -e "/usr/share/applications/clementine.desktop" ]; then
-    sed -i '/GenericName\[pt\]=/a Name[pt_BR]=Músicas\nGenericName[pt_BR]= \nComment[pt_BR]=' /usr/share/applications/clementine.desktop
+# Strawberry
+if [ -f /usr/share/applications/org.strawberrymusicplayer.strawberry.desktop ]; then
+	if [ ! grep -q 'Name=Music Player Strawberry' /usr/share/applications/org.strawberrymusicplayer.strawberry.desktop ] && [ -e "/usr/share/biglinux/applications-name/org.strawberrymusicplayer.strawberry.desktop" ]; then
+		cp -f /usr/share/biglinux/applications-name/org.strawberrymusicplayer.strawberry.desktop /usr/share/applications/org.strawberrymusicplayer.strawberry.desktop
+	fi
+fi
+
+# Rustdesk
+if [ -f /usr/share/applications/rustdesk.desktop ]; then
+	if [ ! grep -q 'Name=Remote Desktop RustDesk' /usr/share/applications/rustdesk.desktop ] && [ -e "/usr/share/biglinux/applications-name/rustdesk.desktop" ]; then
+		cp -f /usr/share/biglinux/applications-name/rustdesk.desktop /usr/share/applications/rustdesk.desktop
+	fi
 fi
 
 # Lutris
@@ -301,6 +306,13 @@ sed -i 's|preferences-system|breeze-settings|g;' /usr/share/applications/kdesyst
 
 # ksysguard
 sed -i 's|Name\[pt_BR\]=.*|Name[pt_BR]=Gerenciar tarefas|g;s|Comment\[pt_BR\]=.*|Comment[pt_BR]=|g;s|GenericName\[pt_BR\]=.*|GenericName[pt_BR]=|g' /usr/share/applications/org.kde.ksysguard.desktop
+
+# Resources
+if [ -f /usr/share/applications/net.nokyan.Resources.desktop ]; then
+	if [ ! grep -q 'Name=Keep an eye on system resources' /usr/share/applications/net.nokyan.Resources.desktop ] && [ -e "/home/bruno/codigo-pacotes/biglinux-apps-rename/biglinux-apps-rename/usr/share/biglinux/applications-name/net.nokyan.Resources.desktop" ]; then
+		cp -f /home/bruno/codigo-pacotes/biglinux-apps-rename/biglinux-apps-rename/usr/share/biglinux/applications-name/net.nokyan.Resources.desktop /usr/share/applications/net.nokyan.Resources.desktop
+	fi
+fi
 
 # gparted
 if [ "$(grep 'Name\[pt]=GParted' /usr/share/applications/gparted.desktop)" != "" ]; then
