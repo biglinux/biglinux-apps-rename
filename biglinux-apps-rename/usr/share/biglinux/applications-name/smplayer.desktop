@@ -1,0 +1,51 @@
+[Desktop Entry]
+Categories=Qt;AudioVideo;Player;Video;
+Name=Video Player SMPlayer
+Name[bg]=Видео плейър SMPlayer
+Name[cs]=Přehrávač videa SMPlayer
+Name[da]=Videoafspiller SMPlayer
+Name[de]=Videoplayer SMPlayer
+Name[el]=Αναπαραγωγή βίντεο SMPlayer
+Name[es]=Reproductor de Vídeo SMPlayer
+Name[et]=Videomängija SMPlayer
+Name[fi]=Videosoitin SMPlayer
+Name[fr]=Lecteur Vidéo SMPlayer
+Name[he]=נגן וידאו SMPlayer
+Name[hr]=Video svirač SMPlayer
+Name[hu]=Videolejátszó SMPlayer
+Name[is]=Myndbandsspilari SMPlayer
+Name[it]=Lettore Video SMPlayer
+Name[ja]=動画プレーヤー SMPlayer
+Name[ko]=동영상 플레이어 SMPlayer
+Name[nl]=Videospeler SMPlayer
+Name[no]=Videoavspiller SMPlayer
+Name[pl]=Odtwarzacz wideo SMPlayer
+Name[pt]=Reprodutor de Vídeo SMPlayer
+Name[pt_BR]=Reprodutor de Vídeo SMPlayer
+Name[ro]=Player Video SMPlayer
+Name[ru]=Видеоплеер SMPlayer
+Name[sk]=Prehrávač videa SMPlayer
+Name[sv]=Videospelare SMPlayer
+Name[tr]=Video Oynatıcı SMPlayer
+Name[uk]=Відеопрогравач SMPlayer
+Name[zh]=视频播放器 SMPlayer
+Comment=A great MPlayer front-end
+Exec=smplayer %U
+Icon=smplayer
+MimeType=audio/ac3;audio/mp4;audio/mpeg;audio/vnd.rn-realaudio;audio/vorbis;audio/x-adpcm;audio/x-matroska;audio/x-mp2;audio/x-mp3;audio/x-ms-wma;audio/x-vorbis;audio/x-wav;audio/mpegurl;audio/x-mpegurl;audio/x-pn-realaudio;audio/x-scpls;audio/aac;audio/flac;audio/ogg;video/avi;video/mp4;video/flv;video/mpeg;video/quicktime;video/vnd.rn-realvideo;video/x-matroska;video/x-ms-asf;video/x-msvideo;video/x-ms-wmv;video/x-ogm+ogg;video/x-theora;video/webm;
+Type=Application
+X-KDE-StartupNotify=true
+
+Actions=SoftwareRender;NvidiaRender;IntegratedRender;
+
+[Desktop Action SoftwareRender]
+Name=Software Render
+Exec=SoftwareRender smplayer %U
+
+[Desktop Action NvidiaRender]
+Name=Nvidia Render
+Exec=NvidiaRender smplayer %U
+
+[Desktop Action IntegratedRender]
+Name=Integrated Render
+Exec=IntegratedRender smplayer %U
