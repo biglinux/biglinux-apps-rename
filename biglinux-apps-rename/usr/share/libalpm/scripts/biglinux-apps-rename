@@ -1,3 +1,4 @@
 #!/bin/sh
 
 /usr/share/libalpm/scripts/biglinux-apps-rename2 &> /dev/null
+exit 0
