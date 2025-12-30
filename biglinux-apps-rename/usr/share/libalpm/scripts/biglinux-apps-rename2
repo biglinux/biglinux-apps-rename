@@ -99,10 +99,10 @@ f="/usr/share/applications/steam.desktop"
 [[ -f "$f" ]] && sed -i 's|Steam (Runtime)|Steam|g;s|Categories=Network;FileTransfer;Game;|Categories=Game;|g' "$f"
 
 # Gufw
-f="/usr/share/applications/gufw.desktop"
+f="/usr/share/applications/bigcontrolcenter/gufw.desktop"
 if [[ -f "$f" ]]; then
     sed -i 's|Name=.*|Name=Firewall|g;s|Categories=.*|Categories=System|g' "$f"
-    sed -i 's|pkexec gufw-pkexec|pkexec env DISPLAY=$DISPLAY XAUTHORITY=$XAUTHORITY gufw-pkexec|g' /usr/bin/gufw
+    sed -i 's|Exec=gufw|Exec=bigsudo gufw-pkexec|g' "$f"
 fi
 
 # KDE Connect
