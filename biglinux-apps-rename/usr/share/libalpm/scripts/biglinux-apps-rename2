@@ -2,8 +2,11 @@
 
 BACKUP_DIR="/usr/share/biglinux/applications-name"
 
+# True when a line of the file starts with the literal text $2. Literal, not a
+# regex: write 'Name[pt_BR]=', never 'Name\[pt_BR\]='. Anchored, so that
+# 'Name[pt]=' does not match inside 'GenericName[pt]='.
 has_text() {
-    [[ "$(< "$1")" == *"$2"* ]]
+    [[ $'\n'"$(< "$1")" == *$'\n'"$2"* ]]
 }
 
 hide_app() {
@@ -83,8 +86,9 @@ done
 hide_in_env "/usr/share/applications/hp-uiscan.desktop" "LXQt"
 
 # KInfoCenter
-f="/usr/share/applications/org.kde.kinfocenter.desktop"
-[[ -f "$f" ]] && sed -i 's/Documentation;//' "$f"
+for f in /usr/share/applications/{,bigcontrolcenter/}org.kde.kinfocenter.desktop; do
+    [[ -f "$f" ]] && sed -i 's/Documentation;//' "$f"
+done
 
 # HP Icons
 sed -i 's/Icon=.*/Icon=hp_logo/' /usr/share/applications/bigcontrolcenter/hplip.desktop /usr/share/applications/hplip.desktop 2>/dev/null
@@ -106,8 +110,9 @@ if [[ -f "$f" ]]; then
 fi
 
 # KDE Connect
-f="/usr/share/applications/org.kde.kdeconnect.app.desktop"
-[[ -f "$f" ]] && sed -i 's|kdeconnect-app|kdeconnect-settings|g;s|Name\[pt_BR\]=.*|Name[pt_BR]=Interagir com dispositivos Android|g;s|GenericName\[pt_BR\]=.*|GenericName[pt_BR]=|g;s|Categories=Qt;KDE;Network|Categories=Qt;KDE;Utility|g;' "$f"
+for f in /usr/share/applications/{,bigcontrolcenter/}org.kde.kdeconnect.app.desktop; do
+    [[ -f "$f" ]] && sed -i 's|kdeconnect-app|kdeconnect-settings|g;s|Name\[pt_BR\]=.*|Name[pt_BR]=Interagir com dispositivos Android|g;s|GenericName\[pt_BR\]=.*|GenericName[pt_BR]=|g;s|Categories=Qt;KDE;Network|Categories=Qt;KDE;Utility|g;' "$f"
+done
 
 # ==============================================================================
 # LIBREOFFICE & BACKUPS
@@ -124,13 +129,32 @@ restore_check() {
     fi
 }
 
-restore_check "/usr/lib/libreoffice/share/xdg/xsltfilter.desktop" "xsltfilter.desktop" 'Name\[pt_BR\]='
-restore_check "/usr/lib/libreoffice/share/xdg/math.desktop"       "math.desktop"       'Name\[pt_BR\]='
-restore_check "/usr/lib/libreoffice/share/xdg/impress.desktop"    "impress.desktop"    'Name\[pt_BR\]='
-restore_check "/usr/lib/libreoffice/share/xdg/base.desktop"       "base.desktop"       'Name\[pt_BR\]='
-restore_check "/usr/lib/libreoffice/share/xdg/calc.desktop"       "calc.desktop"       'Name\[pt_BR\]='
-restore_check "/usr/lib/libreoffice/share/xdg/draw.desktop"       "draw.desktop"       'Name\[pt_BR\]='
-restore_check "/usr/lib/libreoffice/share/xdg/writer.desktop"     "writer.desktop"     'Name\[pt_BR\]='
+# Put back the names of a LibreOffice entry after an update replaced the file.
+# The packaged entry carries no translations; the stored copy carries the
+# translated Name/GenericName/Comment of every language, with BigLinux's own
+# Portuguese names. Only those lines come from it, per group: copying the whole
+# copy also brought back its old MIME types and icons.
+restore_names() {
+    local target="$1"
+    local source="$BACKUP_DIR/$2"
+    local name
+    [[ -f "$target" && -f "$source" ]] || return
+    name="$(grep -m1 '^Name\[pt_BR\]=' "$source")"
+    [[ -n "$name" ]] && has_text "$target" "$name" && return
+    awk 'NR == FNR {
+            if (/^\[/) group = $0
+            else if (/^(Name|GenericName|Comment)\[[^]]+\]=/) names[group] = names[group] $0 "\n"
+            next
+        }
+        /^(Name|GenericName|Comment)\[[^]]+\]=/ { next }
+        { print }
+        /^\[/ { printf "%s", names[$0] }' "$source" "$target" >"$target.tmp" &&
+        mv -f "$target.tmp" "$target"
+}
+
+for app in math impress base calc draw writer; do
+    restore_names "/usr/lib/libreoffice/share/xdg/$app.desktop" "$app.desktop"
+done
 
 # Category LibreOffice
 [[ -f /usr/share/applications/libreoffice-math.desktop ]] && \
@@ -164,8 +188,9 @@ f="/usr/share/applications/org.kde.skanpage.desktop"
 [[ -f "$f" ]] && sed -i 's|Name\[pt_BR\]=.*|Name[pt_BR]=Digitalizador de imagens Skanpage|g;s|GenericName\[pt_BR\]=.*|GenericName[pt_BR]=|g' "$f"
 
 # KWalletManager
-f="/usr/share/applications/org.kde.kwalletmanager5.desktop"
-[[ -f "$f" ]] && sed -i 's|Name\[pt_BR\]=.*|Name[pt_BR]=Gerenciar senhas no sistema|g;s|GenericName\[pt_BR\]=.*|GenericName[pt_BR]=|g' "$f"
+for f in /usr/share/applications/{,bigcontrolcenter/}org.kde.kwalletmanager.desktop; do
+    [[ -f "$f" ]] && sed -i 's|Name\[pt_BR\]=.*|Name[pt_BR]=Gerenciar senhas no sistema|g;s|GenericName\[pt_BR\]=.*|GenericName[pt_BR]=|g' "$f"
+done
 
 # Okular
 f="/usr/share/applications/org.kde.okular.desktop"
@@ -189,9 +214,9 @@ restore_check "/usr/share/applications/net.nokyan.Resources.desktop" "net.nokyan
 # VokoscreenNG
 f="/usr/share/applications/vokoscreenNG.desktop"
 if [[ -f "$f" ]] && [[ -e "$BACKUP_DIR/guvcview.desktop" ]]; then
-    if ! has_text "$f" 'Name\[pt_BR\]='; then
-        sed -i '/Name=/a Name[pt_BR]=Gravador de tela Voko\nComment[pt_BR]=' "$f"
-        sed -i '/Name=/a Name[pt]=Gravador de tela Voko\nComment[pt]=' "$f"
+    if ! has_text "$f" 'Name[pt_BR]=Gravador de tela Voko'; then
+        sed -i '/^Name=/a Name[pt_BR]=Gravador de tela Voko\nComment[pt_BR]=' "$f"
+        sed -i '/^Name=/a Name[pt]=Gravador de tela Voko\nComment[pt]=' "$f"
     fi
 fi
 
@@ -201,7 +226,7 @@ f="/usr/share/applications/net.lutris.Lutris.desktop"
 
 # Calculadora
 f="/usr/share/applications/org.gnome.Calculator.desktop"
-if [[ -f "$f" ]] && has_text "$f" 'GenericName\[pt]'; then
+if [[ -f "$f" ]] && ! has_text "$f" 'Name[pt]='; then
     echo 'GenericName[pt]=Calculadora' >> "$f"
     echo 'Name[pt]=Calculadora' >> "$f"
 fi
@@ -228,38 +253,39 @@ f="/usr/share/applications/org.kde.dolphin.desktop"
 
 # Mintstick
 sed -i 's|Name\[pt_BR\]=.*|Name[pt_BR]=Criar pen drive de boot|g' /usr/share/applications/mintstick.desktop 2>/dev/null
-sed -i 's|Name\[pt_BR\]=.*|Name[pt_BR]=Criar pen drive de boot|g;s|GenericName\[pt_BR\]=.*|GenericName[pt_BR]=|g' /usr/share/applications/mintstick-kde.desktop 2>/dev/null
+sed -i 's|Name\[pt_BR\]=.*|Name[pt_BR]=Criar pen drive de boot|g;s|GenericName\[pt_BR\]=.*|GenericName[pt_BR]=|g' /usr/share/applications/{,bigcontrolcenter/}mintstick-kde.desktop 2>/dev/null
 
 # Mintstick Format
 sed -i 's|Name\[pt_BR\]=.*|Name[pt_BR]=Formatar pen drive|g' /usr/share/applications/mintstick-format.desktop 2>/dev/null
-sed -i 's|Name\[pt_BR\]=.*|Name[pt_BR]=Formatar pen drive|g;s|GenericName\[pt_BR\]=.*|GenericName[pt_BR]=|g' /usr/share/applications/mintstick-format-kde.desktop 2>/dev/null
+sed -i 's|Name\[pt_BR\]=.*|Name[pt_BR]=Formatar pen drive|g;s|GenericName\[pt_BR\]=.*|GenericName[pt_BR]=|g' /usr/share/applications/{,bigcontrolcenter/}mintstick-format-kde.desktop 2>/dev/null
 
 # System Settings
-f="/usr/share/applications/kdesystemsettings.desktop"
-[[ -f "$f" ]] && sed -i 's|preferences-system|breeze-settings|g;' "$f"
+for f in /usr/share/applications/{,bigcontrolcenter/}kdesystemsettings.desktop; do
+    [[ -f "$f" ]] && sed -i 's|preferences-system|breeze-settings|g;' "$f"
+done
 
 # KSysGuard
 f="/usr/share/applications/org.kde.ksysguard.desktop"
 [[ -f "$f" ]] && sed -i 's|Name\[pt_BR\]=.*|Name[pt_BR]=Gerenciar tarefas|g;s|Comment\[pt_BR\]=.*|Comment[pt_BR]=|g;s|GenericName\[pt_BR\]=.*|GenericName[pt_BR]=|g' "$f"
 
 # GParted
-f="/usr/share/applications/gparted.desktop"
-if [[ -f "$f" ]] && ! has_text "$f" 'Name\[pt]=GParted'; then
-    sed -i 's|GenericName\[pt_BR\]=.*||g;s|Name\[pt_BR\]=.*||g;s|GenericName\[pt\]=.*|GenericName[pt]=|g;s|Name\[pt\]=.*|Name[pt]=Formatar ou particionar|g' "$f"
-fi
+for f in /usr/share/applications/{,bigcontrolcenter/}gparted.desktop; do
+    if [[ -f "$f" ]] && has_text "$f" 'Name[pt]=GParted'; then
+        sed -i 's|^GenericName\[pt_BR\]=.*||;s|^Name\[pt_BR\]=.*||;s|^GenericName\[pt\]=.*|GenericName[pt]=|;s|^Name\[pt\]=.*|Name[pt]=Formatar ou particionar|' "$f"
+    fi
+done
 
 # Onboard
 rm -f /usr/share/applications/onboard-settings.desktop
 f="/usr/share/applications/onboard.desktop"
-if [[ -f "$f" ]] && has_text "$f" 'Name\[pt]'; then
-    printf "Name[pt]=Teclado virtual\nGenericName[pt]=\nComment[pt]=\n" >> "$f"
-    sed -i 's|Accessibility;||g' "$f"
+if [[ -f "$f" ]] && ! has_text "$f" 'Name[pt_BR]=Teclado virtual'; then
+    sed -i 's|^Name\[pt\(_BR\)\?\]=.*|Name[pt\1]=Teclado virtual|;s|^GenericName\[pt\(_BR\)\?\]=.*|GenericName[pt\1]=|;s|^Comment\[pt\(_BR\)\?\]=.*|Comment[pt\1]=|;s|Accessibility;||g' "$f"
 fi
 
 # Browsers
 f="/usr/share/applications/google-chrome.desktop"
-if [[ -f "$f" ]] && has_text "$f" 'Name\[pt_BR\]='; then
-    sed -i '/GenericName\[pt_BR\]=/a Name[pt_BR]=Navegador Google Chrome' "$f"
+if [[ -f "$f" ]] && ! has_text "$f" 'Name[pt_BR]=Navegador Google Chrome'; then
+    sed -i '/^GenericName\[pt_BR\]=/a Name[pt_BR]=Navegador Google Chrome' "$f"
     sed -i 's|Comment\[pt_BR\]=.*|Comment[pt_BR]=|g;s|GenericName\[pt_BR\]=.*|GenericName[pt_BR]=|g' "$f"
 fi
 
@@ -286,8 +312,9 @@ for app in "et:WPS Planilhas (Spreadsheets)" "wpp:WPS Apresentações (Presentat
     suffix="${app%%:*}"
     name="${app#*:}"
     f="/usr/share/applications/wps-office-${suffix}.desktop"
-    if [[ -f "$f" ]] && ! has_text "$f" 'Name\[pt_BR\]='; then
-        sed -i "/GenericName=/a Name[pt_BR]=$name\nGenericName[pt_BR]= \nComment[pt_BR]=" "$f"
+    if [[ -f "$f" ]] && ! has_text "$f" "Name[pt_BR]=$name"; then
+        sed -i '/^Name\[pt_BR\]=/d;/^GenericName\[pt_BR\]=/d;/^Comment\[pt_BR\]=/d' "$f"
+        sed -i "/^GenericName=/a Name[pt_BR]=$name\nGenericName[pt_BR]= \nComment[pt_BR]=" "$f"
     fi
 done
 [[ -f /etc/xdg/menus/applications-merged/wps-office.menu ]] && sed -i 's/^/#/' /etc/xdg/menus/applications-merged/wps-office.menu
@@ -297,19 +324,21 @@ f="/usr/share/applications/xscreensaver-properties.desktop"
 [[ -f "$f" ]] && sed -i 's|Categories=Settings;DesktopSettings;Security;X-XFCE;|Categories=System;DesktopSettings;Security;X-XFCE;|' "$f"
 
 # OpenJDK
-sed -i 's|cautious-launcher %f /usr/bin/java -jar|/usr/bin/java -jar %f|' /usr/share/applications/openjdk*.desktop 2>/dev/null
-f="/usr/share/applications/openjdk-8-policytool.desktop"
-if [[ -f "$f" ]] && has_text "$f" 'Name\[pt_BR\]='; then
-    sed -i '/Name=/a Name[pt_BR]=Regras de segurança do Java\nComment[pt_BR]=' "$f"
-fi
+sed -i 's|cautious-launcher %f /usr/bin/java -jar|/usr/bin/java -jar %f|' /usr/share/applications/{,bigcontrolcenter/}openjdk*.desktop 2>/dev/null
+for f in /usr/share/applications/{,bigcontrolcenter/}openjdk-8-policytool.desktop; do
+    if [[ -f "$f" ]] && ! has_text "$f" 'Name[pt_BR]=Regras de segurança do Java'; then
+        sed -i '/^Name=/a Name[pt_BR]=Regras de segurança do Java\nComment[pt_BR]=' "$f"
+    fi
+done
 
 # Timeshift
-f="/usr/share/applications/timeshift-gtk.desktop"
-if [[ -f "$f" ]] && has_text "$f" 'Name\[pt_BR\]='; then
-    sed -i '/GenericName\[ca\]=/a Name[pt_BR]=Backups e snapshots' "$f"
-    printf "Comment[pt_BR]=\nGenericName[pt_BR]=\n" >> "$f"
-    sed -i 's|Comment\[pt_BR\]=.*|Comment[pt_BR]=|g;s|GenericName\[pt_BR\]=.*|GenericName[pt_BR]=|g' "$f"
-fi
+for f in /usr/share/applications/{,bigcontrolcenter/}timeshift-gtk.desktop; do
+    if [[ -f "$f" ]] && ! has_text "$f" 'Name[pt_BR]=Backups e snapshots'; then
+        sed -i '/^Name=/a Name[pt_BR]=Backups e snapshots' "$f"
+        printf "Comment[pt_BR]=\nGenericName[pt_BR]=\n" >> "$f"
+        sed -i 's|Comment\[pt_BR\]=.*|Comment[pt_BR]=|g;s|GenericName\[pt_BR\]=.*|GenericName[pt_BR]=|g' "$f"
+    fi
+done
 
 # Keyboard
 f="/etc/default/keyboard"
@@ -323,7 +352,7 @@ if [[ -f "$f" ]]; then
     [[ -f /usr/share/applications/org.manjaro.pamac.manager.desktop ]] && \
         sed -i 's|Categories=.*|Categories=Settings;|g' /usr/share/applications/org.manjaro.pamac.manager.desktop
     
-    if ! has_text "$f" "Name\[pt_BR\]="; then
+    if ! has_text "$f" "Name[pt_BR]="; then
         echo 'Name[pt_BR]=Configure NVIDIA' >> "$f"
     else
         sed -i "s/^Name\[pt_BR\]=.*/Name[pt_BR]=Configure NVIDIA/" "$f"
@@ -336,12 +365,14 @@ update_settings_app() {
     local name="$2"
     [[ -f "$f" ]] || return
     sed -i '/^Categories/ s/.*/Categories=Settings;DesktopSettings;LXQt;X-XFCE-SettingsDialog;X-XFCE-PersonalSettings;X-GNOME-PersonalSettings;/' "$f"
-    if has_text "$f" "Name\[pt_BR\]="; then
+    if has_text "$f" "Name[pt_BR]="; then
         sed -i "s/^Name\[pt_BR\].*/Name[pt_BR]=$name/" "$f"
     else
         echo "Name[pt_BR]=$name" >> "$f"
     fi
 }
 
-update_settings_app "/usr/share/applications/kvantummanager.desktop" "Kvantum"
-update_settings_app "/usr/share/applications/appimagelaunchersettings.desktop" "Configurações do AppImage"
+for d in /usr/share/applications /usr/share/applications/bigcontrolcenter; do
+    update_settings_app "$d/kvantummanager.desktop" "Kvantum"
+    update_settings_app "$d/appimagelaunchersettings.desktop" "Configurações do AppImage"
+done

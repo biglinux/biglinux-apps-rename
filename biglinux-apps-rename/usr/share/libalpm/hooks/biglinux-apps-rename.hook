@@ -60,7 +60,7 @@ Target = usr/share/applications/org.kde.kdeconnect.app.desktop
 Target = usr/share/applications/gimp.desktop
 Target = usr/share/applications/simple-scan.desktop
 Target = usr/share/applications/org.kde.skanpage.desktop
-Target = usr/share/applications/org.kde.kwalletmanager5.desktop
+Target = usr/share/applications/org.kde.kwalletmanager.desktop
 Target = usr/share/applications/org.kde.okular.desktop
 Target = usr/share/applications/org.kde.gwenview.desktop
 Target = usr/share/applications/org.kde.kmines.desktop
@@ -112,7 +112,6 @@ Target = etc/xdg/menus/applications-merged/wps-office.menu
 # --- LibreOffice (System & Internal) ---
 Target = usr/share/applications/libreoffice-math.desktop
 Target = usr/share/applications/libreoffice-draw.desktop
-Target = usr/lib/libreoffice/share/xdg/xsltfilter.desktop
 Target = usr/lib/libreoffice/share/xdg/math.desktop
 Target = usr/lib/libreoffice/share/xdg/impress.desktop
 Target = usr/lib/libreoffice/share/xdg/base.desktop
